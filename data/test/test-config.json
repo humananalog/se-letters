@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "maxDocuments": 5,
+  "testDatabasePath": "/Users/alexandre/workshop/devApp/SE_letters/data/test/test_ibcatalogue.duckdb",
+  "documents": [
+    {
+      "id": "test-doc-1",
+      "name": "PIX2B_Phase_out_Letter.pdf",
+      "originalPath": "data/test/documents/PIX2B_Phase_out_Letter.pdf",
+      "testPath": "/Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf",
+      "status": "completed",
+      "uploadedAt": "2025-07-12T14:01:39.684Z",
+      "processedAt": "2025-07-12T14:01:40.717Z",
+      "results": {
+        "success": true,
+        "documentPath": "/Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf",
+        "stdout": "❌ Import error - using mock services\n✅ Loaded 4067 valid ranges from database\n✅ Total obsolete products in database: 183,772\n🔧 FALLBACK MODE: Using mock enhanced services\n🔧 ENHANCED CORRECTED SEMANTIC PIPELINE INITIALIZED\n✅ All critical fixes + multi-dimensional extraction applied\n\n🔍 SE LETTERS SEMANTIC EXTRACTION PIPELINE - CORRECTED\n====================================================================================================\n🔧 FIXES: Range Validation | Obsolete Filtering | Product Counting | AI Extraction\n📄 Processing 5 documents with corrected semantic extraction\n\n🔄 Document 1/5: OL0019.pdf\n  🧠 Context: Unknown (Conf: 0.00)\n  📄 Text: 25 characters\n  🔍 Raw extraction: 5 ranges\n  🔩 Subranges: 2\n  ⚙️  Device types: 1\n  🏷️  Brands: 1\n  📐 Tech specs: 2\n  ✅ Valid ranges: 5\n  ❌ Invalid ranges filtered: 0\n  🎯 Obsolete products: 900\n  🔄 Replacement products: 201\n  ⚡ Processing time: 67.8ms\n\n🔄 Document 2/5: Obsolescence letter - GLA SF6 MV GIS.docx\n  🧠 Context: Unknown (Conf: 0.00)\n  📄 Text: 56 characters\n  🔍 Raw extraction: 5 ranges\n  🔩 Subranges: 2\n  ⚙️  Device types: 1\n  🏷️  Brands: 1\n  📐 Tech specs: 2\n  ✅ Valid ranges: 5\n  ❌ Invalid ranges filtered: 0\n  🎯 Obsolete products: 900\n  🔄 Replacement products: 201\n  ⚡ Processing time: 44.6ms\n\n🔄 Document 3/5: 20200522_PWP_VOX- Phase_out - Extl_communication_letter.pdf\n  🧠 Context: Unknown (Conf: 0.00)\n  📄 Text: 74 characters\n  🔍 Raw extraction: 5 ranges\n  🔩 Subranges: 2\n  ⚙️  Device types: 1\n  🏷️  Brands: 1\n  📐 Tech specs: 2\n  ✅ Valid ranges: 5\n  ❌ Invalid ranges filtered: 0\n  🎯 Obsolete products: 900\n  🔄 Replacement products: 201\n  ⚡ Processing time: 44.9ms\n\n🔄 Document 4/5: 12.02.2021 SLA MESA-Power Systems MVO.docx\n  🧠 Context: Unknown (Conf: 0.00)\n  📄 Text: 57 characters\n  🔍 Raw extraction: 5 ranges\n  🔩 Subranges: 2\n  ⚙️  Device types: 1\n  🏷️  Brands: 1\n  📐 Tech specs: 2\n  ✅ Valid ranges: 5\n  ❌ Invalid ranges filtered: 0\n  🎯 Obsolete products: 900\n  🔄 Replacement products: 201\n  ⚡ Processing time: 42.2ms\n\n🔄 Document 5/5: WK endoflife&Maintenance_V4.docx\n  🧠 Context: obsolescence (Conf: 0.80)\n  📄 Text: 47 characters\n  🔍 Raw extraction: 5 ranges\n  🔩 Subranges: 2\n  ⚙️  Device types: 1\n  🏷️  Brands: 1\n  📐 Tech specs: 2\n  ✅ Valid ranges: 5\n  ❌ Invalid ranges filtered: 0\n  🎯 Obsolete products: 900\n  🔄 Replacement products: 201\n  ⚡ Processing time: 43.5ms\n\n🔍 Generating corrected semantic extraction report...\n\n🏆 ENHANCED SEMANTIC EXTRACTION PIPELINE COMPLETE\n📊 Documents: 5 (5 successful)\n✅ Valid ranges found: 25\n❌ Invalid ranges filtered: 0\n🎯 Obsolete products: 4,500\n🔄 Replacement products: 1,005\n⚡ Average processing time: 48.6ms\n📁 Enhanced Report: data/output/SE_Letters_Semantic_CORRECTED_20250712_220140.html\n✅ VALIDATION PASSED: Product count within database limits\n\n🌐 Opening corrected report: data/output/SE_Letters_Semantic_CORRECTED_20250712_220140.html\n",
+        "stderr": ""
+      },
+      "error": null
+    }
+  ]
+}

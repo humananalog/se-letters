@@ -1,0 +1,648 @@
+#!/usr/bin/env python3
+"""
+Improved HTML Template Generator
+Fixes font size issues and implements thumbnail zoom functionality
+"""
+
+def get_improved_html_template():
+    """Generate improved HTML template with better UX"""
+    
+    return """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE Letters - Enhanced Industrial Pipeline Report</title>
+    <style>
+        /* IMPROVED TYPOGRAPHY - LARGER FONTS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px; /* INCREASED from 14px */
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            font-size: 2.5rem; /* INCREASED */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.8rem; /* INCREASED */
+            color: #00ff88;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 2px solid #00ff88;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.4rem; /* INCREASED */
+            color: #00cc6a;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        p, li, td {
+            font-size: 16px; /* INCREASED from 14px */
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CONTAINER AND LAYOUT */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* NAVIGATION TABS */
+        .nav-tabs {
+            display: flex;
+            background: #2d2d2d;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            margin-bottom: 0;
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 1rem 1.5rem; /* INCREASED padding */
+            background: #2d2d2d;
+            color: #a0a0a0;
+            border: none;
+            cursor: pointer;
+            font-size: 16px; /* INCREASED */
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-right: 1px solid #404040;
+        }
+        
+        .nav-tab:last-child {
+            border-right: none;
+        }
+        
+        .nav-tab:hover {
+            background: #3d3d3d;
+            color: #00ff88;
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: #1a1a1a;
+            font-weight: 600;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        /* TAB CONTENT */
+        .tab-content {
+            background: #2d2d2d;
+            border-radius: 0 0 12px 12px;
+            padding: 2rem; /* INCREASED padding */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #404040;
+            border-top: none;
+        }
+        
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* DOCUMENT PREVIEW SECTION - IMPROVED */
+        .document-preview {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #404040;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .preview-title {
+            font-size: 1.3rem; /* INCREASED */
+            color: #00ff88;
+            font-weight: 600;
+        }
+        
+        .preview-meta {
+            font-size: 15px; /* INCREASED */
+            color: #a0a0a0;
+        }
+        
+        /* THUMBNAIL GALLERY - ENHANCED */
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .thumbnail-container {
+            position: relative;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #404040;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .thumbnail-container:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+        
+        .thumbnail-image {
+            width: 100%;
+            height: 250px; /* INCREASED height */
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .thumbnail-container:hover .thumbnail-image {
+            transform: scale(1.05);
+        }
+        
+        .thumbnail-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1rem 0.75rem 0.75rem; /* INCREASED padding */
+            font-size: 14px; /* INCREASED */
+            font-weight: 500;
+        }
+        
+        .zoom-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 255, 136, 0.9);
+            color: #1a1a1a;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 16px; /* INCREASED */
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .thumbnail-container:hover .zoom-indicator {
+            opacity: 1;
+        }
+        
+        /* MODAL FOR FULL-SIZE IMAGE PREVIEW */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: 2% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            background: #2d2d2d;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: #1a1a1a;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem; /* INCREASED */
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: #1a1a1a;
+            overflow: auto;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: #1a1a1a;
+            font-size: 2rem; /* INCREASED */
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            background: rgba(26, 26, 26, 0.2);
+        }
+        
+        /* STATISTICS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+            padding: 1.5rem; /* INCREASED */
+            border-radius: 12px;
+            border: 1px solid #404040;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+            border-color: #00ff88;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem; /* INCREASED */
+            font-weight: 700;
+            color: #00ff88;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 16px; /* INCREASED */
+            color: #a0a0a0;
+            margin-top: 0.5rem;
+        }
+        
+        /* DATA TABLES */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .data-table th {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: #1a1a1a;
+            padding: 1rem; /* INCREASED */
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px; /* INCREASED */
+        }
+        
+        .data-table td {
+            padding: 1rem; /* INCREASED */
+            border-bottom: 1px solid #404040;
+            font-size: 15px; /* INCREASED */
+        }
+        
+        .data-table tr:hover {
+            background: #2d2d2d;
+        }
+        
+        /* CODE BLOCKS */
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #404040;
+            border-radius: 8px;
+            padding: 1.5rem; /* INCREASED */
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px; /* INCREASED */
+            line-height: 1.5;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px; /* INCREASED for mobile */
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                font-size: 15px; /* INCREASED */
+                padding: 0.75rem 1rem;
+            }
+            
+            .tab-content {
+                padding: 1.5rem; /* INCREASED */
+            }
+            
+            .thumbnail-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .thumbnail-image {
+                height: 200px;
+            }
+            
+            h1 {
+                font-size: 2rem; /* INCREASED */
+            }
+            
+            h2 {
+                font-size: 1.5rem; /* INCREASED */
+            }
+            
+            h3 {
+                font-size: 1.2rem; /* INCREASED */
+            }
+            
+            .modal-content {
+                width: 95%;
+                height: 95vh;
+                margin: 2.5% auto;
+            }
+        }
+        
+        /* UTILITY CLASSES */
+        .text-success { color: #00ff88; }
+        .text-warning { color: #ffaa00; }
+        .text-error { color: #ff4444; }
+        .text-muted { color: #a0a0a0; }
+        
+        .bg-success { background-color: rgba(0, 255, 136, 0.1); }
+        .bg-warning { background-color: rgba(255, 170, 0, 0.1); }
+        .bg-error { background-color: rgba(255, 68, 68, 0.1); }
+        
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        
+        /* LOADING STATES */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #404040;
+            border-radius: 50%;
+            border-top-color: #00ff88;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏭 SE Letters - Enhanced Industrial Pipeline Report</h1>
+        <p class="text-muted" style="text-align: center; font-size: 18px; margin-bottom: 2rem;">
+            Advanced Document Processing | Enhanced AI Extraction | Comprehensive Product Analysis
+        </p>
+        
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')">📊 Overview</button>
+            <button class="nav-tab" onclick="showTab('documents')">📄 Documents</button>
+            <button class="nav-tab" onclick="showTab('analytics')">📈 Analytics</button>
+            <button class="nav-tab" onclick="showTab('products')">🛠️ Products</button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-pane active">
+                <!-- CONTENT WILL BE INSERTED HERE -->
+            </div>
+            
+            <!-- Documents Tab -->
+            <div id="documents" class="tab-pane">
+                <!-- CONTENT WILL BE INSERTED HERE -->
+            </div>
+            
+            <!-- Analytics Tab -->
+            <div id="analytics" class="tab-pane">
+                <!-- CONTENT WILL BE INSERTED HERE -->
+            </div>
+            
+            <!-- Products Tab -->
+            <div id="products" class="tab-pane">
+                <!-- CONTENT WILL BE INSERTED HERE -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle">Document Preview</span>
+                <button class="close-modal" onclick="closeImageModal()">&times;</button>
+            </div>
+            <div class="modal-image-container">
+                <img id="modalImage" class="modal-image" src="" alt="Document Preview">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ENHANCED JAVASCRIPT WITH THUMBNAIL ZOOM
+        
+        function showTab(tabName) {
+            // Hide all tab panes
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => pane.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab pane
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // ENHANCED THUMBNAIL ZOOM FUNCTIONALITY
+        function openImageModal(imageSrc, title) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modalImage.src = imageSrc;
+            modalTitle.textContent = title || 'Document Preview';
+            modal.style.display = 'block';
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside the content
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeImageModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+        
+        // Add click listeners to all thumbnails
+        document.addEventListener('DOMContentLoaded', function() {
+            const thumbnails = document.querySelectorAll('.thumbnail-container');
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    const img = this.querySelector('.thumbnail-image');
+                    const label = this.querySelector('.thumbnail-label');
+                    if (img && img.src) {
+                        openImageModal(img.src, label ? label.textContent : 'Document Preview');
+                    }
+                });
+            });
+        });
+        
+        // ENHANCED TABLE INTERACTIONS
+        function sortTable(table, column) {
+            // Add sorting functionality for data tables
+            console.log('Sorting table by column:', column);
+        }
+        
+        function filterTable(table, filter) {
+            // Add filtering functionality for data tables
+            console.log('Filtering table with:', filter);
+        }
+        
+        // ENHANCED ANIMATIONS
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Animate statistics on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const value = parseInt(stat.textContent);
+                if (!isNaN(value)) {
+                    stat.textContent = '0';
+                    animateValue(stat, 0, value, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    """
+
+
+def main():
+    """Generate and save improved HTML template"""
+    template = get_improved_html_template()
+    
+    output_path = Path("templates/improved_industrial_template.html")
+    output_path.parent.mkdir(exist_ok=True)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(template)
+    
+    print(f"✅ Improved HTML template saved: {output_path}")
+    print("🎯 Key improvements:")
+    print("  - Larger font sizes (16px base, increased headings)")
+    print("  - Thumbnail zoom functionality with full-screen modal")
+    print("  - Better responsive design")
+    print("  - Enhanced user interactions")
+    print("  - Improved accessibility")
+
+
+if __name__ == "__main__":
+    from pathlib import Path
+    main() 

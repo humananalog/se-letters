@@ -1,0 +1,4356 @@
+{
+  "structure": {
+    "tables": [
+      "products"
+    ],
+    "schema": [
+      {
+        "column_name": "PRODUCT_IDENTIFIER",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "PRODUCT_TYPE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "PRODUCT_DESCRIPTION",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "BRAND_CODE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "BRAND_LABEL",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "RANGE_CODE",
+        "data_type": "DOUBLE",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "RANGE_LABEL",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "SUBRANGE_CODE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "SUBRANGE_LABEL",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "DEVICETYPE_CODE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "DEVICETYPE_LABEL",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "IS_SCHNEIDER_BRAND",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "SERVICEABLE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "TRACEABLE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "COMMERCIAL_STATUS",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "END_OF_PRODUCTION_DATE",
+        "data_type": "TIMESTAMP",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "END_OF_COMMERCIALISATION",
+        "data_type": "TIMESTAMP",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "SERVICE_OBSOLECENSE_DATE",
+        "data_type": "TIMESTAMP",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "END_OF_SERVICE_DATE",
+        "data_type": "TIMESTAMP",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "AVERAGE_LIFE_DURATION_IN_YEARS",
+        "data_type": "DOUBLE",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "SERVICE_BUSINESS_VALUE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "WARRANTY_DURATION_IN_MONTHS",
+        "data_type": "DOUBLE",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "INCLUDE_INSTALLATION_SERVICES",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "RELEVANT_FOR_IP_CREATION",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "PL_SERVICES",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "CONNECTABLE",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "GDP",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "BU_PM0_NODE",
+        "data_type": "DOUBLE",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      },
+      {
+        "column_name": "BU_LABEL",
+        "data_type": "VARCHAR",
+        "nullable": "YES",
+        "key": null,
+        "default": null,
+        "extra": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "idx_commercial_status",
+        "sql": "CREATE INDEX idx_commercial_status ON products(COMMERCIAL_STATUS);"
+      },
+      {
+        "name": "idx_product_id",
+        "sql": "CREATE INDEX idx_product_id ON products(PRODUCT_IDENTIFIER);"
+      },
+      {
+        "name": "idx_range_label",
+        "sql": "CREATE INDEX idx_range_label ON products(RANGE_LABEL);"
+      },
+      {
+        "name": "idx_range_status",
+        "sql": "CREATE INDEX idx_range_status ON products(RANGE_LABEL, COMMERCIAL_STATUS);"
+      }
+    ],
+    "database_size_mb": 48.26,
+    "total_rows": 342229
+  },
+  "content": {
+    "sample_data": [
+      {
+        "PRODUCT_IDENTIFIER": "AAA_RM6_NE_IQI",
+        "PRODUCT_TYPE": "CR",
+        "PRODUCT_DESCRIPTION": "FIX BOM RM6 10kV FRUHAUF NE_IQI",
+        "BRAND_CODE": "SCHNEIDERELECTRIC",
+        "BRAND_LABEL": "Schneider Electric",
+        "RANGE_CODE": 967.0,
+        "RANGE_LABEL": "RM6",
+        "SUBRANGE_CODE": null,
+        "SUBRANGE_LABEL": null,
+        "DEVICETYPE_CODE": "DEVTYP000068",
+        "DEVICETYPE_LABEL": "MV equipment - MV ring main unit (RMU)",
+        "IS_SCHNEIDER_BRAND": "Y",
+        "SERVICEABLE": "Y",
+        "TRACEABLE": "Y",
+        "COMMERCIAL_STATUS": "19-end of commercialization block",
+        "END_OF_PRODUCTION_DATE": "2022-06-30 00:00:00",
+        "END_OF_COMMERCIALISATION": "2022-09-30 00:00:00",
+        "SERVICE_OBSOLECENSE_DATE": "2022-09-30 00:00:00",
+        "END_OF_SERVICE_DATE": "2022-10-02 00:00:00",
+        "AVERAGE_LIFE_DURATION_IN_YEARS": 20.0,
+        "SERVICE_BUSINESS_VALUE": "Low",
+        "WARRANTY_DURATION_IN_MONTHS": NaN,
+        "INCLUDE_INSTALLATION_SERVICES": null,
+        "RELEVANT_FOR_IP_CREATION": "Y",
+        "PL_SERVICES": "PSIBS",
+        "CONNECTABLE": "WITH_UPGRADE",
+        "GDP": "309519",
+        "BU_PM0_NODE": 190789.0,
+        "BU_LABEL": "POWER SYSTEMS"
+      },
+      {
+        "PRODUCT_IDENTIFIER": "AAA10094",
+        "PRODUCT_TYPE": "CR",
+        "PRODUCT_DESCRIPTION": "1 CURRENT SENSOR TLP160 1250A",
+        "BRAND_CODE": "SEMARELECTRIC",
+        "BRAND_LABEL": "SEMAR Electric",
+        "RANGE_CODE": NaN,
+        "RANGE_LABEL": null,
+        "SUBRANGE_CODE": null,
+        "SUBRANGE_LABEL": null,
+        "DEVICETYPE_CODE": "DEVTYP000191",
+        "DEVICETYPE_LABEL": "Transformer - current transformer",
+        "IS_SCHNEIDER_BRAND": "N",
+        "SERVICEABLE": "N",
+        "TRACEABLE": "N",
+        "COMMERCIAL_STATUS": "08-Commercialised",
+        "END_OF_PRODUCTION_DATE": "4000-12-31 00:00:00",
+        "END_OF_COMMERCIALISATION": "4000-12-31 00:00:00",
+        "SERVICE_OBSOLECENSE_DATE": "4000-12-31 00:00:00",
+        "END_OF_SERVICE_DATE": "4000-12-31 00:00:00",
+        "AVERAGE_LIFE_DURATION_IN_YEARS": 15.0,
+        "SERVICE_BUSINESS_VALUE": null,
+        "WARRANTY_DURATION_IN_MONTHS": NaN,
+        "INCLUDE_INSTALLATION_SERVICES": null,
+        "RELEVANT_FOR_IP_CREATION": "Y",
+        "PL_SERVICES": "PSIBS",
+        "CONNECTABLE": "NOT_CONNECTABLE",
+        "GDP": "30185D",
+        "BU_PM0_NODE": 190789.0,
+        "BU_LABEL": "POWER SYSTEMS"
+      },
+      {
+        "PRODUCT_IDENTIFIER": "AAA10474",
+        "PRODUCT_TYPE": "CR",
+        "PRODUCT_DESCRIPTION": "CLP3",
+        "BRAND_CODE": "SEMARELECTRIC",
+        "BRAND_LABEL": "SEMAR Electric",
+        "RANGE_CODE": 972.0,
+        "RANGE_LABEL": "LPCT",
+        "SUBRANGE_CODE": null,
+        "SUBRANGE_LABEL": null,
+        "DEVICETYPE_CODE": "DEVTYP000191",
+        "DEVICETYPE_LABEL": "Transformer - current transformer",
+        "IS_SCHNEIDER_BRAND": "N",
+        "SERVICEABLE": "N",
+        "TRACEABLE": "N",
+        "COMMERCIAL_STATUS": "08-Commercialised",
+        "END_OF_PRODUCTION_DATE": "4000-12-31 00:00:00",
+        "END_OF_COMMERCIALISATION": "4000-12-31 00:00:00",
+        "SERVICE_OBSOLECENSE_DATE": "4000-12-31 00:00:00",
+        "END_OF_SERVICE_DATE": "4000-12-31 00:00:00",
+        "AVERAGE_LIFE_DURATION_IN_YEARS": 15.0,
+        "SERVICE_BUSINESS_VALUE": null,
+        "WARRANTY_DURATION_IN_MONTHS": NaN,
+        "INCLUDE_INSTALLATION_SERVICES": null,
+        "RELEVANT_FOR_IP_CREATION": "Y",
+        "PL_SERVICES": "PSIBS",
+        "CONNECTABLE": "NOT_CONNECTABLE",
+        "GDP": "30185D",
+        "BU_PM0_NODE": 190789.0,
+        "BU_LABEL": "POWER SYSTEMS"
+      },
+      {
+        "PRODUCT_IDENTIFIER": "AAA15192FA",
+        "PRODUCT_TYPE": "CR",
+        "PRODUCT_DESCRIPTION": "NC RE II 2 I C I C AA",
+        "BRAND_CODE": "MERLINGERIN",
+        "BRAND_LABEL": "Merlin Gerin",
+        "RANGE_CODE": 967.0,
+        "RANGE_LABEL": "RM6",
+        "SUBRANGE_CODE": null,
+        "SUBRANGE_LABEL": null,
+        "DEVICETYPE_CODE": "DEVTYP000068",
+        "DEVICETYPE_LABEL": "MV equipment - MV ring main unit (RMU)",
+        "IS_SCHNEIDER_BRAND": "Y",
+        "SERVICEABLE": "Y",
+        "TRACEABLE": "Y",
+        "COMMERCIAL_STATUS": "08-Commercialised",
+        "END_OF_PRODUCTION_DATE": "4000-12-31 00:00:00",
+        "END_OF_COMMERCIALISATION": "4000-12-31 00:00:00",
+        "SERVICE_OBSOLECENSE_DATE": "4000-12-31 00:00:00",
+        "END_OF_SERVICE_DATE": "4000-12-31 00:00:00",
+        "AVERAGE_LIFE_DURATION_IN_YEARS": 20.0,
+        "SERVICE_BUSINESS_VALUE": "Low",
+        "WARRANTY_DURATION_IN_MONTHS": NaN,
+        "INCLUDE_INSTALLATION_SERVICES": null,
+        "RELEVANT_FOR_IP_CREATION": "Y",
+        "PL_SERVICES": "PSIBS",
+        "CONNECTABLE": "WITH_UPGRADE",
+        "GDP": "309519",
+        "BU_PM0_NODE": 190789.0,
+        "BU_LABEL": "POWER SYSTEMS"
+      },
+      {
+        "PRODUCT_IDENTIFIER": "AAA15193FA",
+        "PRODUCT_TYPE": "CR",
+        "PRODUCT_DESCRIPTION": "NC RE II 2 I C I C STD AA",
+        "BRAND_CODE": "MERLINGERIN",
+        "BRAND_LABEL": "Merlin Gerin",
+        "RANGE_CODE": 967.0,
+        "RANGE_LABEL": "RM6",
+        "SUBRANGE_CODE": null,
+        "SUBRANGE_LABEL": null,
+        "DEVICETYPE_CODE": "DEVTYP000068",
+        "DEVICETYPE_LABEL": "MV equipment - MV ring main unit (RMU)",
+        "IS_SCHNEIDER_BRAND": "Y",
+        "SERVICEABLE": "Y",
+        "TRACEABLE": "Y",
+        "COMMERCIAL_STATUS": "08-Commercialised",
+        "END_OF_PRODUCTION_DATE": "4000-12-31 00:00:00",
+        "END_OF_COMMERCIALISATION": "4000-12-31 00:00:00",
+        "SERVICE_OBSOLECENSE_DATE": "4000-12-31 00:00:00",
+        "END_OF_SERVICE_DATE": "4000-12-31 00:00:00",
+        "AVERAGE_LIFE_DURATION_IN_YEARS": 20.0,
+        "SERVICE_BUSINESS_VALUE": "Low",
+        "WARRANTY_DURATION_IN_MONTHS": NaN,
+        "INCLUDE_INSTALLATION_SERVICES": null,
+        "RELEVANT_FOR_IP_CREATION": "Y",
+        "PL_SERVICES": "PSIBS",
+        "CONNECTABLE": "WITH_UPGRADE",
+        "GDP": "309519",
+        "BU_PM0_NODE": 190789.0,
+        "BU_LABEL": "POWER SYSTEMS"
+      }
+    ],
+    "column_analysis": {
+      "RANGE_LABEL": {
+        "total_count": 342229,
+        "non_null_count": 337394,
+        "unique_count": 4067,
+        "null_percentage": 1.41,
+        "uniqueness_percentage": 1.21,
+        "top_values": [
+          {
+            "value": "Accutech",
+            "count": 33149
+          },
+          {
+            "value": "Flow Measurement",
+            "count": 20594
+          },
+          {
+            "value": "SCADAPack 100, 300, 32",
+            "count": 13506
+          },
+          {
+            "value": "TeSys D",
+            "count": 7882
+          },
+          {
+            "value": "HDW3",
+            "count": 5465
+          },
+          {
+            "value": "Trio Licensed Radios",
+            "count": 4852
+          },
+          {
+            "value": "SCADAPack 300E, ES",
+            "count": 4729
+          },
+          {
+            "value": "PowerPact H-Frame Molded Case Circuit Breakers",
+            "count": 3847
+          },
+          {
+            "value": "ComPacT NSX 2021-China",
+            "count": 3619
+          },
+          {
+            "value": "PowerPact P-Frame",
+            "count": 3512
+          }
+        ]
+      },
+      "SUBRANGE_LABEL": {
+        "total_count": 342229,
+        "non_null_count": 52931,
+        "unique_count": 5906,
+        "null_percentage": 84.53,
+        "uniqueness_percentage": 11.16,
+        "top_values": [
+          {
+            "value": "RM6 2",
+            "count": 1730
+          },
+          {
+            "value": "BD",
+            "count": 1070
+          },
+          {
+            "value": "BG",
+            "count": 1006
+          },
+          {
+            "value": "NSX100",
+            "count": 869
+          },
+          {
+            "value": "BJ",
+            "count": 827
+          },
+          {
+            "value": "NSX250",
+            "count": 744
+          },
+          {
+            "value": "CVS100",
+            "count": 636
+          },
+          {
+            "value": "ATV900 \u2265 15kw",
+            "count": 540
+          },
+          {
+            "value": "NSX160",
+            "count": 529
+          },
+          {
+            "value": "ATV600 \u2265 15kw",
+            "count": 522
+          }
+        ]
+      },
+      "PRODUCT_IDENTIFIER": {
+        "total_count": 342229,
+        "non_null_count": 342229,
+        "unique_count": 342229,
+        "null_percentage": 0.0,
+        "uniqueness_percentage": 100.0,
+        "top_values": [
+          {
+            "value": "TBUASLTJPN25TB31A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TB33A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TB60A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TB65A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TC10A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TC19A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TC24A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TC34A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TC50A",
+            "count": 1
+          },
+          {
+            "value": "TBUASLTJPN25TF01A",
+            "count": 1
+          }
+        ]
+      },
+      "PRODUCT_DESCRIPTION": {
+        "total_count": 342229,
+        "non_null_count": 342229,
+        "unique_count": 161235,
+        "null_percentage": 0.0,
+        "uniqueness_percentage": 47.11,
+        "top_values": [
+          {
+            "value": "Accutech SL10 Field Unit, 915-921MHz",
+            "count": 7488
+          },
+          {
+            "value": "Accutech SL10 Field Unit, 902-928MHz",
+            "count": 7488
+          },
+          {
+            "value": "Accutech SL10 Field Unit, 915-928MHz",
+            "count": 7488
+          },
+          {
+            "value": "CONTACTOR",
+            "count": 5023
+          },
+          {
+            "value": "SCADAPack 32 Gas Flow RTU with Radio",
+            "count": 3780
+          },
+          {
+            "value": "REVERSING CONTACTOR",
+            "count": 3322
+          },
+          {
+            "value": "SCADAPack 357 Gas Flow RTU with Radio",
+            "count": 3240
+          },
+          {
+            "value": "SCADAPack 357E RTU with Radio",
+            "count": 1836
+          },
+          {
+            "value": "Accutech SL10 Field Unit, 2.4GHz",
+            "count": 1504
+          },
+          {
+            "value": "Accutech TC10 Field Unit, 915-928MHz",
+            "count": 1470
+          }
+        ]
+      },
+      "COMMERCIAL_STATUS": {
+        "total_count": 342229,
+        "non_null_count": 342229,
+        "unique_count": 11,
+        "null_percentage": 0.0,
+        "uniqueness_percentage": 0.0,
+        "top_values": [
+          {
+            "value": "08-Commercialised",
+            "count": 119532
+          },
+          {
+            "value": "18-End of commercialisation",
+            "count": 109358
+          },
+          {
+            "value": "19-end of commercialization block",
+            "count": 72006
+          },
+          {
+            "value": "00-Initialisation",
+            "count": 20050
+          },
+          {
+            "value": "16-Post commercialisation",
+            "count": 9444
+          },
+          {
+            "value": "01-Never commercialised",
+            "count": 5801
+          },
+          {
+            "value": "02-Created",
+            "count": 2310
+          },
+          {
+            "value": "14-End of commerc. announced",
+            "count": 1752
+          },
+          {
+            "value": "04-Validated",
+            "count": 870
+          },
+          {
+            "value": "20-Temporary block",
+            "count": 656
+          }
+        ]
+      },
+      "BRAND_LABEL": {
+        "total_count": 342229,
+        "non_null_count": 342229,
+        "unique_count": 500,
+        "null_percentage": 0.0,
+        "uniqueness_percentage": 0.15,
+        "top_values": [
+          {
+            "value": "Schneider Electric",
+            "count": 223953
+          },
+          {
+            "value": "Square D",
+            "count": 44719
+          },
+          {
+            "value": "HIMEL",
+            "count": 17634
+          },
+          {
+            "value": "Telemecanique",
+            "count": 11838
+          },
+          {
+            "value": "APC",
+            "count": 11610
+          },
+          {
+            "value": "Merlin Gerin",
+            "count": 7483
+          },
+          {
+            "value": "L&T",
+            "count": 3557
+          },
+          {
+            "value": "PROFACE",
+            "count": 2664
+          },
+          {
+            "value": "SEMAR Electric",
+            "count": 2490
+          },
+          {
+            "value": "MGE",
+            "count": 1587
+          }
+        ]
+      },
+      "BU_LABEL": {
+        "total_count": 342229,
+        "non_null_count": 342206,
+        "unique_count": 11,
+        "null_percentage": 0.01,
+        "uniqueness_percentage": 0.0,
+        "top_values": [
+          {
+            "value": "POWER PRODUCTS",
+            "count": 106598
+          },
+          {
+            "value": "IND PROCESS AUTOMATION",
+            "count": 77816
+          },
+          {
+            "value": "GLOBAL SERVICES",
+            "count": 33709
+          },
+          {
+            "value": "HOME & DISTRIBUTION",
+            "count": 27268
+          },
+          {
+            "value": "IND AUTOMATION OPS",
+            "count": 25339
+          },
+          {
+            "value": "DIGITAL ENERGY",
+            "count": 19679
+          },
+          {
+            "value": "SECURE POWER",
+            "count": 18618
+          },
+          {
+            "value": "ENERGY MANAGEMENT",
+            "count": 18144
+          },
+          {
+            "value": "POWER SYSTEMS",
+            "count": 14455
+          },
+          {
+            "value": "PROSUMER",
+            "count": 414
+          }
+        ]
+      },
+      "PL_SERVICES": {
+        "total_count": 342229,
+        "non_null_count": 342229,
+        "unique_count": 7,
+        "null_percentage": 0.0,
+        "uniqueness_percentage": 0.0,
+        "top_values": [
+          {
+            "value": "PPIBS",
+            "count": 157713
+          },
+          {
+            "value": "IDPAS",
+            "count": 77768
+          },
+          {
+            "value": "IDIBS",
+            "count": 34981
+          },
+          {
+            "value": "PSIBS",
+            "count": 27440
+          },
+          {
+            "value": "SPIBS",
+            "count": 20830
+          },
+          {
+            "value": "DPIBS",
+            "count": 20184
+          },
+          {
+            "value": "DBIBS",
+            "count": 3313
+          }
+        ]
+      },
+      "DEVICETYPE_LABEL": {
+        "total_count": 342229,
+        "non_null_count": 342229,
+        "unique_count": 152,
+        "null_percentage": 0.0,
+        "uniqueness_percentage": 0.04,
+        "top_values": [
+          {
+            "value": "LV equipment - Low voltage circuit breaker",
+            "count": 98014
+          },
+          {
+            "value": "PLC System - PLC CPU",
+            "count": 35604
+          },
+          {
+            "value": "Telemetry - Wireless Field Unit",
+            "count": 33211
+          },
+          {
+            "value": "LV equipment - LV contactor",
+            "count": 28738
+          },
+          {
+            "value": "Motion - drive & motor",
+            "count": 12037
+          },
+          {
+            "value": "Relay, Control & Measurement - Protection relay",
+            "count": 11006
+          },
+          {
+            "value": "Transformer - dry",
+            "count": 6400
+          },
+          {
+            "value": "LV equipment - LV auto transfer switch",
+            "count": 6356
+          },
+          {
+            "value": "Variable speed drive - VSD Compacts",
+            "count": 6268
+          },
+          {
+            "value": "LV equipment - LV switch - disconnector",
+            "count": 5895
+          }
+        ]
+      }
+    }
+  },
+  "hierarchies": {
+    "brand_hierarchy": [
+      {
+        "brand": "Schneider Electric",
+        "product_count": 223953,
+        "range_count": 1626,
+        "bu_count": 10
+      },
+      {
+        "brand": "Square D",
+        "product_count": 44719,
+        "range_count": 294,
+        "bu_count": 8
+      },
+      {
+        "brand": "HIMEL",
+        "product_count": 17634,
+        "range_count": 67,
+        "bu_count": 2
+      },
+      {
+        "brand": "Telemecanique",
+        "product_count": 11838,
+        "range_count": 102,
+        "bu_count": 5
+      },
+      {
+        "brand": "APC",
+        "product_count": 11610,
+        "range_count": 235,
+        "bu_count": 6
+      },
+      {
+        "brand": "Merlin Gerin",
+        "product_count": 7483,
+        "range_count": 306,
+        "bu_count": 5
+      },
+      {
+        "brand": "L&T",
+        "product_count": 3557,
+        "range_count": 28,
+        "bu_count": 2
+      },
+      {
+        "brand": "PROFACE",
+        "product_count": 2664,
+        "range_count": 24,
+        "bu_count": 2
+      },
+      {
+        "brand": "SEMAR Electric",
+        "product_count": 2490,
+        "range_count": 5,
+        "bu_count": 2
+      },
+      {
+        "brand": "MGE",
+        "product_count": 1587,
+        "range_count": 30,
+        "bu_count": 3
+      },
+      {
+        "brand": "Areva",
+        "product_count": 1451,
+        "range_count": 259,
+        "bu_count": 1
+      },
+      {
+        "brand": "Alstom",
+        "product_count": 1192,
+        "range_count": 272,
+        "bu_count": 1
+      },
+      {
+        "brand": "Uniflair",
+        "product_count": 986,
+        "range_count": 37,
+        "bu_count": 1
+      },
+      {
+        "brand": "GEC Alsthom",
+        "product_count": 934,
+        "range_count": 151,
+        "bu_count": 1
+      },
+      {
+        "brand": "ABB",
+        "product_count": 879,
+        "range_count": 283,
+        "bu_count": 2
+      },
+      {
+        "brand": "Siemens",
+        "product_count": 740,
+        "range_count": 143,
+        "bu_count": 3
+      },
+      {
+        "brand": "CP Eletronica",
+        "product_count": 642,
+        "range_count": 14,
+        "bu_count": 1
+      },
+      {
+        "brand": "DELIXI ELECTRIC",
+        "product_count": 542,
+        "range_count": 1,
+        "bu_count": 2
+      },
+      {
+        "brand": "Foxboro",
+        "product_count": 423,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Clipsal",
+        "product_count": 395,
+        "range_count": 5,
+        "bu_count": 2
+      },
+      {
+        "brand": "AEG",
+        "product_count": 351,
+        "range_count": 104,
+        "bu_count": 1
+      },
+      {
+        "brand": "Magrini",
+        "product_count": 315,
+        "range_count": 38,
+        "bu_count": 1
+      },
+      {
+        "brand": "PDL",
+        "product_count": 313,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "TAC",
+        "product_count": 289,
+        "range_count": 121,
+        "bu_count": 1
+      },
+      {
+        "brand": "GEC",
+        "product_count": 234,
+        "range_count": 40,
+        "bu_count": 1
+      },
+      {
+        "brand": "ASCO Power Technologies",
+        "product_count": 230,
+        "range_count": 122,
+        "bu_count": 2
+      },
+      {
+        "brand": "Federal Pioneer",
+        "product_count": 197,
+        "range_count": 47,
+        "bu_count": 3
+      },
+      {
+        "brand": "GENERAL ELECTRIC",
+        "product_count": 178,
+        "range_count": 49,
+        "bu_count": 1
+      },
+      {
+        "brand": "EIB",
+        "product_count": 167,
+        "range_count": 9,
+        "bu_count": 1
+      },
+      {
+        "brand": "CEM",
+        "product_count": 140,
+        "range_count": 24,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sesh",
+        "product_count": 131,
+        "range_count": 26,
+        "bu_count": 1
+      },
+      {
+        "brand": "Westinghouse",
+        "product_count": 110,
+        "range_count": 33,
+        "bu_count": 1
+      },
+      {
+        "brand": "Viconics",
+        "product_count": 101,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Delle Alsthom",
+        "product_count": 100,
+        "range_count": 14,
+        "bu_count": 1
+      },
+      {
+        "brand": "Alsthom",
+        "product_count": 88,
+        "range_count": 26,
+        "bu_count": 1
+      },
+      {
+        "brand": "Veris Industries",
+        "product_count": 87,
+        "range_count": 4,
+        "bu_count": 2
+      },
+      {
+        "brand": "EATON",
+        "product_count": 84,
+        "range_count": 26,
+        "bu_count": 1
+      },
+      {
+        "brand": "France Transfo",
+        "product_count": 79,
+        "range_count": 7,
+        "bu_count": 2
+      },
+      {
+        "brand": "Telemecanique Sensors",
+        "product_count": 77,
+        "range_count": 6,
+        "bu_count": 2
+      },
+      {
+        "brand": "Other",
+        "product_count": 77,
+        "range_count": 22,
+        "bu_count": 3
+      },
+      {
+        "brand": "Mesa",
+        "product_count": 71,
+        "range_count": 39,
+        "bu_count": 1
+      },
+      {
+        "brand": "Delta",
+        "product_count": 70,
+        "range_count": 8,
+        "bu_count": 2
+      },
+      {
+        "brand": "Rockwell",
+        "product_count": 61,
+        "range_count": 61,
+        "bu_count": 2
+      },
+      {
+        "brand": "Vei",
+        "product_count": 61,
+        "range_count": 26,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sprecher + Schuh",
+        "product_count": 58,
+        "range_count": 22,
+        "bu_count": 1
+      },
+      {
+        "brand": "CUTLER-HAMMER",
+        "product_count": 58,
+        "range_count": 14,
+        "bu_count": 1
+      },
+      {
+        "brand": "BBC",
+        "product_count": 57,
+        "range_count": 23,
+        "bu_count": 1
+      },
+      {
+        "brand": "Andover Controls",
+        "product_count": 56,
+        "range_count": 55,
+        "bu_count": 1
+      },
+      {
+        "brand": "SACE",
+        "product_count": 54,
+        "range_count": 11,
+        "bu_count": 1
+      },
+      {
+        "brand": "Elko",
+        "product_count": 51,
+        "range_count": 2,
+        "bu_count": 3
+      },
+      {
+        "brand": "Socomec",
+        "product_count": 50,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "CEE",
+        "product_count": 47,
+        "range_count": 17,
+        "bu_count": 1
+      },
+      {
+        "brand": "Fuji (not Schneider)",
+        "product_count": 47,
+        "range_count": 26,
+        "bu_count": 1
+      },
+      {
+        "brand": "ENGLISH ELECTRIC",
+        "product_count": 46,
+        "range_count": 23,
+        "bu_count": 1
+      },
+      {
+        "brand": "Klockner Moeller",
+        "product_count": 44,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "TERASAKI",
+        "product_count": 43,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Federal Pacific",
+        "product_count": 43,
+        "range_count": 25,
+        "bu_count": 2
+      },
+      {
+        "brand": "Unelec",
+        "product_count": 39,
+        "range_count": 20,
+        "bu_count": 1
+      },
+      {
+        "brand": "Berger Lahr",
+        "product_count": 39,
+        "range_count": 6,
+        "bu_count": 2
+      },
+      {
+        "brand": "Comar Benelux",
+        "product_count": 39,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "Omron",
+        "product_count": 37,
+        "range_count": 37,
+        "bu_count": 1
+      },
+      {
+        "brand": "Satchwell",
+        "product_count": 37,
+        "range_count": 37,
+        "bu_count": 1
+      },
+      {
+        "brand": "SEG",
+        "product_count": 36,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "ASEA",
+        "product_count": 36,
+        "range_count": 10,
+        "bu_count": 1
+      },
+      {
+        "brand": "Pommier",
+        "product_count": 35,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "YorkShire",
+        "product_count": 35,
+        "range_count": 14,
+        "bu_count": 1
+      },
+      {
+        "brand": "EFACEC",
+        "product_count": 35,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "AVEVA",
+        "product_count": 31,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Schweitzer Engineering Laboratories",
+        "product_count": 31,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "HITACHI",
+        "product_count": 29,
+        "range_count": 14,
+        "bu_count": 1
+      },
+      {
+        "brand": "Distrelec",
+        "product_count": 28,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "CONCORDIA SPRECHER",
+        "product_count": 26,
+        "range_count": 14,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ormazabal",
+        "product_count": 25,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "ALLIS-CHALMERS",
+        "product_count": 23,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hyundai",
+        "product_count": 23,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "MR",
+        "product_count": 23,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sprecher Energie",
+        "product_count": 23,
+        "range_count": 10,
+        "bu_count": 1
+      },
+      {
+        "brand": "Mitsubishi Electric",
+        "product_count": 22,
+        "range_count": 18,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bekai",
+        "product_count": 22,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "ITE",
+        "product_count": 21,
+        "range_count": 11,
+        "bu_count": 1
+      },
+      {
+        "brand": "WEG",
+        "product_count": 21,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "Vamp",
+        "product_count": 20,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "MITSUBISHI",
+        "product_count": 19,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "Jeumont Schneider",
+        "product_count": 18,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "South Wales Switchgear",
+        "product_count": 18,
+        "range_count": 9,
+        "bu_count": 1
+      },
+      {
+        "brand": "Elimsan",
+        "product_count": 18,
+        "range_count": 10,
+        "bu_count": 1
+      },
+      {
+        "brand": "Koncar",
+        "product_count": 18,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "RITZ",
+        "product_count": 17,
+        "range_count": 17,
+        "bu_count": 1
+      },
+      {
+        "brand": "Driescher",
+        "product_count": 16,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Varilec",
+        "product_count": 16,
+        "range_count": 9,
+        "bu_count": 1
+      },
+      {
+        "brand": "Nulec",
+        "product_count": 16,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "Alsthom Atlantique",
+        "product_count": 15,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Danfoss",
+        "product_count": 15,
+        "range_count": 15,
+        "bu_count": 1
+      },
+      {
+        "brand": "SPRECHER",
+        "product_count": 15,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "Toshiba (not Schneider)",
+        "product_count": 14,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "TAMCO",
+        "product_count": 14,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "Waltec",
+        "product_count": 14,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Holec",
+        "product_count": 13,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "CROMPTON GREAVES",
+        "product_count": 13,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ulusoy Electric",
+        "product_count": 13,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "ACTOM",
+        "product_count": 13,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Other supplier",
+        "product_count": 12,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Energoinvest",
+        "product_count": 12,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "SSD Parvex",
+        "product_count": 12,
+        "range_count": 12,
+        "bu_count": 1
+      },
+      {
+        "brand": "VATECH",
+        "product_count": 12,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "Emerson",
+        "product_count": 12,
+        "range_count": 12,
+        "bu_count": 2
+      },
+      {
+        "brand": "CEM-Gardy",
+        "product_count": 11,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ferraz",
+        "product_count": 11,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "Fanox",
+        "product_count": 11,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Enertec",
+        "product_count": 11,
+        "range_count": 11,
+        "bu_count": 1
+      },
+      {
+        "brand": "BRUSH",
+        "product_count": 11,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Legrand",
+        "product_count": 11,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "CDC",
+        "product_count": 11,
+        "range_count": 11,
+        "bu_count": 1
+      },
+      {
+        "brand": "Walter",
+        "product_count": 11,
+        "range_count": 11,
+        "bu_count": 1
+      },
+      {
+        "brand": "Citect",
+        "product_count": 11,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Power Electronics",
+        "product_count": 10,
+        "range_count": 10,
+        "bu_count": 1
+      },
+      {
+        "brand": "GE Fanuc",
+        "product_count": 10,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "LS-VINA",
+        "product_count": 10,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "MESSINA",
+        "product_count": 10,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Siba",
+        "product_count": 10,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "Power Measurement In",
+        "product_count": 10,
+        "range_count": 10,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ferraz Shawmut",
+        "product_count": 10,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "VOLTAS",
+        "product_count": 10,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "ARTECHE",
+        "product_count": 9,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "Control Techniques",
+        "product_count": 9,
+        "range_count": 9,
+        "bu_count": 1
+      },
+      {
+        "brand": "Lenze",
+        "product_count": 9,
+        "range_count": 9,
+        "bu_count": 1
+      },
+      {
+        "brand": "ELMEX",
+        "product_count": 9,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Gardy",
+        "product_count": 9,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "Pextron",
+        "product_count": 9,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "SDCEM",
+        "product_count": 9,
+        "range_count": 9,
+        "bu_count": 1
+      },
+      {
+        "brand": "Meher",
+        "product_count": 9,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hawker Siddeley Switchgear",
+        "product_count": 9,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Rectiphase",
+        "product_count": 9,
+        "range_count": 5,
+        "bu_count": 2
+      },
+      {
+        "brand": "Hager",
+        "product_count": 9,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Pauwels",
+        "product_count": 9,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Barber-Coleman",
+        "product_count": 9,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "Guerin",
+        "product_count": 8,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Woodward",
+        "product_count": 8,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bussmann",
+        "product_count": 8,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "ZIV",
+        "product_count": 8,
+        "range_count": 8,
+        "bu_count": 1
+      },
+      {
+        "brand": "LSIS",
+        "product_count": 8,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "BC Transformateurs",
+        "product_count": 8,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "OBSAD",
+        "product_count": 7,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "AEI",
+        "product_count": 7,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "B&R Automation",
+        "product_count": 7,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "ALLEN BRADLEY",
+        "product_count": 7,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Soule",
+        "product_count": 7,
+        "range_count": 7,
+        "bu_count": 1
+      },
+      {
+        "brand": "ASIAPHIL",
+        "product_count": 6,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Dahua Electric",
+        "product_count": 6,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ellison",
+        "product_count": 6,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "LG",
+        "product_count": 6,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Otto Buchwitz",
+        "product_count": 6,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "SATEC",
+        "product_count": 6,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "LONG & CRAWFORD",
+        "product_count": 6,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Thytronic",
+        "product_count": 6,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "ComAp",
+        "product_count": 6,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Conzerv",
+        "product_count": 6,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Benshaw",
+        "product_count": 6,
+        "range_count": 6,
+        "bu_count": 1
+      },
+      {
+        "brand": "Stromberg",
+        "product_count": 6,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Mekhanotronika",
+        "product_count": 6,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "APRIL",
+        "product_count": 6,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "KPB Intra",
+        "product_count": 6,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hazemeyer",
+        "product_count": 6,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Robertshaw",
+        "product_count": 5,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Normabarre",
+        "product_count": 5,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ottermill",
+        "product_count": 5,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Magellan Power",
+        "product_count": 5,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "NISSIN ELECTRIC",
+        "product_count": 5,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "POWELL",
+        "product_count": 5,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hima",
+        "product_count": 5,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "Delle",
+        "product_count": 5,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bardin",
+        "product_count": 5,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "SEW Usocome",
+        "product_count": 5,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "Napac",
+        "product_count": 5,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "Leroy-Somer",
+        "product_count": 5,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "Honeywell",
+        "product_count": 5,
+        "range_count": 5,
+        "bu_count": 1
+      },
+      {
+        "brand": "CONCORDIA",
+        "product_count": 5,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Isodel",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sadtem",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Saft",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sarel",
+        "product_count": 4,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Circutor",
+        "product_count": 4,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Esitas",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Kron",
+        "product_count": 4,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "NGEF",
+        "product_count": 4,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "TRAFINDO",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Mardix",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "COELME",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Atmostech",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "TEMPA PANO",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Spie Trindel",
+        "product_count": 4,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Yokogawa",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "KEB",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "BATEL ELEKTROMEKANIK",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "EGIC",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hundt & Weber",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "LAKE SHORE ELECTRIC",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Lucy",
+        "product_count": 4,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Frako",
+        "product_count": 4,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "BPC",
+        "product_count": 4,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Camille Bauer",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "BASLER",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sachsenwerk",
+        "product_count": 4,
+        "range_count": 4,
+        "bu_count": 1
+      },
+      {
+        "brand": "Schlumberger",
+        "product_count": 4,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "DELIXI",
+        "product_count": 4,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Inabensa",
+        "product_count": 4,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "ANSALDO",
+        "product_count": 4,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Lauer",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "ASTOR TRANSFORMATOR",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Augier",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Dorman Smith",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Howard Indutries",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "LITTLEFUSE",
+        "product_count": 3,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Aysan Electric",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Rade Koncar",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sonmez Trafo",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bosch Rexroth",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "BEST",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Reliance Electric",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "CONTI-TRANSFO",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Transfo Matelec",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "CELME",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "HEAG",
+        "product_count": 3,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "HYOSUNG",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "JYOTI",
+        "product_count": 3,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Powertech",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "SEA Trasformatori",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Comeca",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "COOPER Nature Electric",
+        "product_count": 3,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "EMA",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Alstom Savoisienne",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "ORTEA",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Chint",
+        "product_count": 3,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "HPS",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "ISOLET",
+        "product_count": 3,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Switchgear Company",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tamini",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Transfix",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "CASAGRANDE ELETTROCOSTRUZIONI",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Delta Star",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Elvim",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "GAE",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Munhean",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "PROLEC GE",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "RHONA",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "RS Isolsec",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "SACEM",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tirathai",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "SNT Duriez",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Continental Electric",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "DEMA",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Huayi Electric",
+        "product_count": 3,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "IMEFY",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Zilmer",
+        "product_count": 3,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Slaters Electrical",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Liebert",
+        "product_count": 3,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "CTC products",
+        "product_count": 3,
+        "range_count": 0,
+        "bu_count": 2
+      },
+      {
+        "brand": "SGB",
+        "product_count": 3,
+        "range_count": 3,
+        "bu_count": 1
+      },
+      {
+        "brand": "Balteau",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "DIESTRE",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "EBG",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "EKARAT",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Elettromeccanica Piossasco",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Mora",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "NORTHERN TRANSFORMER",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sorgel",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Pdrive(Elin)",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 2
+      },
+      {
+        "brand": "MULTILIN",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sorhodel",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Natus",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "RS",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tironi",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Unindo",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Chloride",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "McGraw Edison",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Allis Electric",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "GE Industrial",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Kasuga",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "CEL France",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Celta",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "COTRADIS",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "NWL",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tec System",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "TMC",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "TYREE TRANSFORMERS",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "ALKARGO",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Aquitaine Transfo",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "BOLTSWITCH",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "UPS Power",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Pelco",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Beluk",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "EIG",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "GEPA",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sangamo",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Daihen Electric",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "GEAFOL",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "John Deere",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "KAFAK",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "VOLTAMP",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Mayvasa",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Shihlin Electric",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Wingoal",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "CBS Group",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "INFORM",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "EEI",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "ELTAS",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "First Philec",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Rittal",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tesar",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "VIRGINIA TRANSFORMER",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Varta",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "BORRI",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "DAIKIN",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ACEM",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bonar Long",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Elettromeccanica di Marnate",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hentges",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "ICE",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "i-Gard",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Jeumont",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Le transformateur",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Logstrup",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tavrida Electric",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Wilson Transformer",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ziegler",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "AMPCONTROL",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "AIREDALE",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bosch",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Cahors",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Clemessy",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Contactplasma",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "JEAN MULLER",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Polilux",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "PRINGLE",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Thibidi",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Trench",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "VEB",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "MAKSAN",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Skyway",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "EFEN",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ELPI CAST-RESIN",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "MOTRA",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "P&B",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "PNC TECH",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "SACI",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Tianan Electric",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Wilson Power Solutions",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "XANTREX (not Schneider)",
+        "product_count": 2,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "ALCE",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sigla",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Simplex",
+        "product_count": 2,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Riello",
+        "product_count": 2,
+        "range_count": 2,
+        "bu_count": 1
+      },
+      {
+        "brand": "MultiTech",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "AMAG Technology",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "S2S",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "NOKIAN CAPACITORS",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Itron",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Carlo Gavazzi",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Delta Electronics",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "RS2 Technologies",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Enercon",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Iskra",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ruggedcom",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bambang Djaja",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bernard Bonnefond",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bowers Electricals",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Brentford Transformers",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Enerdis",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hewlett Packard",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Nidec",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Cooper Power Systems",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Electronmash",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "G&V",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "KL Industri",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "OBTEC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "PE",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "PFIFFNER",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Advance Electronics",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "FUJI",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Lenel",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "KMB",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hirshmann",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Briggs & Stratton",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Centrado",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ERE",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Haeffely",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Insula",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "IVECO",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "MEVOCO",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "OPTELEC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "RMS",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ROLLER SMITH",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "STC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Voigt & Haeffner",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Winder Power",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ABN by Schneider Electric",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Power Technics",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "SIEL",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "SONNENSCHEIN",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Sensys",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Eagle Generators",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Actaris",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "BECKWITH ELECTRIC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Blackburn Starling",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Comem",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Dawson-Keith",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "EMMCO",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "FG WILSON",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hammond",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Laborde Kupfer",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Lindley Thompson Transformers",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Microelettrica Scientifica",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Vertiv",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "VYNCKIER",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "C&D",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "MEM",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "SCLE",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "SEREC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ASTRID",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "CPS",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "CSB",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Powerware",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ENAG",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "FIR",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Fuchs",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Oasa",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Perkins",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Transfo Sces",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ALIND",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Shinko",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ERMCO",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Hubbell",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "DELL",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "PANASONIC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ROCAYORK",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Yuasa",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ADVANTECH",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bender",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Arc Informatique",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Broadcrown",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bryce Transformers",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Central Moloney Incorporated",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Dong-Ah Electric",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "GETRA",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "GOLD STAR",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Heinemann",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "IEM",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Isolsec",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "JCB",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "TMG",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Trasfor",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Meiden",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "SLAT",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Benning",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "CYBEREX",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "FULLER",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "HOPPECKE",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Aunilec",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "ENTES",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "APLUS",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "HOPF",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Caterpillar",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "CBi",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Cummins",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "G & M TEX",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "GEMTA",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "MGC MOSER-GLASER",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Post Glover",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "RAE",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Starlite",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "AEES",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "NEWAVE",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "POWERTRONIX",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Genetec",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Open Options",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Alpes Technologies",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "SHALLBETTER",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "BIECO",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Filnor",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "GTM",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Mersen",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Rolls-Royce",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "SCANIA",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "ZWARE",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "OPTIMA",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "ATEC",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Ordinal Technologies",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Bharat Bijlee",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Celduc Transfo",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "CGE",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Joslyn",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "KOHLER",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "MTU",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "NEI Peebles",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Palmieri Robin",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "Petbow",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "Thycon",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      },
+      {
+        "brand": "VOLVO",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "MEI",
+        "product_count": 1,
+        "range_count": 0,
+        "bu_count": 1
+      },
+      {
+        "brand": "GALATREK",
+        "product_count": 1,
+        "range_count": 1,
+        "bu_count": 1
+      }
+    ],
+    "range_hierarchy": [
+      {
+        "range": "Accutech",
+        "product_count": 33149,
+        "subrange_count": 0,
+        "status_count": 3,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "Flow Measurement",
+        "product_count": 20594,
+        "subrange_count": 0,
+        "status_count": 2,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "SCADAPack 100, 300, 32",
+        "product_count": 13506,
+        "subrange_count": 0,
+        "status_count": 2,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "HDW3",
+        "product_count": 5465,
+        "subrange_count": 0,
+        "status_count": 2,
+        "brand": "HIMEL"
+      },
+      {
+        "range": "Trio Licensed Radios",
+        "product_count": 4852,
+        "subrange_count": 0,
+        "status_count": 2,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "SCADAPack 300E, ES",
+        "product_count": 4729,
+        "subrange_count": 0,
+        "status_count": 2,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "TeSys D",
+        "product_count": 4165,
+        "subrange_count": 0,
+        "status_count": 6,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "TeSys D",
+        "product_count": 3711,
+        "subrange_count": 0,
+        "status_count": 3,
+        "brand": "Telemecanique"
+      },
+      {
+        "range": "ComPacT NSX 2021-China",
+        "product_count": 3619,
+        "subrange_count": 0,
+        "status_count": 5,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "PowerPact H-Frame Molded Case Circuit Breakers",
+        "product_count": 3609,
+        "subrange_count": 34,
+        "status_count": 6,
+        "brand": "Square D"
+      },
+      {
+        "range": "PowerPact P-Frame",
+        "product_count": 3470,
+        "subrange_count": 0,
+        "status_count": 4,
+        "brand": "Square D"
+      },
+      {
+        "range": "Compact NSX <630",
+        "product_count": 2950,
+        "subrange_count": 71,
+        "status_count": 5,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "8903L/LX Lighting Contactors",
+        "product_count": 2915,
+        "subrange_count": 0,
+        "status_count": 6,
+        "brand": "Square D"
+      },
+      {
+        "range": "Power-Dry II Transformers",
+        "product_count": 2853,
+        "subrange_count": 0,
+        "status_count": 5,
+        "brand": "Square D"
+      },
+      {
+        "range": "EasyPact MVS",
+        "product_count": 2840,
+        "subrange_count": 33,
+        "status_count": 8,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "QO(B) Circuit Breakers",
+        "product_count": 2778,
+        "subrange_count": 2,
+        "status_count": 6,
+        "brand": "Square D"
+      },
+      {
+        "range": "HDM3",
+        "product_count": 2599,
+        "subrange_count": 0,
+        "status_count": 3,
+        "brand": "HIMEL"
+      },
+      {
+        "range": "Class 8903 Type S Lighting Contactors",
+        "product_count": 2392,
+        "subrange_count": 0,
+        "status_count": 4,
+        "brand": "Square D"
+      },
+      {
+        "range": "WATSG",
+        "product_count": 2300,
+        "subrange_count": 0,
+        "status_count": 4,
+        "brand": "Schneider Electric"
+      },
+      {
+        "range": "I-Line\u00ae Busway",
+        "product_count": 2288,
+        "subrange_count": 0,
+        "status_count": 5,
+        "brand": "Square D"
+      }
+    ],
+    "bu_hierarchy": [
+      {
+        "business_unit": "POWER PRODUCTS",
+        "product_count": 106598,
+        "range_count": 388,
+        "pl_services_count": 3
+      },
+      {
+        "business_unit": "IND PROCESS AUTOMATION",
+        "product_count": 77816,
+        "range_count": 72,
+        "pl_services_count": 2
+      },
+      {
+        "business_unit": "GLOBAL SERVICES",
+        "product_count": 33709,
+        "range_count": 3016,
+        "pl_services_count": 5
+      },
+      {
+        "business_unit": "HOME & DISTRIBUTION",
+        "product_count": 27268,
+        "range_count": 193,
+        "pl_services_count": 4
+      },
+      {
+        "business_unit": "IND AUTOMATION OPS",
+        "product_count": 25339,
+        "range_count": 197,
+        "pl_services_count": 5
+      },
+      {
+        "business_unit": "DIGITAL ENERGY",
+        "product_count": 19679,
+        "range_count": 511,
+        "pl_services_count": 6
+      },
+      {
+        "business_unit": "SECURE POWER",
+        "product_count": 18618,
+        "range_count": 279,
+        "pl_services_count": 4
+      },
+      {
+        "business_unit": "ENERGY MANAGEMENT",
+        "product_count": 18144,
+        "range_count": 65,
+        "pl_services_count": 2
+      },
+      {
+        "business_unit": "POWER SYSTEMS",
+        "product_count": 14455,
+        "range_count": 176,
+        "pl_services_count": 4
+      },
+      {
+        "business_unit": "PROSUMER",
+        "product_count": 414,
+        "range_count": 16,
+        "pl_services_count": 1
+      },
+      {
+        "business_unit": "IND AUT SOFTWARE",
+        "product_count": 166,
+        "range_count": 9,
+        "pl_services_count": 2
+      }
+    ]
+  },
+  "semantic_patterns": {
+    "naming_patterns": [
+      {
+        "prefix": "TBU",
+        "count": 77313,
+        "range_count": 13
+      },
+      {
+        "prefix": "MRF",
+        "count": 17529,
+        "range_count": 3172
+      },
+      {
+        "prefix": "LC1",
+        "count": 12428,
+        "range_count": 16
+      },
+      {
+        "prefix": "ATV",
+        "count": 7325,
+        "range_count": 52
+      },
+      {
+        "prefix": "HDW",
+        "count": 5845,
+        "range_count": 3
+      },
+      {
+        "prefix": "890",
+        "count": 5704,
+        "range_count": 4
+      },
+      {
+        "prefix": "HDB",
+        "count": 5434,
+        "range_count": 26
+      },
+      {
+        "prefix": "LV4",
+        "count": 4971,
+        "range_count": 22
+      },
+      {
+        "prefix": "HDM",
+        "count": 3867,
+        "range_count": 9
+      },
+      {
+        "prefix": "LC2",
+        "count": 3608,
+        "range_count": 8
+      },
+      {
+        "prefix": "MVS",
+        "count": 2712,
+        "range_count": 2
+      },
+      {
+        "prefix": "A9F",
+        "count": 2695,
+        "range_count": 7
+      },
+      {
+        "prefix": "PFX",
+        "count": 2458,
+        "range_count": 22
+      },
+      {
+        "prefix": "A9N",
+        "count": 2374,
+        "range_count": 15
+      },
+      {
+        "prefix": "EOC",
+        "count": 2208,
+        "range_count": 1
+      }
+    ],
+    "common_description_words": [
+      {
+        "word": "TYPE",
+        "frequency": 426
+      },
+      {
+        "word": "NEX",
+        "frequency": 124
+      },
+      {
+        "word": "POWER",
+        "frequency": 75
+      },
+      {
+        "word": "SUPPLY",
+        "frequency": 73
+      },
+      {
+        "word": "24V",
+        "frequency": 61
+      },
+      {
+        "word": "AIR",
+        "frequency": 59
+      },
+      {
+        "word": "CONDENSER",
+        "frequency": 56
+      },
+      {
+        "word": "COOLED",
+        "frequency": 46
+      },
+      {
+        "word": "CHILLER",
+        "frequency": 46
+      },
+      {
+        "word": "VRQ3NS2",
+        "frequency": 41
+      },
+      {
+        "word": "LEVEL",
+        "frequency": 37
+      },
+      {
+        "word": "100R3",
+        "frequency": 35
+      },
+      {
+        "word": "ARJP2N2J",
+        "frequency": 32
+      },
+      {
+        "word": "110R3",
+        "frequency": 30
+      },
+      {
+        "word": "VRS3NS1",
+        "frequency": 27
+      },
+      {
+        "word": "CUBICLE",
+        "frequency": 26
+      },
+      {
+        "word": "FAN",
+        "frequency": 25
+      },
+      {
+        "word": "ARJA1N2J",
+        "frequency": 21
+      },
+      {
+        "word": "1003",
+        "frequency": 21
+      },
+      {
+        "word": "LOW",
+        "frequency": 19
+      }
+    ],
+    "status_patterns": [
+      {
+        "status": "08-Commercialised",
+        "count": 119532,
+        "percentage": 34.93
+      },
+      {
+        "status": "18-End of commercialisation",
+        "count": 109358,
+        "percentage": 31.95
+      },
+      {
+        "status": "19-end of commercialization block",
+        "count": 72006,
+        "percentage": 21.04
+      },
+      {
+        "status": "00-Initialisation",
+        "count": 20050,
+        "percentage": 5.86
+      },
+      {
+        "status": "16-Post commercialisation",
+        "count": 9444,
+        "percentage": 2.76
+      },
+      {
+        "status": "01-Never commercialised",
+        "count": 5801,
+        "percentage": 1.7
+      },
+      {
+        "status": "02-Created",
+        "count": 2310,
+        "percentage": 0.67
+      },
+      {
+        "status": "14-End of commerc. announced",
+        "count": 1752,
+        "percentage": 0.51
+      },
+      {
+        "status": "04-Validated",
+        "count": 870,
+        "percentage": 0.25
+      },
+      {
+        "status": "20-Temporary block",
+        "count": 656,
+        "percentage": 0.19
+      },
+      {
+        "status": "06-Precommercialisation",
+        "count": 450,
+        "percentage": 0.13
+      }
+    ]
+  },
+  "optimization": {
+    "recommended_search_fields": {
+      "RANGE_LABEL": {
+        "description": "Primary range identifier",
+        "coverage_percentage": 98.59,
+        "uniqueness_percentage": 1.21,
+        "average_length": 16.11,
+        "non_null_count": 337394,
+        "unique_count": 4067
+      },
+      "SUBRANGE_LABEL": {
+        "description": "Secondary range identifier",
+        "coverage_percentage": 15.47,
+        "uniqueness_percentage": 11.16,
+        "average_length": 7.75,
+        "non_null_count": 52931,
+        "unique_count": 5906
+      },
+      "PRODUCT_IDENTIFIER": {
+        "description": "Unique product code",
+        "coverage_percentage": 100.0,
+        "uniqueness_percentage": 100.0,
+        "average_length": 12.62,
+        "non_null_count": 342229,
+        "unique_count": 342229
+      },
+      "PRODUCT_DESCRIPTION": {
+        "description": "Full text description",
+        "coverage_percentage": 100.0,
+        "uniqueness_percentage": 47.11,
+        "average_length": 30.66,
+        "non_null_count": 342229,
+        "unique_count": 161235
+      },
+      "DEVICETYPE_LABEL": {
+        "description": "Device type classification",
+        "coverage_percentage": 100.0,
+        "uniqueness_percentage": 0.04,
+        "average_length": 33.98,
+        "non_null_count": 342229,
+        "unique_count": 152
+      },
+      "BRAND_LABEL": {
+        "description": "Brand information",
+        "coverage_percentage": 100.0,
+        "uniqueness_percentage": 0.15,
+        "average_length": 14.44,
+        "non_null_count": 342229,
+        "unique_count": 500
+      }
+    },
+    "recommendations": [
+      "1. PRIMARY SEARCH FIELDS (High Priority):",
+      "   - RANGE_LABEL: Primary product range identification",
+      "   - PRODUCT_DESCRIPTION: Rich semantic content",
+      "   - PRODUCT_IDENTIFIER: Exact product matching",
+      "",
+      "2. SECONDARY SEARCH FIELDS (Medium Priority):",
+      "   - SUBRANGE_LABEL: Detailed range classification",
+      "   - DEVICETYPE_LABEL: Functional categorization",
+      "   - BRAND_LABEL: Brand-based filtering",
+      "",
+      "3. EMBEDDING STRATEGY:",
+      "   - Combine RANGE_LABEL + PRODUCT_DESCRIPTION for rich embeddings",
+      "   - Use hierarchical embeddings: Brand -> Range -> Product",
+      "   - Include commercial status for lifecycle-aware search",
+      "",
+      "4. VECTOR SPACE OPTIMIZATION:",
+      "   - Create separate embedding spaces for different product categories",
+      "   - Use business unit clustering for domain-specific search",
+      "   - Implement multi-modal embeddings (text + metadata)"
+    ]
+  }
+}

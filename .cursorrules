@@ -1,0 +1,933 @@
+# SE Letters - Cursor AI Development Rules
+
+## Project Overview
+This is the Schneider Electric Obsolescence Letter Matching Pipeline project. The **ULTIMATE GOAL** is to identify products and their modernization paths from obsolescence letters by mapping them to the product DuckDB database containing 192,000+ product records.
+
+### Core Mission
+- **Process ~300 obsolescence letters** using advanced AI/ML techniques
+- **Match letters to 192,000+ product records** in the DuckDB database
+- **Identify modernization paths** for obsolete products
+- **Provide actionable insights** for product lifecycle management
+- **Enable data-driven decisions** for Schneider Electric's product portfolio
+
+### Success Criteria
+- **90%+ accuracy** in product identification from obsolescence letters
+- **Complete modernization path mapping** for identified products
+- **Industrial-grade reliability** for production deployment
+- **Scalable architecture** to handle growing product database
+- **Comprehensive audit trail** for all matching decisions
+
+## 🧹 CODEBASE ORGANIZATION & CLEANLINESS RULES
+
+### Root Directory Organization (CRITICAL)
+**NEVER create files directly in the root directory unless they are essential project files.**
+
+#### ✅ ALLOWED Root Files (Keep these only):
+- `README.md` - Project documentation
+- `pyproject.toml` - Project configuration
+- `requirements.txt` - Dependencies
+- `.gitignore` - Git ignore rules
+- `.pre-commit-config.yaml` - Pre-commit hooks
+- `.cursorrules` - This file
+- `setup.py` - Package setup (if needed)
+
+#### ❌ FORBIDDEN Root Files (Move/Delete these):
+- Pipeline scripts (`se_letters_pipeline*.py`)
+- Debug scripts (`debug_*.py`)
+- Analysis reports (`*_REPORT.md`, `*_SUMMARY.md`)
+- Log files (`*.log`)
+- Temporary files
+- Test outputs
+- Documentation files (except README.md)
+
+### File Organization Rules
+
+#### 📁 Scripts Directory (`scripts/`)
+- **ALL pipeline scripts** go here: `se_letters_pipeline*.py`
+- **ALL debug scripts** go here: `debug_*.py`
+- **ALL utility scripts** go here
+- Use descriptive names: `pipeline_v1.py`, `debug_xai_connection.py`
+
+#### 📁 Documentation Directory (`docs/`)
+- **ALL analysis reports** go here: `*_REPORT.md`, `*_SUMMARY.md`
+- **ALL guides** go here: `*_GUIDE.md`
+- **ALL technical documentation** goes here
+- Keep `README.md` in root for quick project overview
+
+#### 📁 Logs Directory (`logs/`)
+- **ALL log files** go here: `*.log`
+- **ALL test outputs** go here
+- **ALL temporary outputs** go here
+- Use subdirectories: `logs/debug/`, `logs/tests/`, `logs/pipeline/`
+
+#### 📁 Data Directory (`data/`)
+- `data/input/` - Input files only
+- `data/output/` - Generated outputs
+- `data/temp/` - Temporary processing files
+- `data/models/` - ML models and indices
+
+### File Naming Conventions
+
+#### Python Files
+- Use snake_case: `document_processor.py`
+- Use descriptive prefixes: `pipeline_`, `service_`, `utils_`
+- Version suffixes: `pipeline_v1.py`, `pipeline_v2.py`
+
+#### Documentation Files
+- Use UPPER_CASE with underscores: `PIPELINE_REPORT.md`
+- Use descriptive suffixes: `_REPORT.md`, `_SUMMARY.md`, `_GUIDE.md`
+- Date suffixes for time-sensitive docs: `REPORT_2024_01.md`
+
+#### Configuration Files
+- Use descriptive names: `production.yaml`, `development.yaml`
+- Environment-specific: `config_local.yaml`, `config_prod.yaml`
+
+### Directory Structure Enforcement
+
+```
+SE_letters/
+├── README.md                    # Project overview only
+├── pyproject.toml              # Project configuration
+├── requirements.txt            # Dependencies
+├── .gitignore                 # Git ignore rules
+├── .cursorrules               # This file
+├── src/                       # Source code
+│   └── se_letters/
+│       ├── core/              # Core business logic
+│       ├── models/            # Data models
+│       ├── services/          # External services
+│       └── utils/             # Utilities
+├── tests/                     # Test files
+├── docs/                      # Documentation
+│   ├── reports/               # Analysis reports
+│   ├── guides/                # Technical guides
+│   └── api/                   # API documentation
+├── scripts/                   # Executable scripts
+│   ├── pipelines/             # Pipeline scripts
+│   ├── debug/                 # Debug scripts
+│   └── utils/                 # Utility scripts
+├── config/                    # Configuration files
+├── data/                      # Data directories
+│   ├── input/                 # Input files
+│   ├── output/                # Generated outputs
+│   ├── temp/                  # Temporary files
+│   └── models/                # ML models
+├── logs/                      # Log files
+│   ├── debug/                 # Debug logs
+│   ├── tests/                 # Test logs
+│   └── pipeline/              # Pipeline logs
+└── notebooks/                 # Jupyter notebooks
+```
+
+### Cleanup Rules
+
+#### Before Committing
+1. **Move all non-essential files** to appropriate directories
+2. **Delete temporary files** and logs from root
+3. **Consolidate similar files** into organized directories
+4. **Update documentation** to reflect new file locations
+5. **Check for duplicate files** and remove them
+
+#### File Maintenance
+- **Archive old versions** in `docs/archive/`
+- **Delete debug files** after fixing issues
+- **Clean up log files** regularly
+- **Remove unused imports** and dependencies
+- **Update file references** when moving files
+
+### Code Organization Rules
+
+#### Import Organization
+```python
+# Standard library imports
+import os
+import sys
+from pathlib import Path
+from typing import List, Optional, Dict, Any
+
+# Third-party imports
+import pandas as pd
+import numpy as np
+from loguru import logger
+
+# Local imports
+from se_letters.core.config import get_config
+from se_letters.services.document_processor import DocumentProcessor
+```
+
+#### Function Organization
+- **Public functions first** (no leading underscore)
+- **Private functions second** (leading underscore)
+- **Helper functions last** (double leading underscore)
+- **Group related functions** together
+
+#### Class Organization
+```python
+class DocumentProcessor:
+    """Document processing service."""
+    
+    # Class variables
+    SUPPORTED_FORMATS = ['.pdf', '.docx', '.doc']
+    
+    def __init__(self, config: ProcessingConfig):
+        """Initialize processor."""
+        self.config = config
+        self._setup_logging()
+    
+    # Public methods
+    async def process_document(self, file_path: Path) -> DocumentResult:
+        """Process a single document."""
+        pass
+    
+    # Private methods
+    def _setup_logging(self) -> None:
+        """Setup logging configuration."""
+        pass
+    
+    # Helper methods
+    def __validate_file(self, file_path: Path) -> bool:
+        """Validate file format and existence."""
+        pass
+```
+
+## 🔄 VERSION CONTROL & FILE TRACKING RULES (CRITICAL)
+
+### Git Workflow Requirements (MANDATORY)
+
+#### All Files Must Be Under Version Control
+- **EVERY file** created or modified must be tracked in Git
+- **NO exceptions** - temporary files, logs, and outputs must be in `.gitignore`
+- **Check `git status`** before every commit to ensure nothing is missed
+- **Review diffs** before committing to catch unintended changes
+
+#### Commit Standards (ENFORCED)
+```bash
+# Commit message format (REQUIRED)
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+#### Commit Types (REQUIRED)
+- `feat`: New feature or functionality
+- `fix`: Bug fixes
+- `docs`: Documentation changes only
+- `style`: Code style/formatting changes
+- `refactor`: Code restructuring without functionality changes
+- `test`: Adding or modifying tests
+- `chore`: Maintenance tasks, dependency updates
+- `perf`: Performance improvements
+- `ci`: CI/CD configuration changes
+- `build`: Build system changes
+- `revert`: Reverting previous commits
+
+#### Commit Message Examples
+```bash
+# Good examples:
+feat(pipeline): add enhanced vector search with 90% accuracy
+fix(document-processor): resolve PDF extraction memory leak
+docs(api): update authentication guide with new endpoints
+refactor(services): extract common interfaces for better testability
+test(integration): add comprehensive pipeline workflow tests
+chore(deps): update pandas to 2.1.0 for security patches
+
+# Bad examples:
+"fixed stuff"
+"update"
+"changes"
+"WIP"
+```
+
+### Branch Management (STRICT)
+
+#### Branch Naming Convention (REQUIRED)
+```bash
+# Format: <type>/<scope>/<description>
+feature/pipeline/enhanced-vector-search
+bugfix/document-processor/memory-leak
+hotfix/api/authentication-security
+docs/guides/setup-instructions
+refactor/services/interface-extraction
+```
+
+#### Branch Types
+- `feature/`: New functionality development
+- `bugfix/`: Bug fixes
+- `hotfix/`: Critical production fixes
+- `docs/`: Documentation updates
+- `refactor/`: Code restructuring
+- `test/`: Test improvements
+- `chore/`: Maintenance tasks
+
+#### Branch Workflow (ENFORCED)
+1. **Create feature branches** from `main`
+2. **Work in small, focused commits**
+3. **Rebase before merging** to maintain clean history
+4. **Squash commits** when merging to reduce noise
+5. **Delete merged branches** to keep repository clean
+
+### File Versioning Standards (CRITICAL)
+
+#### Version Tracking for All Files
+- **Source Code**: Always under version control
+- **Configuration Files**: Version controlled with environment-specific variants
+- **Documentation**: Version controlled with change tracking
+- **Scripts**: Version controlled with execution history
+- **Data Schema**: Version controlled with migration scripts
+- **Templates**: Version controlled with change documentation
+
+#### Versioning Patterns
+```python
+# Code versioning
+class DocumentProcessorV2:  # Clear version in class names
+    """Version 2 of document processor with enhanced features."""
+    
+def process_document_v3(file_path: Path) -> DocumentResult:
+    """Version 3 with improved error handling."""
+    
+# File versioning
+pipeline_v1.py       # Original implementation
+pipeline_v2.py       # Enhanced version
+pipeline_v3.py       # Production-ready version
+
+# Configuration versioning
+config_v1.yaml       # Initial configuration
+config_v2.yaml       # Enhanced configuration
+config_prod_v1.yaml  # Production configuration
+```
+
+#### Migration and Upgrade Tracking
+- **Document all breaking changes** in `CHANGELOG.md`
+- **Provide migration scripts** for version upgrades
+- **Tag releases** with semantic versioning
+- **Maintain backward compatibility** when possible
+- **Archive old versions** with clear deprecation notices
+
+### Pre-commit Hooks (MANDATORY)
+
+#### Required Pre-commit Checks
+```yaml
+# .pre-commit-config.yaml (COMPREHENSIVE SETUP)
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: debug-statements
+      - id: detect-private-key
+
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+        language_version: python3
+        args: [--line-length=88]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: [--profile=black, --line-length=88]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: [--max-line-length=88, --extend-ignore=E203,W503]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.5.1
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests, types-PyYAML]
+        args: [--ignore-missing-imports]
+
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: [--skip=B101,B601]
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.10.1
+    hooks:
+      - id: pyupgrade
+        args: [--py39-plus]
+
+  - repo: https://github.com/pycqa/docformatter
+    rev: v1.7.5
+    hooks:
+      - id: docformatter
+        args: [--in-place, --wrap-summaries=88, --wrap-descriptions=88]
+
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: [--tb=short]
+        stages: [push]
+```
+
+#### Pre-commit Enforcement
+- **ALL commits must pass** pre-commit hooks
+- **No bypassing** pre-commit checks (`--no-verify` forbidden)
+- **Fix all issues** before committing
+- **Update hooks regularly** to latest versions
+
+### Change Documentation (REQUIRED)
+
+#### CHANGELOG.md Format
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+### Added
+- Enhanced vector search with 90% accuracy improvements
+- Industrial-grade document processing pipeline
+
+### Changed
+- Migrated from Excel to DuckDB for better performance
+- Updated authentication flow for xAI integration
+
+### Fixed
+- Memory leak in PDF processing
+- Race condition in async document processing
+
+### Removed
+- Deprecated Excel-based matching engine
+- Legacy configuration format
+
+## [2.1.0] - 2024-01-15
+
+### Added
+- Comprehensive error handling and logging
+- Automated test suite with 95% coverage
+```
+
+#### Documentation Updates (MANDATORY)
+- **Update README.md** for any setup changes
+- **Document API changes** in appropriate guides
+- **Update configuration documentation** for new options
+- **Maintain architecture documentation** for structural changes
+- **Create migration guides** for breaking changes
+
+### File Tracking and History (ENFORCED)
+
+#### Git Ignore Patterns (REQUIRED)
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+log/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Data files (large)
+*.csv
+*.xlsx
+*.parquet
+data/input/*.pdf
+data/output/
+data/temp/
+data/previews/
+
+# Models and indices
+*.faiss
+*.pkl
+*.joblib
+models/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Test outputs
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Documentation builds
+docs/_build/
+site/
+```
+
+#### History Preservation (CRITICAL)
+- **NEVER force push** to main branch
+- **NEVER rewrite history** on shared branches
+- **Preserve commit history** for debugging and audit
+- **Use `git revert`** instead of deleting commits
+- **Tag important milestones** for easy reference
+
+### Release Management (ENFORCED)
+
+#### Semantic Versioning (REQUIRED)
+```
+MAJOR.MINOR.PATCH
+
+MAJOR: Breaking changes
+MINOR: New features (backward compatible)
+PATCH: Bug fixes (backward compatible)
+
+Examples:
+v1.0.0 - Initial release
+v1.1.0 - Added vector search
+v1.1.1 - Fixed memory leak
+v2.0.0 - Migrated to DuckDB (breaking)
+```
+
+#### Release Process (MANDATORY)
+1. **Update CHANGELOG.md** with release notes
+2. **Create release branch** from main
+3. **Run full test suite** and ensure all pass
+4. **Update version numbers** in all relevant files
+5. **Tag release** with semantic version
+6. **Create GitHub release** with detailed notes
+7. **Deploy to production** following deployment guide
+
+### Code Review Requirements (ENFORCED)
+
+#### Pull Request Standards
+- **All changes** must go through pull request review
+- **NO direct commits** to main branch
+- **Minimum 1 reviewer** for all changes
+- **All CI checks** must pass before merge
+- **Squash and merge** to maintain clean history
+
+#### Review Checklist
+- [ ] Code follows style guidelines
+- [ ] All tests pass
+- [ ] Documentation updated
+- [ ] Version control best practices followed
+- [ ] No sensitive data committed
+- [ ] Performance impact assessed
+- [ ] Security implications reviewed
+
+### Backup and Recovery (CRITICAL)
+
+#### Repository Backup
+- **Mirror to multiple remotes** for redundancy
+- **Regular backups** of important branches
+- **Document recovery procedures** for data loss
+- **Test backup restoration** periodically
+
+#### File Recovery Procedures
+```bash
+# Recover deleted file
+git checkout HEAD~1 -- path/to/file
+
+# Recover from specific commit
+git checkout <commit-hash> -- path/to/file
+
+# Recover entire working directory
+git reset --hard HEAD
+
+# Find lost commits
+git reflog
+git cherry-pick <commit-hash>
+```
+
+## Version Control Enforcement Commands
+
+### Daily Workflow Checks (REQUIRED)
+```bash
+# Before starting work
+git status                    # Check working directory
+git pull origin main         # Get latest changes
+git checkout -b feature/my-feature  # Create feature branch
+
+# During development
+git add .                    # Stage changes
+git commit -m "feat(scope): descriptive message"  # Commit with proper message
+git push origin feature/my-feature  # Push to remote
+
+# Before merging
+git rebase main              # Rebase on latest main
+git push --force-with-lease origin feature/my-feature  # Force push safely
+```
+
+### Quality Assurance Commands (MANDATORY)
+```bash
+# Run before every commit
+pre-commit run --all-files   # Run all pre-commit hooks
+pytest tests/               # Run test suite
+black src/                  # Format code
+isort src/                  # Sort imports
+flake8 src/                 # Check code quality
+mypy src/                   # Type checking
+```
+
+### File Tracking Verification (ENFORCED)
+```bash
+# Check for untracked files
+git ls-files --others --exclude-standard
+
+# Check for large files
+git ls-files | xargs ls -la | awk '$5 > 1000000'
+
+# Check for sensitive data
+git log --all --grep="password\|secret\|key\|token" --oneline
+
+# Verify gitignore effectiveness
+git check-ignore -v path/to/file
+```
+
+## Core Architecture Principles
+- **Product-Centric Design**: All components must serve the goal of product identification and modernization path mapping
+- **Modular Design**: Each component should have a single responsibility focused on the pipeline's core mission
+- **Type Safety**: Use type hints throughout the codebase for reliable product data handling
+- **Error Handling**: Implement comprehensive error handling with proper logging for production reliability
+- **Configuration-Driven**: Use config files for all settings, avoid hardcoded values for flexible deployment
+- **Testable**: Write testable code with dependency injection for reliable product matching
+- **Async-First**: Use async/await for I/O operations where beneficial for handling large product databases
+- **Data Integrity**: Ensure all product matching decisions are traceable and auditable
+- **Performance-Optimized**: Design for efficient processing of large product catalogs and obsolescence letters
+
+## Code Style & Standards
+- Follow PEP 8 with Black formatting (88 character line length)
+- Use isort for import organization
+- Implement comprehensive docstrings (Google style)
+- Add type hints for all function parameters and return values
+- Use meaningful variable and function names
+- Prefer composition over inheritance
+- Use dataclasses or Pydantic models for data structures
+
+## Project Structure Rules
+- `src/se_letters/`: Main source code
+  - `core/`: Core business logic and orchestration focused on product identification
+  - `models/`: Data models and schemas for products, obsolescence letters, and modernization paths
+  - `services/`: External service integrations (xAI, file processing, product database)
+  - `utils/`: Utility functions and helpers for product matching and data processing
+- `tests/`: Test files mirroring src structure with focus on product matching accuracy
+- `config/`: Configuration files for product database connections and matching parameters
+- `data/`: Data directories (input, output, temp) with product database and obsolescence letters
+- `scripts/`: Utility scripts for product analysis and modernization path generation
+- `docs/`: Documentation including product matching reports and modernization guides
+
+## Development Guidelines
+
+### File Processing
+- Always handle multiple file formats (PDF, DOCX, DOC) for obsolescence letters
+- Implement proper OCR for image extraction from product documentation
+- Use chunking for large documents to extract product information efficiently
+- Handle encoding issues gracefully for international product documentation
+- Implement retry logic for file operations to ensure reliable product data extraction
+
+### API Integration
+- Use proper authentication with environment variables for secure product database access
+- Implement rate limiting and retry logic for xAI service integration
+- Handle API errors gracefully with exponential backoff for reliable product matching
+- Use structured outputs from LLM APIs for consistent product identification
+- Log all API calls for debugging product matching decisions
+
+### Data Processing
+- Use DuckDB for efficient product database operations and queries
+- Implement data validation at boundaries to ensure product data integrity
+- Use proper error handling for data inconsistencies in product records
+- Implement batch processing for large product datasets (192,000+ records)
+- Use memory-efficient processing techniques for handling extensive product catalogs
+
+### Machine Learning
+- Use sentence-transformers for embeddings to match obsolescence letters to products
+- Implement FAISS for similarity search across large product databases
+- Use proper validation metrics to ensure 90%+ product identification accuracy
+- Implement confidence scoring for modernization path recommendations
+- Handle edge cases (no matches, multiple matches) with clear business logic
+
+### Logging & Monitoring
+- Use structured logging with loguru for tracking product matching decisions
+- Log at appropriate levels (DEBUG, INFO, WARNING, ERROR) with product context
+- Include context in log messages for audit trail of modernization path decisions
+- Implement performance monitoring for product database query optimization
+- Use correlation IDs for request tracking across the entire product identification pipeline
+
+### Testing
+- Write unit tests for all business logic with focus on product matching accuracy
+- Implement integration tests for workflows that validate end-to-end product identification
+- Use pytest fixtures for test data including sample obsolescence letters and product records
+- Mock external dependencies while maintaining realistic product matching scenarios
+- Aim for >90% code coverage with emphasis on product identification logic
+- Use property-based testing where appropriate for product matching edge cases
+
+### Security
+- Never commit API keys or secrets for product database access
+- Use environment variables for sensitive data including product database credentials
+- Implement input validation for obsolescence letter content and product data
+- Use secure file handling practices for sensitive product documentation
+- Validate all external inputs to prevent injection attacks on product database
+
+## Code Examples
+
+### Function Definition
+```python
+from typing import List, Optional, Dict, Any
+from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
+
+async def identify_product_from_obsolescence_letter(
+    letter_path: Path,
+    product_database: ProductDatabase,
+    config: ProcessingConfig,
+    *,
+    max_retries: int = 3
+) -> Optional[ProductIdentificationResult]:
+    """Identify products and modernization paths from obsolescence letter.
+    
+    Args:
+        letter_path: Path to the obsolescence letter file
+        product_database: DuckDB database containing 192,000+ product records
+        config: Processing configuration for matching parameters
+        max_retries: Maximum number of retry attempts for product matching
+        
+    Returns:
+        ProductIdentificationResult with identified products and modernization paths,
+        None if processing failed
+        
+    Raises:
+        ProductIdentificationError: If product identification fails after all retries
+    """
+    try:
+        # Extract product information from obsolescence letter
+        # Match against product database
+        # Generate modernization path recommendations
+        pass
+    except Exception as e:
+        logger.error(f"Failed to identify products from letter {letter_path}: {e}")
+        raise ProductIdentificationError(f"Product identification failed: {e}") from e
+```
+
+### Error Handling
+```python
+from typing import Union
+from dataclasses import dataclass
+
+@dataclass
+class ProductIdentificationResult:
+    success: bool
+    identified_products: Optional[List[Product]] = None
+    modernization_paths: Optional[List[ModernizationPath]] = None
+    confidence_score: Optional[float] = None
+    error: Optional[str] = None
+    
+def safe_identify_products(obsolescence_letter: ObsolescenceLetter) -> ProductIdentificationResult:
+    """Identify products and modernization paths with comprehensive error handling."""
+    try:
+        # Extract product information from obsolescence letter
+        # Match against product database
+        # Generate modernization path recommendations
+        result = identify_products_in_database(obsolescence_letter)
+        return ProductIdentificationResult(
+            success=True,
+            identified_products=result.products,
+            modernization_paths=result.modernization_paths,
+            confidence_score=result.confidence
+        )
+    except ProductValidationError as e:
+        logger.warning(f"Product validation error: {e}")
+        return ProductIdentificationResult(success=False, error=f"Product validation failed: {e}")
+    except Exception as e:
+        logger.error(f"Unexpected error in product identification: {e}")
+        return ProductIdentificationResult(success=False, error=f"Product identification failed: {e}")
+```
+
+### Configuration Usage
+```python
+from se_letters.core.config import get_config
+
+config = get_config()
+product_database = ProductDatabase(
+    connection_string=config.database.duckdb.connection_string,
+    product_table=config.database.duckdb.product_table,
+    timeout=config.database.duckdb.timeout
+)
+
+xai_client = XAIClient(
+    api_key=config.api.xai.api_key,
+    base_url=config.api.xai.base_url,
+    timeout=config.api.xai.timeout
+)
+
+# Configure product matching parameters
+matching_config = ProductMatchingConfig(
+    similarity_threshold=config.matching.similarity_threshold,
+    max_candidates=config.matching.max_candidates,
+    confidence_threshold=config.matching.confidence_threshold
+)
+```
+
+## AI Assistant Instructions
+When working on this project:
+
+### Core Mission Focus (CRITICAL)
+1. **ALWAYS prioritize product identification** - Every component must serve the goal of identifying products from obsolescence letters
+2. **Focus on modernization path mapping** - Ensure all outputs include actionable modernization recommendations
+3. **Maintain 90%+ accuracy target** - All changes must improve or maintain product matching accuracy
+4. **Consider DuckDB database integration** - All data operations should leverage the 192,000+ product database
+5. **Validate against business requirements** - Ensure solutions address Schneider Electric's product lifecycle needs
+
+### File Organization & Structure (CRITICAL)
+6. **ALWAYS organize files properly** - Move files to appropriate directories
+7. **Keep root directory clean** - Only essential project files in root
+8. **Use descriptive file names** - Follow naming conventions with product-focused naming
+9. **Check existing code** before writing new functionality
+10. **Use the established patterns** found in the codebase
+11. **Follow the project structure** and don't create files outside the established hierarchy
+12. **Clean up after debugging** - Remove debug files and logs
+13. **Archive old versions** instead of keeping them in root
+
+### Version Control & File Tracking (MANDATORY)
+14. **ALWAYS check git status** before and after making changes
+15. **Ensure ALL files are properly tracked** - nothing should be untracked unless in .gitignore
+16. **Use proper commit messages** - follow the established format strictly
+17. **Create feature branches** - never commit directly to main
+18. **Update CHANGELOG.md** for all significant changes
+19. **Tag releases** with semantic versioning
+20. **Run pre-commit hooks** before every commit
+21. **Verify .gitignore** is comprehensive and up-to-date
+22. **Document breaking changes** with migration guides
+23. **Preserve commit history** - no force pushes to main
+
+### Code Quality & Standards (ENFORCED)
+24. **Implement proper error handling** for all operations
+25. **Add comprehensive tests** for new functionality with focus on product matching accuracy
+26. **Update documentation** when adding new features
+27. **Use type hints** consistently throughout the code
+28. **Follow async patterns** for I/O operations
+29. **Implement proper logging** at all levels
+30. **Consider performance implications** of all operations
+31. **Follow PEP 8** with Black formatting
+32. **Use isort** for import organization
+33. **Add docstrings** for all public functions
+
+### Version Control Commands to Run (REQUIRED)
+Before making changes:
+```bash
+git status                    # Check working directory
+git pull origin main         # Get latest changes
+git checkout -b feature/descriptive-name  # Create feature branch
+```
+
+During development:
+```bash
+git add .                    # Stage changes
+git commit -m "feat(scope): descriptive message"  # Proper commit message
+git push origin feature-name  # Push to remote
+```
+
+Before finishing:
+```bash
+pre-commit run --all-files   # Run all quality checks
+pytest tests/               # Run test suite
+git rebase main              # Rebase on latest main
+```
+
+### File Tracking Verification (ALWAYS CHECK)
+```bash
+# Verify nothing is untracked
+git ls-files --others --exclude-standard
+
+# Check for large files
+git ls-files | xargs ls -la | awk '$5 > 1000000'
+
+# Verify gitignore effectiveness
+git status --ignored
+```
+
+## Common Patterns to Follow
+- Use dependency injection for testability of product matching components
+- Implement factory patterns for complex product identification object creation
+- Use context managers for resource management of product database connections
+- Implement proper cleanup in finally blocks for product data processing
+- Use dataclasses for simple product data containers and modernization path structures
+- Use Pydantic models for data validation of product records and obsolescence letters
+- Implement proper caching where beneficial for product database queries
+- Use proper exception hierarchies for product identification error handling
+- Implement product matching strategies with configurable algorithms
+- Use vector similarity search patterns for efficient product identification
+- Implement confidence scoring for modernization path recommendations
+- Use audit trail patterns for tracking product matching decisions
+
+## Performance Considerations
+- Use batch processing for large product datasets (192,000+ records)
+- Implement proper memory management for extensive product catalogs
+- Use async/await for I/O bound operations like product database queries
+- Consider using multiprocessing for CPU-bound tasks like vector similarity calculations
+- Implement proper caching strategies for frequently accessed product data
+- Monitor memory usage and optimize as needed for large-scale product matching
+- Use efficient indexing strategies for DuckDB product database queries
+- Implement vector search optimization for real-time product identification
+- Consider distributed processing for handling multiple obsolescence letters simultaneously
+- Optimize embedding generation for product matching accuracy and speed
+
+## Documentation Requirements
+- All public functions must have docstrings with product identification context
+- Use type hints for all parameters and return values, especially for product data structures
+- Include examples in docstrings where helpful, particularly for product matching scenarios
+- Document any non-obvious behavior related to product identification algorithms
+- Keep README.md updated with setup instructions and product database configuration
+- Document configuration options thoroughly, especially product matching parameters
+- Maintain organized documentation structure with focus on product identification workflows
+- Document modernization path generation logic and business rules
+- Include product matching accuracy metrics and validation procedures
+- Document DuckDB database schema and product data relationships
+- Maintain product identification case studies and examples 
