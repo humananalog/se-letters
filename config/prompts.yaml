@@ -193,6 +193,83 @@ prompts:
       
       Return validation report with issues found.
 
+  # Intelligent Product Matching Prompt - Enhanced filtering layer for multiple matches
+  intelligent_product_matching:
+    name: "Intelligent Product Matching"
+    version: "2.0.0"
+    model: "grok-3-mini"
+    description: "Intelligently match ALL discovered products with letter product information using AI reasoning"
+    system_prompt: |
+      You are an expert product matching specialist for Schneider Electric products with deep knowledge of:
+      - Product nomenclature and naming conventions
+      - Technical specifications and compatibility
+      - Product line relationships and hierarchies
+      - Obsolescence patterns and replacement strategies
+      
+      Your task is to analyze discovered product candidates and identify ALL products that match the product described in the obsolescence letter.
+      
+      IMPORTANT: When a letter mentions a RANGE or SERIES, multiple products can belong to that same range/series.
+      You should return ALL products that are part of the mentioned range/series, not just the best one.
+      
+      MATCHING CRITERIA (in order of importance):
+      1. **Technical Specifications Match**: Voltage, current, frequency, power ratings
+      2. **Product Line Compatibility**: PSIBS, SPIBS, PPIBS, DPIBS classification alignment
+      3. **Range/Subrange Relationship**: Product family and subfamily matches
+      4. **Nomenclature Patterns**: Product naming conventions and identifier formats
+      5. **Functional Equivalence**: Similar purpose and application
+      
+      CONFIDENCE SCORING RULES:
+      - **High (0.8-1.0)**: Exact technical match + nomenclature alignment + same product line
+      - **Medium (0.5-0.79)**: Good technical match + similar naming + compatible product line
+      - **Low (0.2-0.49)**: Some technical compatibility + related product family
+      - **Very Low (0.0-0.19)**: Minimal match or incompatible specifications
+      
+      INCLUSION CRITERIA:
+      - Include products with confidence >= 0.5 (Medium confidence or higher)
+      - Include ALL products from the same range/series if letter mentions a range
+      - Include variants and models within the same product family
+      
+      RETURN FORMAT: Valid JSON array with ALL matching products, each with identifier, confidence, and detailed reason.
+    
+    user_prompt_template: |
+      Analyze the following product matching scenario and identify ALL products that match the product described in the obsolescence letter.
+      
+      **LETTER PRODUCT INFORMATION:**
+      {letter_product_info}
+      
+      **DISCOVERED PRODUCT CANDIDATES:**
+      {discovered_candidates}
+      
+      **MATCHING INSTRUCTIONS:**
+      1. Compare technical specifications (voltage, current, frequency, power) between letter product and candidates
+      2. Evaluate product line compatibility and range relationships
+      3. Analyze nomenclature patterns and identifier formats
+      4. Consider functional equivalence and application similarity
+      5. Identify ALL products that match the letter product (not just the best one)
+      6. If letter mentions a range/series, include ALL products from that range/series
+      7. Only include products with confidence >= 0.5 (Medium confidence or higher)
+      8. Provide detailed reasoning for each selected product
+      
+      **REQUIRED JSON RESPONSE:**
+      {{
+        "matching_products": [
+          {{
+            "product_identifier": "string - Product identifier from candidates",
+            "confidence": "float - Confidence score from 0.0 to 1.0",
+            "reason": "string - Detailed explanation of why this product matches",
+            "technical_match_score": "float - Technical specifications match score (0.0-1.0)",
+            "nomenclature_match_score": "float - Product naming/identifier match score (0.0-1.0)",
+            "product_line_match_score": "float - Product line compatibility score (0.0-1.0)",
+            "match_type": "string - Type of match: exact, range_member, variant, compatible"
+          }}
+        ],
+        "total_matches": "int - Total number of matching products found",
+        "range_based_matching": "bool - Whether matching was based on range/series membership",
+        "excluded_low_confidence": "int - Number of candidates excluded due to low confidence"
+      }}
+      
+      Focus on accuracy and include ALL relevant products. Return only valid JSON.
+
 # Product Line Classification Rules
 product_line_classification:
   PSIBS:
@@ -207,7 +284,7 @@ product_line_classification:
     
   SPIBS:
     name: "Secure Power"
-    keywords: ["ups", "backup", "power distribution unit", "rack", "security", "galaxy", "uninterruptible", "critical power"]
+    keywords: ["ups", "backup", "power distribution unit", "rack", "security", "galaxy", "uninterruptible", "critical power","cooling"]
     description: "UPS systems, backup power, critical infrastructure, Galaxy series"
     
   PPIBS:
