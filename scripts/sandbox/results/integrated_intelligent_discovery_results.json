@@ -1,0 +1,173 @@
+{
+  "demo_metadata": {
+    "timestamp": "2025-07-15 07:09:39",
+    "total_processing_time_seconds": 8.450394868850708,
+    "pipeline_version": "1.0.0"
+  },
+  "letter_metadata": {
+    "document_information": {
+      "document_type": "Internal Communication",
+      "document_title": "Withdrawal Notice of PIX Double Bus Bar (PIX 2B) Offer",
+      "document_date": "12th March 2020",
+      "language": "English"
+    },
+    "products": [
+      {
+        "product_identifier": "PIX 2B",
+        "range_label": "PIX Double Bus Bar",
+        "subrange_label": "PIX 2B",
+        "product_line": "PSIBS (Power Systems)",
+        "product_description": "Medium Voltage equipment with double bus bar configuration, launched in 2014.",
+        "obsolescence_status": "Withdrawn",
+        "end_of_service_date": "November 2023 (Belgium frame contract only)",
+        "replacement_suggestions": "No substitution available for this range."
+      }
+    ],
+    "technical_specifications": {
+      "voltage_levels": [
+        "12 \u2013 17.5kV"
+      ],
+      "current_ratings": [
+        "up to 3150A"
+      ],
+      "power_ratings": [],
+      "frequencies": [
+        "50/60Hz"
+      ]
+    },
+    "business_information": {
+      "customer_impact": "Withdrawal of PIX 2B offer from all markets except Belgium frame contract. Customer announcement planned for mid-April 2020. No orders accepted post internal communication (March 2020). Spare parts maintained for a minimum of 10 years.",
+      "migration_timeline": "Stop of commercialization to all countries apart from Belgium immediately; full Product Withdrawal Process after Belgium frame contract ends in November 2023.",
+      "support_contacts": "Amar Wategaonkar (amar.wategaonkar@se.com), Josef Eberl (josef.eberl@se.com)"
+    },
+    "extraction_metadata": {
+      "confidence_score": 0.95,
+      "processing_method": "grok_production",
+      "extraction_timestamp": "2023-10-05T12:00:00Z"
+    }
+  },
+  "discovery_analysis": {
+    "total_candidates": 10,
+    "strategy_counts": {
+      "exact_technical_match": 2,
+      "range_expansion_search": 2,
+      "semantic_similarity_search": 2,
+      "specification_fuzzy_search": 2,
+      "hybrid_multi_modal_search": 2
+    },
+    "confidence_distribution": {
+      "high": 5,
+      "medium": 5,
+      "low": 0
+    },
+    "average_confidence": 0.8019999999999999
+  },
+  "discovery_results": {
+    "exact_technical_match": [
+      {
+        "product_identifier": "PIX2B-17KV-3150A",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX Double Bus Bar 17.5kV 3150A 50/60Hz",
+        "confidence_score": 0.95,
+        "source": "exact_technical_match"
+      },
+      {
+        "product_identifier": "PIX2B-MV-DBLBUS",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX Double Bus Bar Medium Voltage",
+        "confidence_score": 0.88,
+        "source": "exact_technical_match"
+      }
+    ],
+    "range_expansion_search": [
+      {
+        "product_identifier": "PIX-DB-12KV",
+        "range_label": "PIX",
+        "subrange_label": "PIX_DB",
+        "product_description": "PIX Double Bus Bar 12kV Configuration",
+        "confidence_score": 0.82,
+        "source": "range_expansion_search"
+      },
+      {
+        "product_identifier": "PIX-2B-SWGR",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX 2B Switchgear Assembly",
+        "confidence_score": 0.79,
+        "source": "range_expansion_search"
+      }
+    ],
+    "semantic_similarity_search": [
+      {
+        "product_identifier": "SM6-PIX2B-17KV",
+        "range_label": "SM6",
+        "subrange_label": "PIX2B",
+        "product_description": "SM6 PIX Double Bus Bar 17.5kV",
+        "confidence_score": 0.75,
+        "source": "semantic_similarity_search"
+      },
+      {
+        "product_identifier": "FLUO-PIX2B-MV",
+        "range_label": "FLUO",
+        "subrange_label": "PIX2B",
+        "product_description": "FLUO PIX Double Bus Bar Medium Voltage",
+        "confidence_score": 0.71,
+        "source": "semantic_similarity_search"
+      }
+    ],
+    "specification_fuzzy_search": [
+      {
+        "product_identifier": "PIX2B-15KV-2500A",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX Double Bus Bar 15kV 2500A",
+        "confidence_score": 0.68,
+        "source": "specification_fuzzy_search"
+      },
+      {
+        "product_identifier": "PIX2B-17KV-4000A",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX Double Bus Bar 17.5kV 4000A",
+        "confidence_score": 0.65,
+        "source": "specification_fuzzy_search"
+      }
+    ],
+    "hybrid_multi_modal_search": [
+      {
+        "product_identifier": "PIX2B-HV-3150",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX Double Bus Bar 17.5kV 3150A",
+        "confidence_score": 0.92,
+        "source": "hybrid_multi_modal_search"
+      },
+      {
+        "product_identifier": "PIX2B-MVSG-17KV",
+        "range_label": "PIX",
+        "subrange_label": "PIX2B",
+        "product_description": "PIX2B Medium Voltage Switchgear 17kV",
+        "confidence_score": 0.87,
+        "source": "hybrid_multi_modal_search"
+      }
+    ]
+  },
+  "intelligent_matching_results": [
+    {
+      "letter_product_id": "PIX 2B",
+      "matched_product_identifier": "PIX2B-17KV-3150A",
+      "confidence": 0.95,
+      "reason": "The product 'PIX 2B' from the obsolescence letter is a Medium Voltage switchgear with specifications of 12-17.5kV, up to 3150A, and 50/60Hz, in the PSIBS product line and PIX range with PIX2B subrange. Among the candidates, 'PIX2B-17KV-3150A' provides an exact technical match for voltage (17.5kV, as described), current (3150A), and frequency (implied 50/60Hz based on product description). It aligns perfectly with the PIX range and PIX2B subrange, maintaining the same product line (PSIBS). Nomenclature is highly similar, as 'PIX2B-17KV-3150A' directly extends the 'PIX 2B' identifier with specific technical details. Functionally, it serves the same purpose as double bus bar switchgear. This candidate scores highest overall due to its precise alignment with all matching criteria.",
+      "technical_match_score": 1.0,
+      "nomenclature_match_score": 0.9,
+      "product_line_match_score": 1.0,
+      "alternative_candidates": [
+        "PIX2B-HV-3150",
+        "PIX2B-MV-DBLBUS"
+      ],
+      "processing_time_ms": 7939.550876617432
+    }
+  ]
+}

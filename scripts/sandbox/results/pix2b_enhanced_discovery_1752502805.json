@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "total_products_found": 0,
+    "processing_time_ms": 272.7079391479492,
+    "search_effectiveness": 0.0,
+    "confidence_distribution": {
+      "high_confidence": 0,
+      "medium_confidence": 0,
+      "low_confidence": 0,
+      "very_low_confidence": 0
+    },
+    "technical_coverage": {
+      "voltage_coverage": 0.0,
+      "current_coverage": 0.0,
+      "frequency_coverage": 0.0,
+      "overall_coverage": 0.0
+    },
+    "strategies_used": [
+      "exact_technical_match",
+      "range_expansion",
+      "semantic_similarity",
+      "hybrid_multi_modal",
+      "specification_fuzzy"
+    ]
+  },
+  "primary_matches": [],
+  "secondary_matches": []
+}

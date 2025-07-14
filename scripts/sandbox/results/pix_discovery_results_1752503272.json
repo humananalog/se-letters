@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "total_products_found": 291683,
+    "processing_time_ms": 5236.477851867676,
+    "confidence_stats": {
+      "high": 0,
+      "medium": 141,
+      "low": 99,
+      "very_low": 291443,
+      "avg_confidence": 
