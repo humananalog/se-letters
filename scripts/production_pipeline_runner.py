@@ -73,9 +73,10 @@ class ProductionPipelineRunner:
             ]
         )
     
-    def process_single_document(self, file_path: Path) -> ProcessingResult:
+    def process_single_document(self, file_path: Path, force_reprocess: bool = False) -> ProcessingResult:
         """Process a single document through the pipeline"""
         logger.info(f"📄 Processing document: {file_path}")
+        logger.info(f"🔄 Force reprocess: {force_reprocess}")
         
         if not file_path.exists():
             logger.error(f"❌ File not found: {file_path}")
@@ -108,7 +109,7 @@ class ProductionPipelineRunner:
         
         try:
             # Process through pipeline
-            result = self.pipeline_service.process_document(file_path)
+            result = self.pipeline_service.process_document(file_path, force_reprocess=force_reprocess)
             
             # Log result
             self._log_processing_result(file_path, result)
@@ -254,6 +255,79 @@ class ProductionPipelineRunner:
         
         return summary
     
+    def output_json_results(self, results: List[ProcessingResult], file_path: Path = None) -> None:
+        """Output results as JSON for webapp consumption"""
+        import json
+        
+        # Get the first result (single file processing)
+        if not results:
+            json_output = {
+                "success": False,
+                "error": "No results to process",
+                "file_name": file_path.name if file_path else "",
+                "file_path": str(file_path) if file_path else "",
+                "processing_time_ms": 0,
+                "extracted_ranges": [],
+                "valid_ranges": [],
+                "invalid_ranges": [],
+                "obsolete_products": [],
+                "replacement_products": [],
+                "obsolete_count": 0,
+                "replacement_count": 0,
+                "extraction_method": "production_pipeline",
+                "extraction_confidence": 0,
+                "search_strategy": "N/A",
+                "search_space_reduction": 0,
+                "grok_metadata": {},
+                "json_outputs_saved": False,
+                "json_outputs_location": None
+            }
+        else:
+            result = results[0]
+            
+            # Extract grok metadata from the result
+            grok_metadata = {}
+            if result.success and result.grok_metadata:
+                grok_metadata = result.grok_metadata
+            elif result.success and result.validation_result:
+                # Try to get from validation result
+                grok_metadata = {
+                    "product_ranges": result.validation_result.product_ranges,
+                    "confidence_score": result.confidence_score or 0.0,
+                    "technical_specs": result.validation_result.technical_specs,
+                    "extracted_metadata": result.validation_result.extracted_metadata
+                }
+            
+            # Determine JSON outputs location
+            json_outputs_location = None
+            if result.success and result.document_id and file_path:
+                json_outputs_location = f"data/output/json_outputs/{file_path.stem}_{result.document_id}/latest/"
+            
+            json_output = {
+                "success": result.success,
+                "error": result.error_message if not result.success else None,
+                "file_name": file_path.name if file_path else "",
+                "file_path": str(file_path) if file_path else "",
+                "processing_time_ms": result.processing_time_ms or 0,
+                "extracted_ranges": result.validation_result.product_ranges if result.validation_result else [],
+                "valid_ranges": result.validation_result.product_ranges if result.validation_result else [],
+                "invalid_ranges": [],
+                "obsolete_products": [],
+                "replacement_products": [],
+                "obsolete_count": 0,
+                "replacement_count": 0,
+                "extraction_method": "production_pipeline",
+                "extraction_confidence": result.confidence_score or 0.0,
+                "search_strategy": "xai_grok_processing",
+                "search_space_reduction": 0,
+                "grok_metadata": grok_metadata,
+                "json_outputs_saved": result.success,
+                "json_outputs_location": json_outputs_location
+            }
+        
+        # Output JSON to stdout (webapp will capture this)
+        print(json.dumps(json_output, indent=2))
+
     def print_summary_report(self) -> None:
         """Print comprehensive summary report"""
         summary = self.generate_summary_report()
@@ -318,6 +392,18 @@ def main():
         help="Treat input as a text file containing list of files to process"
     )
     
+    parser.add_argument(
+        "--force-reprocess",
+        action="store_true",
+        help="Force reprocess even if document already exists"
+    )
+    
+    parser.add_argument(
+        "--json-output",
+        action="store_true",
+        help="Output results as JSON for webapp consumption"
+    )
+    
     args = parser.parse_args()
     
     # Initialize runner
@@ -341,7 +427,7 @@ def main():
         elif input_path.is_file():
             # Process single file
             logger.info(f"📄 Processing single file: {input_path}")
-            result = runner.process_single_document(input_path)
+            result = runner.process_single_document(input_path, force_reprocess=args.force_reprocess)
             results = [result]
             
         elif input_path.is_dir():
@@ -353,16 +439,23 @@ def main():
             logger.error(f"❌ Invalid input path: {input_path}")
             sys.exit(1)
         
-        # Print summary
-        runner.print_summary_report()
+        # Handle output format
+        if args.json_output:
+            # Output JSON for webapp consumption
+            runner.output_json_results(results, input_path)
+        else:
+            # Print summary for CLI usage
+            runner.print_summary_report()
         
         # Exit with appropriate code
         failed_count = sum(1 for r in results if not r.success)
         if failed_count > 0:
-            logger.warning(f"⚠️ {failed_count} files failed processing")
+            if not args.json_output:
+                logger.warning(f"⚠️ {failed_count} files failed processing")
             sys.exit(1)
         else:
-            logger.success("🎉 All files processed successfully")
+            if not args.json_output:
+                logger.success("🎉 All files processed successfully")
             sys.exit(0)
             
     except KeyboardInterrupt:

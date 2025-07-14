@@ -11,7 +11,7 @@ import json
 import hashlib
 import time
 from pathlib import Path
-from typing import Dict, Any, Optional, List, Tuple
+from typing import Dict, Any, Optional, List
 from dataclasses import dataclass, asdict
 from enum import Enum
 
@@ -21,6 +21,7 @@ from loguru import logger
 from se_letters.core.config import get_config
 from se_letters.services.xai_service import XAIService
 from se_letters.services.document_processor import DocumentProcessor
+from se_letters.utils.json_output_manager import JSONOutputManager, OutputMetadata, save_pipeline_outputs
 
 
 class ProcessingStatus(Enum):
@@ -80,6 +81,7 @@ class ProductionPipelineService:
         # Initialize services
         self.xai_service = XAIService(self.config)
         self.document_processor = DocumentProcessor(self.config)
+        self.json_output_manager = JSONOutputManager()
         
         # Initialize database
         self._init_database()
@@ -97,7 +99,8 @@ class ProductionPipelineService:
         log_format = (
             "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
             "<level>{level: <8}</level> | "
-            "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> | "
+            "<cyan>{name}</cyan>:<cyan>{function}</cyan>:"
+            "<cyan>{line}</cyan> | "
             "<level>{message}</level>"
         )
         
@@ -219,19 +222,25 @@ class ProductionPipelineService:
             logger.error(f"❌ Failed to initialize database: {e}")
             raise
     
-    def process_document(self, file_path: Path) -> ProcessingResult:
-        """Process document through complete production pipeline"""
+    def process_document(self, file_path: Path, force_reprocess: bool = False) -> ProcessingResult:
+        """Process document through complete production pipeline
+        
+        Args:
+            file_path: Path to the document to process
+            force_reprocess: If True, reprocess even if document already exists
+        """
         start_time = time.time()
         
         logger.info(f"🚀 Starting production pipeline for: {file_path}")
         logger.info(f"📁 File size: {file_path.stat().st_size} bytes")
+        logger.info(f"🔄 Force reprocess: {force_reprocess}")
         
         try:
             # Step 1: Check if document already exists
             logger.info("🔍 Step 1: Checking document existence")
             check_result = self._check_document_exists(file_path)
             
-            if check_result.exists and check_result.content_compliant:
+            if check_result.exists and check_result.content_compliant and not force_reprocess:
                 logger.info(f"⏭️ Document already processed and compliant: {file_path}")
                 return ProcessingResult(
                     success=True,
@@ -239,6 +248,10 @@ class ProductionPipelineService:
                     document_id=check_result.document_id,
                     processing_time_ms=(time.time() - start_time) * 1000
                 )
+            elif check_result.exists and force_reprocess:
+                logger.info(f"🔄 Force reprocessing existing document: {file_path}")
+                # Delete existing record to allow reprocessing
+                self._delete_existing_document(check_result.document_id)
             
             # Step 2: Validate content compliance
             logger.info("✅ Step 2: Validating content compliance")
@@ -287,6 +300,21 @@ class ProductionPipelineService:
             
             processing_time = (time.time() - start_time) * 1000
             
+            # Step 5: Save JSON outputs
+            logger.info("💾 Step 5: Saving JSON outputs")
+            try:
+                self._save_json_outputs(
+                    file_path=file_path,
+                    document_id=ingestion_result["document_id"],
+                    validation_result=validation_result,
+                    grok_result=grok_result,
+                    ingestion_result=ingestion_result,
+                    processing_time_ms=processing_time
+                )
+                logger.info("✅ JSON outputs saved successfully")
+            except Exception as e:
+                logger.warning(f"⚠️ Failed to save JSON outputs: {e}")
+            
             logger.info(f"✅ Production pipeline completed successfully in {processing_time:.2f}ms")
             logger.info(f"📊 Document ID: {ingestion_result['document_id']}")
             logger.info(f"🎯 Confidence: {validation_result.confidence_score:.2f}")
@@ -322,30 +350,28 @@ class ProductionPipelineService:
             file_hash = self._calculate_file_hash(file_path)
             
             with duckdb.connect(self.db_path) as conn:
-                # Check by file path first
-                result = conn.execute("""
-                    SELECT id, created_at, status, validation_details_json
-                    FROM letters 
-                    WHERE source_file_path = ?
-                """, [str(file_path)]).fetchone()
+                # Normalize file path to handle relative vs absolute paths
+                file_path_str = str(file_path.resolve())
+                file_name = file_path.name
                 
-                # If not found by path, try by hash if column exists
-                if not result:
-                    try:
-                        result = conn.execute("""
-                            SELECT id, created_at, status, validation_details_json
-                            FROM letters 
-                            WHERE file_hash = ?
-                        """, [file_hash]).fetchone()
-                    except Exception:
-                        pass  # file_hash column doesn't exist
+                # Check by multiple criteria to handle path variations
+                result = conn.execute("""
+                    SELECT id, created_at, status, validation_details_json, source_file_path
+                    FROM letters 
+                    WHERE source_file_path = ? 
+                       OR source_file_path = ?
+                       OR (document_name = ? AND file_hash = ?)
+                    ORDER BY created_at DESC
+                    LIMIT 1
+                """, [str(file_path), file_path_str, file_name, file_hash]).fetchone()
                 
                 if result:
-                    document_id, created_at, status, validation_json = result
+                    document_id, created_at, status, validation_json, existing_path = result
                     
                     logger.info(f"📋 Document found in database: ID={document_id}")
                     logger.info(f"📅 Previous processing: {created_at}")
                     logger.info(f"📊 Status: {status}")
+                    logger.info(f"📂 Existing path: {existing_path}")
                     
                     # Check content compliance from previous processing
                     content_compliant = False
@@ -377,6 +403,21 @@ class ProductionPipelineService:
         except Exception as e:
             logger.error(f"❌ Error checking document existence: {e}")
             return DocumentCheckResult(exists=False)
+    
+    def _delete_existing_document(self, document_id: int) -> None:
+        """Delete existing document and related records for reprocessing"""
+        try:
+            with duckdb.connect(self.db_path) as conn:
+                # Delete in correct order due to foreign key constraints
+                conn.execute("DELETE FROM processing_debug WHERE letter_id = ?", [document_id])
+                conn.execute("DELETE FROM letter_products WHERE letter_id = ?", [document_id])
+                conn.execute("DELETE FROM letters WHERE id = ?", [document_id])
+                
+                logger.info(f"🗑️ Deleted existing document record: ID={document_id}")
+                
+        except Exception as e:
+            logger.error(f"❌ Error deleting existing document: {e}")
+            raise
     
     def _calculate_file_hash(self, file_path: Path) -> str:
         """Calculate SHA-256 hash of file"""
@@ -577,6 +618,24 @@ class ProductionPipelineService:
         - Product ranges detected: {product_ranges}
         - Technical specs: {technical_specs}
         
+        **CRITICAL PRODUCT LINE CLASSIFICATION RULES:**
+        
+        **DPIBS (Digital Power)**: Protection relays, monitoring devices, power quality analyzers
+        - Keywords: MiCOM, SEPAM, PowerLogic, protection relay, monitoring, power quality, digital protection
+        - Examples: MiCOM P20, SEPAM 20, SEPAM 40, MiCOM P521, PowerLogic P5L
+        
+        **PSIBS (Power Systems)**: Power distribution, transformers, medium voltage equipment
+        - Keywords: power distribution, transformer, medium voltage, switchgear, SM6, VM6
+        
+        **PPIBS (Power Products)**: Circuit breakers, contactors, low voltage products
+        - Keywords: circuit breaker, contactor, Masterpact, Powerpact, Easypact, ACB
+        
+        **SPIBS (Secure Power)**: UPS systems, backup power, critical infrastructure
+        - Keywords: UPS, Galaxy, battery, backup power, uninterruptible power supply
+        
+        **IDIBS (Industrial Automation)**: PLCs, industrial controls, automation
+        - Keywords: PLC, Modicon, industrial control, automation, SCADA
+        
         Extract and return JSON with:
         {{
             "document_information": {{
@@ -590,7 +649,7 @@ class ProductionPipelineService:
                     "product_identifier": "string",
                     "range_label": "string",
                     "subrange_label": "string",
-                    "product_line": "string",
+                    "product_line": "string (MUST be DPIBS for protection relays like MiCOM, SEPAM, PowerLogic)",
                     "product_description": "string",
                     "obsolescence_status": "string",
                     "end_of_service_date": "string",
@@ -729,6 +788,78 @@ class ProductionPipelineService:
                 "error": str(e)
             }
     
+    def _save_json_outputs(
+        self,
+        file_path: Path,
+        document_id: int,
+        validation_result: ContentValidationResult,
+        grok_result: Dict[str, Any],
+        ingestion_result: Dict[str, Any],
+        processing_time_ms: float
+    ) -> None:
+        """Save comprehensive JSON outputs for the processed document"""
+        try:
+            from datetime import datetime
+            
+            # Create document ID from file path and database ID
+            doc_id = f"{file_path.stem}_{document_id}"
+            
+            # Prepare outputs
+            outputs = {
+                'grok_metadata': grok_result,
+                'validation_result': asdict(validation_result),
+                'processing_result': {
+                    'success': True,
+                    'document_id': document_id,
+                    'processing_time_ms': processing_time_ms,
+                    'confidence_score': validation_result.confidence_score,
+                    'status': ProcessingStatus.COMPLETED.value,
+                    'file_hash': self._calculate_file_hash(file_path),
+                    'file_size': file_path.stat().st_size,
+                    'processed_at': time.time()
+                },
+                'pipeline_summary': {
+                    'pipeline_version': '2.2.0',
+                    'processing_method': 'production_pipeline',
+                    'xai_model': self.xai_service.model,
+                    'document_processor': self.document_processor.__class__.__name__,
+                    'database_path': self.db_path,
+                    'ingestion_details': ingestion_result,
+                    'products_extracted': len(grok_result.get('products', [])),
+                    'technical_specs_found': bool(validation_result.technical_specs),
+                    'validation_errors': validation_result.validation_errors
+                }
+            }
+            
+            # Create metadata
+            metadata = OutputMetadata(
+                document_id=doc_id,
+                document_name=file_path.name,
+                source_file_path=str(file_path),
+                processing_timestamp=datetime.now().isoformat(),
+                processing_duration_ms=processing_time_ms,
+                confidence_score=validation_result.confidence_score,
+                success=True,
+                pipeline_method='production_pipeline',
+                file_hash=self._calculate_file_hash(file_path),
+                file_size=file_path.stat().st_size
+            )
+            
+            # Save outputs
+            output_dir = self.json_output_manager.save_document_outputs(
+                document_id=doc_id,
+                document_name=file_path.name,
+                source_file_path=str(file_path),
+                outputs=outputs,
+                metadata=metadata
+            )
+            
+            logger.info(f"📁 JSON outputs saved to: {output_dir}")
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to save JSON outputs: {e}")
+            raise
+
     def _log_processing_step(self, conn, letter_id: int, step_name: str, success: bool, details: str, duration_ms: float = 0.0) -> None:
         """Log processing step to debug table"""
         try:
