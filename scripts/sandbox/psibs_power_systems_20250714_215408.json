@@ -1,0 +1,59 @@
+{
+  "total_products": 1,
+  "psibs_products": [
+    {
+      "product_identifier": "PIX 2B",
+      "product_family": "PSIBSProductFamily.PIX",
+      "voltage_class": "PSIBSVoltageClass.MID_MV",
+      "application_type": "PSIBSApplicationType.DISTRIBUTION",
+      "technology_type": "PSIBSTechnology.AIR_INSULATED",
+      "current_rating": "Not specified",
+      "power_rating": null,
+      "frequency": "50/60Hz",
+      "configuration": "Double Bus Bar Configuration",
+      "modernization_path": "Migrate to EcoStruxure Power (Medium complexity, 12-18 months)",
+      "confidence_score": 0.9500000000000001,
+      "classification_details": {
+        "family_match_confidence": 0.95,
+        "voltage_extraction_method": "technical_specifications",
+        "current_rating_source": "specifications",
+        "modernization_reasoning": "Based on PIX family analysis",
+        "psibs_indicators": [
+          "PSIBS Product Line",
+          "Power Systems Division",
+          "Medium Voltage Equipment",
+          "Bus Bar System"
+        ]
+      }
+    }
+  ],
+  "voltage_distribution": {
+    "12-17.5kV": 1
+  },
+  "family_distribution": {
+    "PIX": 1
+  },
+  "application_distribution": {
+    "Distribution": 1
+  },
+  "technology_distribution": {
+    "Air Insulated": 1
+  },
+  "modernization_recommendations": [
+    {
+      "product": "PIX 2B",
+      "current_status": "Obsolete/Withdrawn",
+      "recommended_replacement": "EcoStruxure Power",
+      "migration_complexity": "Medium",
+      "timeline": "12-18 months",
+      "key_benefits": [
+        "Digital connectivity",
+        "Predictive maintenance",
+        "Enhanced safety"
+      ]
+    }
+  ],
+  "processing_time_ms": 0.8940696716308594,
+  "avg_confidence": 0.9500000000000001,
+  "high_confidence_rate": 1.0
+}

@@ -1,0 +1,25 @@
+PSIBS POWER SYSTEMS INTELLIGENCE ANALYSIS
+==================================================
+
+Analysis Date: 2025-07-14 21:54:08
+Processing Time: 0.89ms
+Total Products Analyzed: 1
+PSIBS Products Found: 1
+Average Confidence: 95.0%
+High Confidence Rate: 100.0%
+
+VOLTAGE CLASS DISTRIBUTION:
+------------------------------
+12-17.5kV: 1 products (100.0%)
+
+PRODUCT FAMILY DISTRIBUTION:
+------------------------------
+PIX: 1 products (100.0%)
+
+MODERNIZATION RECOMMENDATIONS:
+------------------------------
+1. PIX 2B
+   → Replace with: EcoStruxure Power
+   → Complexity: Medium
+   → Timeline: 12-18 months
+
