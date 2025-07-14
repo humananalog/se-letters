@@ -1,0 +1,52 @@
+SE LETTERS - PRODUCT MAPPING SUMMARY
+==================================================
+
+INPUT PRODUCT:
+  Product ID: Galaxy 6000
+  Range: Galaxy
+  Subrange: 6000
+  Product Line: SPIBS
+  Description: Uninterruptible Power Supply (UPS) system for secure power applications
+
+MAPPING RESULTS:
+  Success: True
+  Candidates Found: 74
+  Processing Time: 227.05ms
+  Strategy: enhanced_semantic_matching_v2
+
+BEST MATCH:
+  Product ID: GLST250KH
+  Range: MGE Galaxy
+  Description: MGE Galaxy 6000 250kVA 400V
+  Confidence: 1.000 (exact)
+  Status: 01-Never commercialised
+  Brand: APC
+
+  Match Reasons:
+    • Semantic range match: Galaxy ↔ MGE Galaxy
+    • Model number in description: 6000
+    • Product line match: SPIBS
+    • Currently commercialized
+    • High semantic confidence
+
+TOP 10 CANDIDATES:
+   1. GLST250KH | MGE Galaxy | Confidence: 1.000
+      MGE Galaxy 6000 250kVA 400V
+   2. GLST300KH | MGE Galaxy | Confidence: 1.000
+      MGE Galaxy 6000 300kVA 400V
+   3. GLST400KH | MGE Galaxy 6000 | Confidence: 1.000
+      MGE Galaxy 6000 400kVA 400V
+   4. GLST500KH | MGE Galaxy 6000 | Confidence: 1.000
+      MGE Galaxy 6000 500kVA 400V
+   5. GLST600KH | MGE Galaxy | Confidence: 1.000
+      MGE Galaxy 6000 600kVA 400V
+   6. GLST800KH | MGE Galaxy | Confidence: 1.000
+      MGE Galaxy 6000 800kVA 400V
+   7. G6K-250P | MGE Galaxy 6000 | Confidence: 1.000
+      Galaxy 6000 250 kVA
+   8. G6K-300IP | MGE Galaxy 6000 | Confidence: 1.000
+      Galaxy 6000 300 kVA
+   9. G6K-300P | MGE Galaxy 6000 | Confidence: 1.000
+      Galaxy 6000 300 kVA
+  10. G6K-400IP | MGE Galaxy 6000 | Confidence: 1.000
+      Galaxy 6000 400 kVA

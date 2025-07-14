@@ -1,0 +1,48 @@
+SE LETTERS - PRODUCT MAPPING SUMMARY
+==================================================
+
+INPUT PRODUCT:
+  Product ID: SEPAM 2040
+  Range: SEPAM
+  Subrange: 2040
+  Product Line: DPIBS
+  Description: Digital protection relay for power system protection and control
+
+MAPPING RESULTS:
+  Success: True
+  Candidates Found: 291
+  Processing Time: 243.94ms
+  Strategy: enhanced_semantic_matching_v2
+
+BEST MATCH:
+  Product ID: REL59820
+  Range: Sepam series 10
+  Description: SEPAM SERIES 10 N 13E PROTECTION AND CON
+  Confidence: 0.735 (medium)
+  Status: 16-Post commercialisation
+  Brand: Schneider Electric
+
+  Match Reasons:
+    • Product line match: DPIBS
+
+TOP 10 CANDIDATES:
+   1. REL59820 | Sepam series 10 | Confidence: 0.735
+      SEPAM SERIES 10 N 13E PROTECTION AND CON
+   2. SEPAM-2036-C04 | Sepam 2000 | Confidence: 0.728
+      SEPAM2036LRVERSJONC04
+   3. BGA_SEPAM_T40 | Sepam series 40 | Confidence: 0.727
+      SEPAM_T40
+   4. REL59804 | Sepam series 10 | Confidence: 0.726
+      SEPAM SERIES 10 B 43A PROTECTION AND CON
+   5. SEPAM_S20 | Sepam series 20 | Confidence: 0.723
+      SEPAM_S20
+   6. GCR_SEPAM240_0 | Sepam series 40 | Confidence: 0.720
+      SEPAM 40
+   7. REL59800 | Sepam series 10 | Confidence: 0.719
+      SEPAM SERIES 10 B 31A PROTECTION AND CON
+   8. BGA_SEPAM_S20 | Sepam series 20 | Confidence: 0.717
+      SEPAM_S20
+   9. SEPAM-G40-MD | Sepam series 40 | Confidence: 0.717
+      SEPAM1000VERSJONG40MDISPLAY
+  10. SEPAM-S40-MD | Sepam series 40 | Confidence: 0.717
+      SEPAM1000VERSJONS40MDISPLAY

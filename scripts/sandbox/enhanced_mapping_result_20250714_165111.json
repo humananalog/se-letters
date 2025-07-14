@@ -1,0 +1,343 @@
+{
+  "letter_product": {
+    "letter_id": 21,
+    "product_identifier": "Galaxy 6000",
+    "range_label": "Galaxy",
+    "subrange_label": "6000",
+    "product_line": "SPIBS",
+    "product_description": "Uninterruptible Power Supply (UPS) system for secure power applications",
+    "obsolescence_status": "Manufacturing stopped in 2015",
+    "end_of_service_date": "2027"
+  },
+  "candidates": [
+    {
+      "product_identifier": "GLST250KH",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 250kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "APC",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "Currently commercialized",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.33,
+        "description_similarity": 0.22,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "GLST300KH",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 300kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "APC",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "Currently commercialized",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.4,
+        "description_similarity": 0.22,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "GLST400KH",
+      "range_label": "MGE Galaxy 6000",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 400kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "MGE",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy 6000",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "Currently commercialized",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.4,
+        "description_similarity": 0.22,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "GLST500KH",
+      "range_label": "MGE Galaxy 6000",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 500kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "MGE",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy 6000",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "Currently commercialized",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.4,
+        "description_similarity": 0.22,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "GLST600KH",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 600kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "APC",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "Currently commercialized",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.5,
+        "description_similarity": 0.22,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "GLST800KH",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 800kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "APC",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "Currently commercialized",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.4,
+        "description_similarity": 0.22,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "G6K-250P",
+      "range_label": "MGE Galaxy 6000",
+      "subrange_label": null,
+      "product_description": "Galaxy 6000 250 kVA",
+      "pl_services": "SPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "MGE",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy 6000",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "End of commercialization",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.32,
+        "description_similarity": 0.26,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "2015-12-31 00:00:00",
+      "end_of_service_date": "2023-12-18 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "G6K-300IP",
+      "range_label": "MGE Galaxy 6000",
+      "subrange_label": null,
+      "product_description": "Galaxy 6000 300 kVA",
+      "pl_services": "SPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "MGE",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy 6000",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "End of commercialization",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.4,
+        "description_similarity": 0.26,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "2022-03-03 00:00:00",
+      "end_of_service_date": "2024-02-21 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "G6K-300P",
+      "range_label": "MGE Galaxy 6000",
+      "subrange_label": null,
+      "product_description": "Galaxy 6000 300 kVA",
+      "pl_services": "SPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "MGE",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy 6000",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "End of commercialization",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.42,
+        "description_similarity": 0.26,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "2015-12-31 00:00:00",
+      "end_of_service_date": "2023-12-18 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "G6K-400IP",
+      "range_label": "MGE Galaxy 6000",
+      "subrange_label": null,
+      "product_description": "Galaxy 6000 400 kVA",
+      "pl_services": "SPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "MGE",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 1.0,
+      "confidence_level": "exact",
+      "match_reasons": [
+        "Semantic range match: Galaxy ↔ MGE Galaxy 6000",
+        "Model number in description: 6000",
+        "Product line match: SPIBS",
+        "End of commercialization",
+        "High semantic confidence"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.4,
+        "description_similarity": 0.26,
+        "semantic_match_score": 0.9666666666666667
+      },
+      "end_of_commercialisation": "2015-12-31 00:00:00",
+      "end_of_service_date": "2024-02-21 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    }
+  ],
+  "total_candidates": 74,
+  "best_match": {
+    "product_identifier": "GLST250KH",
+    "range_label": "MGE Galaxy",
+    "subrange_label": null,
+    "product_description": "MGE Galaxy 6000 250kVA 400V",
+    "pl_services": "SPIBS",
+    "commercial_status": "01-Never commercialised",
+    "brand_label": "APC",
+    "bu_label": "SECURE POWER",
+    "confidence_score": 1.0,
+    "confidence_level": "exact",
+    "match_reasons": [
+      "Semantic range match: Galaxy ↔ MGE Galaxy",
+      "Model number in description: 6000",
+      "Product line match: SPIBS",
+      "Currently commercialized",
+      "High semantic confidence"
+    ],
+    "match_details": {
+      "range_similarity": 1.0,
+      "identifier_similarity": 0.33,
+      "description_similarity": 0.22,
+      "semantic_match_score": 0.9666666666666667
+    },
+    "end_of_commercialisation": "4000-12-31 00:00:00",
+    "end_of_service_date": "4000-12-31 00:00:00",
+    "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+    "serviceable": "Y"
+  },
+  "mapping_success": true,
+  "mapping_time_ms": 231.065034866333,
+  "search_strategy": "enhanced_semantic_matching_v2",
+  "filters_applied": {
+    "pl_services_filter": "SPIBS",
+    "range_filter": "Galaxy",
+    "subrange_filter": "6000",
+    "semantic_patterns_applied": true
+  }
+}

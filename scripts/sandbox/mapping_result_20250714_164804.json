@@ -1,0 +1,309 @@
+{
+  "letter_product": {
+    "letter_id": 21,
+    "product_identifier": "Galaxy 6000",
+    "range_label": "Galaxy",
+    "subrange_label": "6000",
+    "product_line": "SPIBS",
+    "product_description": "Uninterruptible Power Supply (UPS) system for secure power applications",
+    "obsolescence_status": "Manufacturing stopped in 2015",
+    "end_of_service_date": "2027"
+  },
+  "candidates": [
+    {
+      "product_identifier": "WG6T2000K-SPL3",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE GALAXY 6000 380",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.529,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.32,
+        "description_similarity": 0.16
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "GLST600KH",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 600kVA 400V",
+      "pl_services": "SPIBS",
+      "commercial_status": "01-Never commercialised",
+      "brand_label": "APC",
+      "bu_label": "SECURE POWER",
+      "confidence_score": 0.5255,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.3,
+        "description_similarity": 0.17
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Data Center and Facility 3 Phase",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "WG6T400K-SPL2",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE GALAXY 6000 Unit",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.525,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.25
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T400K-SPL3",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE GALAXY 6000 Unit",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.525,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.25
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T500K-SPL2",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 Unit",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.525,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.25
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T500K-SPL3",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 Unit",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.525,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.25
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T600K-SPL2",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 Unit",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.525,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.25
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T600K-SPL3",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 Unit",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.525,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.25
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T400K-SPL1",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE GALAXY 6000 400K",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.5115,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.16
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    },
+    {
+      "product_identifier": "WG6T500K-SPL1",
+      "range_label": "MGE Galaxy",
+      "subrange_label": null,
+      "product_description": "MGE Galaxy 6000 500K",
+      "pl_services": "SPIBS",
+      "commercial_status": "08-Commercialised",
+      "brand_label": "APC",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.5115,
+      "confidence_level": "low",
+      "match_reasons": [
+        "High range similarity: Galaxy ~ MGE Galaxy",
+        "Product line match: SPIBS",
+        "Currently commercialized"
+      ],
+      "match_details": {
+        "range_similarity": 0.75,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.16
+      },
+      "end_of_commercialisation": "4000-12-31 00:00:00",
+      "end_of_service_date": "4000-12-31 00:00:00",
+      "devicetype_label": "UPS - Spare Part Kits",
+      "serviceable": "N"
+    }
+  ],
+  "total_candidates": 74,
+  "best_match": {
+    "product_identifier": "WG6T2000K-SPL3",
+    "range_label": "MGE Galaxy",
+    "subrange_label": null,
+    "product_description": "MGE GALAXY 6000 380",
+    "pl_services": "SPIBS",
+    "commercial_status": "08-Commercialised",
+    "brand_label": "APC",
+    "bu_label": "GLOBAL SERVICES",
+    "confidence_score": 0.529,
+    "confidence_level": "low",
+    "match_reasons": [
+      "High range similarity: Galaxy ~ MGE Galaxy",
+      "Product line match: SPIBS",
+      "Currently commercialized"
+    ],
+    "match_details": {
+      "range_similarity": 0.75,
+      "identifier_similarity": 0.32,
+      "description_similarity": 0.16
+    },
+    "end_of_commercialisation": "4000-12-31 00:00:00",
+    "end_of_service_date": "4000-12-31 00:00:00",
+    "devicetype_label": "UPS - Spare Part Kits",
+    "serviceable": "N"
+  },
+  "mapping_success": false,
+  "mapping_time_ms": 192.38877296447754,
+  "search_strategy": "3_level_macro_filter_hierarchical_search",
+  "filters_applied": {
+    "pl_services_filter": "SPIBS",
+    "range_filter": "Galaxy",
+    "subrange_filter": "6000"
+  }
+}

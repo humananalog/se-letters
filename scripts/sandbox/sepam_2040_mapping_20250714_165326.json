@@ -1,0 +1,430 @@
+{
+  "letter_product": {
+    "letter_id": 999,
+    "product_identifier": "SEPAM 2040",
+    "range_label": "SEPAM",
+    "subrange_label": "2040",
+    "product_line": "DPIBS",
+    "product_description": "Digital protection relay for power system protection and control",
+    "obsolescence_status": "End of service announced",
+    "end_of_service_date": "2025"
+  },
+  "candidates": [
+    {
+      "product_identifier": "REL59820",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10N",
+      "product_description": "SEPAM SERIES 10 N 13E PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.735,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.38,
+        "description_similarity": 0.65,
+        "semantic_match_score": 0.8833333333333333
+      },
+      "end_of_commercialisation": "2021-12-31 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "SEPAM-2036-C04",
+      "range_label": "Sepam 2000",
+      "subrange_label": "C04",
+      "product_description": "SEPAM2036LRVERSJONC04",
+      "pl_services": "DPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "Merlin Gerin",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.7284999999999999,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS",
+        "End of commercialization"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.75,
+        "description_similarity": 0.33,
+        "semantic_match_score": 0.7766666666666667
+      },
+      "end_of_commercialisation": "2021-06-21 00:00:00",
+      "end_of_service_date": "2021-06-21 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "BGA_SEPAM_T40",
+      "range_label": "Sepam series 40",
+      "subrange_label": "T40",
+      "product_description": "SEPAM_T40",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.727,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.74,
+        "description_similarity": 0.33,
+        "semantic_match_score": 0.7766666666666667
+      },
+      "end_of_commercialisation": "2024-01-12 00:00:00",
+      "end_of_service_date": "2030-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "REL59804",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10B",
+      "product_description": "SEPAM SERIES 10 B 43A PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.726,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.38,
+        "description_similarity": 0.62,
+        "semantic_match_score": 0.8733333333333334
+      },
+      "end_of_commercialisation": "2022-01-01 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "SEPAM_S20",
+      "range_label": "Sepam series 20",
+      "subrange_label": "S20",
+      "product_description": "SEPAM_S20",
+      "pl_services": "DPIBS",
+      "commercial_status": "18-End of commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.723,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS",
+        "End of commercialization"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.78,
+        "description_similarity": 0.33,
+        "semantic_match_score": 0.7766666666666667
+      },
+      "end_of_commercialisation": "2023-01-12 00:00:00",
+      "end_of_service_date": "2023-01-12 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "GCR_SEPAM240_0",
+      "range_label": "Sepam series 40",
+      "subrange_label": null,
+      "product_description": "SEPAM 40",
+      "pl_services": "DPIBS",
+      "commercial_status": "18-End of commercialisation",
+      "brand_label": "Merlin Gerin",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.72,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS",
+        "End of commercialization"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.8,
+        "description_similarity": 0.5,
+        "semantic_match_score": 0.8333333333333334
+      },
+      "end_of_commercialisation": "2024-02-03 00:00:00",
+      "end_of_service_date": "2024-02-03 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "REL59800",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10B",
+      "product_description": "SEPAM SERIES 10 B 31A PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.7185,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.33,
+        "description_similarity": 0.62,
+        "semantic_match_score": 0.8733333333333334
+      },
+      "end_of_commercialisation": "2022-01-01 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "BGA_SEPAM_S20",
+      "range_label": "Sepam series 20",
+      "subrange_label": "S20",
+      "product_description": "SEPAM_S20",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.717,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.74,
+        "description_similarity": 0.33,
+        "semantic_match_score": 0.7766666666666667
+      },
+      "end_of_commercialisation": "2023-12-31 00:00:00",
+      "end_of_service_date": "2030-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "SEPAM-G40-MD",
+      "range_label": "Sepam series 40",
+      "subrange_label": "G40",
+      "product_description": "SEPAM1000VERSJONG40MDISPLAY",
+      "pl_services": "DPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "Merlin Gerin",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.7165,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS",
+        "End of commercialization"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.73,
+        "description_similarity": 0.3,
+        "semantic_match_score": 0.7666666666666666
+      },
+      "end_of_commercialisation": "2021-06-21 00:00:00",
+      "end_of_service_date": "2021-06-21 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "SEPAM-S40-MD",
+      "range_label": "Sepam series 40",
+      "subrange_label": "S40",
+      "product_description": "SEPAM1000VERSJONS40MDISPLAY",
+      "pl_services": "DPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "Merlin Gerin",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.7165,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS",
+        "End of commercialization"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.73,
+        "description_similarity": 0.3,
+        "semantic_match_score": 0.7666666666666666
+      },
+      "end_of_commercialisation": "2021-06-21 00:00:00",
+      "end_of_service_date": "2021-06-21 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "SEPAM-T40-MD",
+      "range_label": "Sepam series 40",
+      "subrange_label": "T40",
+      "product_description": "SEPAM1000VERSJONT40MDISPLAY",
+      "pl_services": "DPIBS",
+      "commercial_status": "19-end of commercialization block",
+      "brand_label": "Merlin Gerin",
+      "bu_label": "DIGITAL ENERGY",
+      "confidence_score": 0.7165,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS",
+        "End of commercialization"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.73,
+        "description_similarity": 0.3,
+        "semantic_match_score": 0.7666666666666666
+      },
+      "end_of_commercialisation": "2021-06-21 00:00:00",
+      "end_of_service_date": "2021-06-21 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "REL59801",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10B",
+      "product_description": "SEPAM SERIES 10 B 31E PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.7155,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.65,
+        "semantic_match_score": 0.8833333333333333
+      },
+      "end_of_commercialisation": "2022-01-01 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "REL59805",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10B",
+      "product_description": "SEPAM SERIES 10 B 41E PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.7155,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.65,
+        "semantic_match_score": 0.8833333333333333
+      },
+      "end_of_commercialisation": "2021-12-31 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "REL59806",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10B",
+      "product_description": "SEPAM SERIES 10 B 42E PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.7155,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.65,
+        "semantic_match_score": 0.8833333333333333
+      },
+      "end_of_commercialisation": "2021-12-31 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    },
+    {
+      "product_identifier": "REL59807",
+      "range_label": "Sepam series 10",
+      "subrange_label": "10B",
+      "product_description": "SEPAM SERIES 10 B 43E PROTECTION AND CON",
+      "pl_services": "DPIBS",
+      "commercial_status": "16-Post commercialisation",
+      "brand_label": "Schneider Electric",
+      "bu_label": "GLOBAL SERVICES",
+      "confidence_score": 0.7155,
+      "confidence_level": "medium",
+      "match_reasons": [
+        "Product line match: DPIBS"
+      ],
+      "match_details": {
+        "range_similarity": 1.0,
+        "identifier_similarity": 0.25,
+        "description_similarity": 0.65,
+        "semantic_match_score": 0.8833333333333333
+      },
+      "end_of_commercialisation": "2022-01-01 00:00:00",
+      "end_of_service_date": "2025-12-31 00:00:00",
+      "devicetype_label": "Relay, Control & Measurement - Protection relay",
+      "serviceable": "Y"
+    }
+  ],
+  "total_candidates": 291,
+  "best_match": {
+    "product_identifier": "REL59820",
+    "range_label": "Sepam series 10",
+    "subrange_label": "10N",
+    "product_description": "SEPAM SERIES 10 N 13E PROTECTION AND CON",
+    "pl_services": "DPIBS",
+    "commercial_status": "16-Post commercialisation",
+    "brand_label": "Schneider Electric",
+    "bu_label": "GLOBAL SERVICES",
+    "confidence_score": 0.735,
+    "confidence_level": "medium",
+    "match_reasons": [
+      "Product line match: DPIBS"
+    ],
+    "match_details": {
+      "range_similarity": 1.0,
+      "identifier_similarity": 0.38,
+      "description_similarity": 0.65,
+      "semantic_match_score": 0.8833333333333333
+    },
+    "end_of_commercialisation": "2021-12-31 00:00:00",
+    "end_of_service_date": "2025-12-31 00:00:00",
+    "devicetype_label": "Relay, Control & Measurement - Protection relay",
+    "serviceable": "Y"
+  },
+  "mapping_success": true,
+  "mapping_time_ms": 243.93987655639648,
+  "search_strategy": "enhanced_semantic_matching_v2",
+  "filters_applied": {
+    "pl_services_filter": "DPIBS",
+    "range_filter": "SEPAM",
+    "subrange_filter": "2040",
+    "semantic_patterns_applied": true
+  }
+}

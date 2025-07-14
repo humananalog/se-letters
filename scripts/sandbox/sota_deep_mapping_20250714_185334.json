@@ -1,0 +1,65 @@
+{
+  "sota_deep_mapping_analysis": {
+    "database_info": {
+      "database_type": "SOTA DuckDB",
+      "service_version": "3.1.0",
+      "total_products": 0
+    },
+    "input_product": {
+      "identifier": "Masterpact NT",
+      "range": "Masterpact",
+      "subrange": "NT",
+      "product_line": "PPIBS"
+    },
+    "processing_metrics": {
+      "processing_time_ms": 1.953125,
+      "search_space_reduction": {
+        "original": 0,
+        "after_pl_filter": 0,
+        "final_candidates": 0
+      },
+      "confidence_level": "UNCERTAIN"
+    },
+    "correlation_analysis": {
+      "product_family_detected": {
+        "family": "masterpact_family",
+        "confidence": 0.9,
+        "matched_pattern": "masterpact"
+      },
+      "brand_correlations": [
+        {
+          "brand": "masterpact",
+          "variant_matched": "masterpact",
+          "confidence": 0.8
+        }
+      ],
+      "device_type_correlations": [
+        {
+          "device_type": "switchgear",
+          "pattern_matched": "switchgear",
+          "confidence": 0.7
+        },
+        {
+          "device_type": "switchgear",
+          "pattern_matched": "masterpact",
+          "confidence": 0.7
+        },
+        {
+          "device_type": "circuit_breaker",
+          "pattern_matched": "circuit breaker",
+          "confidence": 0.7
+        },
+        {
+          "device_type": "circuit_breaker",
+          "pattern_matched": "breaker",
+          "confidence": 0.7
+        }
+      ],
+      "identifier_patterns": [],
+      "semantic_clusters": [],
+      "cross_field_matches": []
+    },
+    "best_match": null,
+    "all_candidates": []
+  }
+}

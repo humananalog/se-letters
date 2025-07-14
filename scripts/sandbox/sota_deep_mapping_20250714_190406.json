@@ -1,0 +1,132 @@
+{
+  "sota_deep_mapping_analysis": {
+    "database_info": {
+      "database_type": "SOTA DuckDB",
+      "service_version": "3.1.0",
+      "total_products": 0
+    },
+    "input_product": {
+      "identifier": "Galaxy 6000",
+      "range": "Galaxy",
+      "subrange": "6000",
+      "product_line": "SPIBS"
+    },
+    "processing_metrics": {
+      "processing_time_ms": 30.23505210876465,
+      "search_space_reduction": {
+        "original": 0,
+        "after_pl_filter": 10,
+        "final_candidates": 5
+      },
+      "confidence_level": "HIGH"
+    },
+    "correlation_analysis": {
+      "product_family_detected": {
+        "family": "galaxy_family",
+        "confidence": 0.9,
+        "matched_pattern": "galaxy"
+      },
+      "brand_correlations": [
+        {
+          "brand": "mge",
+          "variant_matched": "mge",
+          "confidence": 0.8
+        }
+      ],
+      "device_type_correlations": [
+        {
+          "device_type": "ups",
+          "pattern_matched": "ups",
+          "confidence": 0.7
+        },
+        {
+          "device_type": "ups",
+          "pattern_matched": "uninterruptible power supply",
+          "confidence": 0.7
+        },
+        {
+          "device_type": "ups",
+          "pattern_matched": "galaxy",
+          "confidence": 0.7
+        }
+      ],
+      "identifier_patterns": [],
+      "semantic_clusters": [],
+      "cross_field_matches": []
+    },
+    "best_match": {
+      "product_identifier": "0M-G6TF200HC",
+      "confidence_score": 0.7772,
+      "match_breakdown": {
+        "product_identifier": {
+          "raw_score": 0.35,
+          "weight": 0.25,
+          "weighted_score": 0.0875
+        },
+        "range_correlation": {
+          "raw_score": 0.39899999999999997,
+          "weight": 0.3,
+          "weighted_score": 0.11969999999999999
+        },
+        "brand_correlation": {
+          "raw_score": 0.8,
+          "weight": 0.15,
+          "weighted_score": 0.12
+        },
+        "pl_services": {
+          "raw_score": 1.0,
+          "weight": 0.15,
+          "weighted_score": 0.15
+        },
+        "sota_base": {
+          "raw_score": 1.0,
+          "weight": 0.15,
+          "weighted_score": 0.15
+        },
+        "family_bonus": 0.15
+      }
+    },
+    "all_candidates": [
+      {
+        "product_identifier": "0M-G6TF200HC",
+        "product_type": "",
+        "product_description": "",
+        "brand_code": "",
+        "brand_label": "MGE",
+        "range_code": "",
+        "range_label": "MGE Galaxy 6000",
+        "subrange_code": "",
+        "subrange_label": "",
+        "devicetype_label": "",
+        "pl_services": "SPIBS",
+        "confidence_score": 0.7772,
+        "match_breakdown": {
+          "product_identifier": {
+            "raw_score": 0.35,
+            "weight": 0.25,
+            "weighted_score": 0.0875
+          },
+          "range_correlation": {
+            "raw_score": 0.39899999999999997,
+            "weight": 0.3,
+            "weighted_score": 0.11969999999999999
+          },
+          "brand_correlation": {
+            "raw_score": 0.8,
+            "weight": 0.15,
+            "weighted_score": 0.12
+          },
+          "pl_services": {
+            "raw_score": 1.0,
+            "weight": 0.15,
+            "weighted_score": 0.15
+          },
+          "sota_base": {
+            "raw_score": 1.0,
+            "weight": 0.15,
+            "weighted_score": 0.15
+          },
+          "family_bonus": 0.15
+        },
+        "correlation_details": {
+          "original_sota_confidence": 
