@@ -1,0 +1,178 @@
+{
+  "schema_categories": {
+    "document_information": {
+      "fields": [
+        "document_type",
+        "language",
+        "document_number",
+        "total_products",
+        "has_tables",
+        "has_technical_specs",
+        "extraction_complexity"
+      ],
+      "description": "Core document metadata and structural characteristics"
+    },
+    "product_information": {
+      "fields": [
+        "product_identifier",
+        "range_label",
+        "subrange_label",
+        "product_line",
+        "product_description",
+        "technical_specifications",
+        "commercial_information",
+        "replacement_information"
+      ],
+      "description": "Product identification, specifications, and lifecycle details"
+    },
+    "technical_specifications": {
+      "fields": [
+        "voltage_level",
+        "current_rating",
+        "power_rating",
+        "frequency"
+      ],
+      "description": "Essential technical product specifications"
+    },
+    "commercial_information": {
+      "fields": [
+        "part_number",
+        "obsolescence_status",
+        "last_order_date",
+        "end_of_service_date"
+      ],
+      "description": "Commercial and obsolescence status details"
+    },
+    "replacement_information": {
+      "fields": [
+        "replacement_suggestions",
+        "migration_path"
+      ],
+      "description": "Modernization and EcoFit solutions"
+    },
+    "business_information": {
+      "fields": [
+        "affected_ranges",
+        "affected_countries",
+        "customer_segments",
+        "business_impact"
+      ],
+      "description": "Business context and impact of obsolescence"
+    },
+    "lifecycle_information": {
+      "fields": [
+        "announcement_date",
+        "effective_date",
+        "key_dates"
+      ],
+      "description": "Key lifecycle dates and milestones"
+    },
+    "key_dates": {
+      "fields": [
+        "last_order_date",
+        "end_of_service_date",
+        "spare_parts_availability_duration"
+      ],
+      "description": "Critical lifecycle dates for obsolescence management"
+    },
+    "contact_information": {
+      "fields": [
+        "contact_details",
+        "migration_guidance"
+      ],
+      "description": "Contact and support information for migration"
+    }
+  },
+  "field_types": {
+    "document_information": ["dict"],
+    "document_information.document_type": ["str"],
+    "document_information.language": ["str", "NoneType"],
+    "document_information.document_number": ["str", "NoneType"],
+    "document_information.total_products": ["int", "NoneType"],
+    "document_information.has_tables": ["bool", "NoneType"],
+    "document_information.has_technical_specs": ["bool", "NoneType"],
+    "document_information.extraction_complexity": ["str", "NoneType"],
+    "product_information": ["list"],
+    "product_information.product_identifier": ["str"],
+    "product_information.range_label": ["str"],
+    "product_information.subrange_label": ["str", "NoneType"],
+    "product_information.product_line": ["str"],
+    "product_information.product_description": ["str"],
+    "product_information.technical_specifications": ["dict"],
+    "product_information.technical_specifications.voltage_level": ["str", "NoneType"],
+    "product_information.technical_specifications.current_rating": ["str", "NoneType"],
+    "product_information.technical_specifications.power_rating": ["str", "NoneType"],
+    "product_information.technical_specifications.frequency": ["str", "NoneType"],
+    "product_information.commercial_information": ["dict"],
+    "product_information.commercial_information.part_number": ["str", "NoneType"],
+    "product_information.commercial_information.obsolescence_status": ["str", "NoneType"],
+    "product_information.commercial_information.last_order_date": ["str", "NoneType"],
+    "product_information.commercial_information.end_of_service_date": ["str", "NoneType"],
+    "product_information.replacement_information": ["dict"],
+    "product_information.replacement_information.replacement_suggestions": ["list"],
+    "product_information.replacement_information.migration_path": ["str", "NoneType"],
+    "business_information": ["dict"],
+    "business_information.affected_ranges": ["list"],
+    "business_information.affected_countries": ["list"],
+    "business_information.customer_segments": ["list"],
+    "business_information.business_impact": ["str", "NoneType"],
+    "lifecycle_information": ["dict"],
+    "lifecycle_information.announcement_date": ["str", "NoneType"],
+    "lifecycle_information.effective_date": ["str", "NoneType"],
+    "lifecycle_information.key_dates": ["dict"],
+    "lifecycle_information.key_dates.last_order_date": ["str", "NoneType"],
+    "lifecycle_information.key_dates.end_of_service_date": ["str", "NoneType"],
+    "lifecycle_information.key_dates.spare_parts_availability_duration": ["str", "NoneType"],
+    "contact_information": ["dict"],
+    "contact_information.contact_details": ["str", "NoneType"],
+    "contact_information.migration_guidance": ["str", "NoneType"],
+    "extraction_confidence": ["float"],
+    "processing_timestamp": ["str"]
+  },
+  "field_examples": {
+    "document_information.document_type": ["obsolescence_letter"],
+    "document_information.language": ["English", "French"],
+    "document_information.document_number": ["Lettre_annonce_arret_commercialisation ALLIANCE EP et RELAIS CCN_V3", "Customer communication FPX withdrawal - final"],
+    "document_information.total_products": [2, 3, 5],
+    "document_information.has_tables": [false, true],
+    "document_information.has_technical_specs": [true],
+    "document_information.extraction_complexity": ["Medium"],
+    "product_information.product_identifier": ["Alliance Eclairage Public HTA", "Relais CCN", "FPX", "MiCOM P114s"],
+    "product_information.range_label": ["Alliance Eclairage Public", "Relais de Protection", "FPX", "MiCOM P114s"],
+    "product_information.subrange_label": ["HTA", "CCN", "36 kV"],
+    "product_information.product_line": ["PSIBS", "DPIBS"],
+    "product_information.product_description": ["Cellule départ contacteur fusible (DCFIH), Cellule départ contacteur (DCIH)", "Relais de protection dédiés à la gamme Alliance Eclairage Public", "SF6 gas circuit breaker up to 24 kV", "Numerical relay for overcurrent and earth fault protection"],
+    "product_information.technical_specifications.voltage_level": ["Medium Voltage (HTA)", "up to 24 kV", "up to 12 kV"],
+    "product_information.technical_specifications.current_rating": ["3150 A", "2500 A", "400A (AC4)"],
+    "product_information.technical_specifications.power_rating": ["40 kA"],
+    "product_information.technical_specifications.frequency": ["50Hz"],
+    "product_information.commercial_information.part_number": ["GEMC-BU-1110", "GEMC-BU-1120", "REL10190"],
+    "product_information.commercial_information.obsolescence_status": ["End of Commercialization", "Withdrawal announced"],
+    "product_information.commercial_information.last_order_date": ["2014-06-30", "2023-03-31"],
+    "product_information.commercial_information.end_of_service_date": ["2024", "2015"],
+    "product_information.replacement_information.replacement_suggestions": ["VIP4xxx Relays"],
+    "product_information.replacement_information.migration_path": ["Custom ECOFIT solutions for protection functions", "Substitution by LF range for 40kA up to 12kV"],
+    "business_information.affected_ranges": [],
+    "business_information.affected_countries": [],
+    "business_information.customer_segments": [],
+    "business_information.business_impact": ["Insufficient volume to maintain specialized HTA range", "Withdrawal of FPX circuit breakers"],
+    "lifecycle_information.announcement_date": ["2013-12-11", "2022-05-11"],
+    "lifecycle_information.effective_date": ["2014-06-30", "2023-03-31"],
+    "lifecycle_information.key_dates.last_order_date": ["2014-06-30", "2023-03-31"],
+    "lifecycle_information.key_dates.end_of_service_date": ["2030-12-31", "2015-12-31"],
+    "lifecycle_information.key_dates.spare_parts_availability_duration": ["up to 10 years", "10 years"],
+    "contact_information.contact_details": ["Anne-Sophie Poyet (anne-sophie.poyet@schneider-electric.com)", "Jean-Claude Mollard"],
+    "contact_information.migration_guidance": ["Proposing ECOFIT solutions for protection functions", "Promote SF & LF circuit breaker ranges"],
+    "extraction_confidence": [0.925, 0.917, 0.92],
+    "processing_timestamp": ["2023-10-05T12:00:00Z"]
+  },
+  "extraction_confidence": 0.9333333333333333,
+  "_schema_info": {
+    "generation_timestamp": "2025-07-13T12:06:00Z",
+    "source_documents": 40,
+    "total_fields_analyzed": 30,
+    "common_fields_count": 24,
+    "model_used": "grok-3-mini",
+    "schema_version": "2.0.0"
+  }
+}

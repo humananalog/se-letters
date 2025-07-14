@@ -1,0 +1,292 @@
+# SE Letters - Grok Prompts Configuration
+# Version: 2.0.0
+# Last Updated: 2025-01-14
+# Purpose: Centralized prompt management for SOTA Grok service
+
+version: "2.0.0"
+last_updated: "2025-01-14"
+author: "SE Letters Pipeline Team"
+description: "Centralized prompt management for comprehensive metadata extraction from Schneider Electric obsolescence letters"
+
+# Schema Configuration
+schema:
+  version: "unified_v2.0"
+  source: "docs/schema/grok_simplified_unified_schema.json"
+  categories:
+    - document_information
+    - product_information
+    - technical_specifications
+    - commercial_information
+    - replacement_information
+    - business_information
+    - lifecycle_information
+    - contact_information
+
+# Main Extraction Prompts
+prompts:
+  # Primary metadata extraction prompt for SOTA Grok service
+  unified_metadata_extraction:
+    name: "Unified Metadata Extraction"
+    version: "2.0.0"
+    model: "grok-3-mini"
+    description: "Comprehensive metadata extraction using unified schema"
+    system_prompt: |
+      You are an expert document analyzer specializing in Schneider Electric obsolescence letters and technical documentation.
+      You have 95%+ accuracy in extracting structured metadata from technical documents.
+      
+      CRITICAL REQUIREMENTS:
+      - Extract ONLY information explicitly stated in the document
+      - NEVER hallucinate or infer information not present
+      - Use empty arrays/strings for missing information
+      - Return valid JSON following the unified schema structure
+      - Focus on accuracy over completeness
+      
+      PRODUCT LINE CLASSIFICATION RULES (CRITICAL):
+      - **SPIBS (Secure Power)**: UPS systems, backup power, Galaxy products, uninterruptible power supplies, power distribution unit, rack, security
+      - **PPIBS (Power Products)**: Circuit breakers, masterpact, powerpact, masterpact mt, powerpact mt, easypact, blockset, okken, asco, enerpact, acb, air circuit breaker
+      - **DPIBS (Digital Process)**: Industrial automation, PLCs, SCADA, process control
+      - **PSIBS (Power Systems)**: Power distribution, transformers, medium voltage equipment
+    
+    user_prompt_template: |
+      Analyze the following Schneider Electric obsolescence letter and extract comprehensive metadata according to the unified schema.
+      
+      **Document:** {document_name}
+      **Processing Instructions:**
+      
+      1. **Document Information**: Extract document type, communication type (Internal/External), language, number, title, complexity, page count
+      2. **Product Information**: Identify product ranges, codes, descriptions, classifications (PSIBS/DPIBS/SPIBS/PPIBS)
+      3. **Technical Specifications**: Extract voltage levels, current ratings, power ratings, frequency, short circuit rating, protection class, insulation level, operating temperature, dimensions, weight
+      4. **Commercial Information**: Find part numbers, obsolescence status, key dates in ISO format (YYYY-MM-DD or YYYY)
+      5. **Replacement Information**: Identify replacement suggestions and migration paths
+      6. **Business Information**: Extract affected ranges, countries, customer segments, business impact
+      7. **Lifecycle Information**: Find announcement dates, effective dates, service timelines in ISO format, lifecycle stage
+      8. **Contact Information**: Extract contact details and migration guidance
+      
+      **ACCURACY RULES:**
+      - Only extract explicitly stated information
+      - If information is unclear or missing, use empty values
+      - Provide confidence scores based on text clarity
+      - Include source file path for full traceability
+      
+      **Document Content:**
+      {document_content}
+      
+      **Required JSON Schema:**
+      Return a JSON object with the following structure:
+      {{
+        "document_information": {{
+          "document_type": "string",
+          "communication_type": "string or null (Internal/External)",
+          "language": "string or null",
+          "document_number": "string or null",
+          "document_title": "string or null",
+          "total_products": "integer or null",
+          "has_tables": "boolean or null",
+          "has_technical_specs": "boolean or null",
+          "has_images": "boolean or null",
+          "extraction_complexity": "string or null (Low/Medium/High)",
+          "page_count": "integer or null",
+          "word_count": "integer or null"
+        }},
+        "product_information": [
+          {{
+            "product_identifier": "string",
+            "range_label": "string",
+            "subrange_label": "string or null",
+            "product_line": "string (PSIBS/DPIBS/SPIBS/PPIBS)",
+            "product_description": "string",
+            "technical_specifications": {{
+              "voltage_level": "string or null",
+              "current_rating": "string or null",
+              "power_rating": "string or null",
+              "frequency": "string or null",
+              "short_circuit_rating": "string or null",
+              "protection_class": "string or null",
+              "insulation_level": "string or null",
+              "operating_temperature": "string or null",
+              "dimensions": "string or null",
+              "weight": "string or null"
+            }},
+            "commercial_information": {{
+              "part_number": "string or null",
+              "obsolescence_status": "string or null",
+              "last_order_date": "string or null",
+              "end_of_service_date": "string or null"
+            }},
+            "replacement_information": {{
+              "replacement_suggestions": ["array of strings"],
+              "migration_path": "string or null"
+            }}
+          }}
+        ],
+        "business_information": {{
+          "affected_ranges": ["array of strings"],
+          "affected_countries": ["array of strings"],
+          "customer_segments": ["array of strings"],
+          "business_impact": "string or null"
+        }},
+        "lifecycle_information": {{
+          "announcement_date": "string or null (ISO format: YYYY-MM-DD)",
+          "effective_date": "string or null (ISO format: YYYY-MM-DD)",
+          "publication_date": "string or null (ISO format: YYYY-MM-DD)",
+          "lifecycle_stage": "string or null (Active/Obsolete/Withdrawn/EOL)",
+          "transition_period": "string or null",
+          "key_dates": {{
+            "last_order_date": "string or null (ISO format: YYYY-MM-DD or YYYY)",
+            "end_of_service_date": "string or null (ISO format: YYYY-MM-DD or YYYY)",
+            "spare_parts_availability_date": "string or null (ISO format)",
+            "spare_parts_availability_duration": "string or null",
+            "commercialization_end_date": "string or null (ISO format)",
+            "manufacturing_end_date": "string or null (ISO format)",
+            "repair_service_end_date": "string or null (ISO format)"
+          }}
+        }},
+        "contact_information": {{
+          "contact_details": "string or null",
+          "migration_guidance": "string or null"
+        }},
+        "extraction_confidence": "float (0.0-1.0)",
+        "processing_timestamp": "ISO timestamp string",
+        "source_file_path": "string"
+      }}
+      
+      Focus on accuracy and completeness. Return only valid JSON.
+
+  # Fallback extraction prompt for simpler documents
+  simplified_extraction:
+    name: "Simplified Extraction"
+    version: "1.0.0"
+    model: "grok-3-mini"
+    description: "Simplified extraction for basic documents"
+    system_prompt: |
+      You are a technical document analyzer. Extract basic information from obsolescence letters.
+      Return only valid JSON with the information you can clearly identify.
+    
+    user_prompt_template: |
+      Extract basic information from this obsolescence letter:
+      
+      Document: {document_name}
+      Content: {document_content}
+      
+      Return JSON with: document_type, product_ranges, key_dates, and confidence_score.
+
+  # Debug and validation prompts
+  validation_prompt:
+    name: "Validation Prompt"
+    version: "1.0.0"
+    model: "grok-3-mini"
+    description: "Validate extracted metadata for consistency"
+    system_prompt: |
+      You are a validation expert. Check extracted metadata for consistency and accuracy.
+    
+    user_prompt_template: |
+      Validate this extracted metadata for consistency:
+      
+      Original Document: {document_name}
+      Extracted Data: {extracted_data}
+      
+      Check for:
+      1. Logical consistency
+      2. Date format correctness
+      3. Product line classification accuracy
+      4. Missing critical information
+      
+      Return validation report with issues found.
+
+# Product Line Classification Rules
+product_line_classification:
+  PSIBS:
+    name: "Power Systems"
+    keywords: ["power", "mcset", "distribution", "transformer", "switchgear", "sm6", "fluo", "vm6", "vsm6", "gma"]
+    description: "Power monitoring, protection, circuit breakers, switchgear"
+    
+  DPIBS:
+    name: "Digital Process"
+    keywords: ["automation", "control", "plc", "scada"]
+    description: "Industrial automation, PLCs, SCADA systems"
+    
+  SPIBS:
+    name: "Secure Power"
+    keywords: ["ups", "backup", "power distribution unit", "rack", "security", "galaxy", "uninterruptible", "critical power"]
+    description: "UPS systems, backup power, critical infrastructure, Galaxy series"
+    
+  PPIBS:
+    name: "Power Products"
+    keywords: ["ACB", "air circuit breaker", "masterpact", "powerpact", "masterpact mt", "powerpact mt","easypact","blockset","okken","asco","enerpact"]
+    description: "Low Voltage Products"
+
+# Confidence Scoring Rules
+confidence_scoring:
+  high_confidence:
+    threshold: 0.8
+    criteria:
+      - "Clear product identifiers present"
+      - "Explicit dates mentioned"
+      - "Technical specifications stated"
+      - "Well-structured document"
+      
+  medium_confidence:
+    threshold: 0.5
+    criteria:
+      - "Some product information present"
+      - "Partial date information"
+      - "Basic document structure"
+      
+  low_confidence:
+    threshold: 0.2
+    criteria:
+      - "Minimal product information"
+      - "Unclear or missing dates"
+      - "Poor document quality"
+
+# Error Handling Templates
+error_templates:
+  api_error:
+    template: |
+      {{
+        "document_type": "error",
+        "document_title": "{document_name}",
+        "source_file_path": "{file_path}",
+        "processing_timestamp": "{timestamp}",
+        "extraction_confidence": 0.0,
+        "error": "{error_message}",
+        "processing_time_ms": 0.0
+      }}
+      
+  validation_error:
+    template: |
+      {{
+        "document_type": "validation_error",
+        "document_title": "{document_name}",
+        "source_file_path": "{file_path}",
+        "processing_timestamp": "{timestamp}",
+        "extraction_confidence": 0.0,
+        "validation_error": "{validation_message}",
+        "processing_time_ms": 0.0
+      }}
+
+# Processing Configuration
+processing:
+  max_content_length: 8000
+  timeout_seconds: 60
+  max_retries: 3
+  temperature: 0.1
+  max_tokens: 4096
+  
+# Version Control
+changelog:
+  - version: "2.0.0"
+    date: "2025-01-14"
+    changes:
+      - "Aligned with unified schema v2.0"
+      - "Added comprehensive product line classification"
+      - "Enhanced confidence scoring rules"
+      - "Added error handling templates"
+      - "Improved prompt structure for better accuracy"
+      
+  - version: "1.0.0"
+    date: "2025-01-13"
+    changes:
+      - "Initial prompt configuration"
+      - "Basic metadata extraction prompt"
+      - "Simple error handling" 

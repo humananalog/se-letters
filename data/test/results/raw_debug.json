@@ -1,20 +1,1418 @@
 {
-    "success": false,
-    "error": "Failed to extract JSON from pipeline output",
-    "file_name": "PIX2B_Phase_out_Letter.pdf",
-    "file_path": "/Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf",
-    "processing_time_ms": 0,
-    "extracted_ranges": [],
-    "valid_ranges": [],
-    "invalid_ranges": [],
-    "obsolete_products": [],
-    "replacement_products": [],
-    "obsolete_count": 0,
-    "replacement_count": 0,
-    "extraction_method": "webapp_pipeline_fallback",
-    "extraction_confidence": 0,
-    "search_strategy": "N/A",
-    "search_space_reduction": 0,
-    "stdout": "{\n  \"success\": true,\n  \"file_name\": \"PIX2B_Phase_out_Letter.pdf\",\n  \"file_path\": \"/Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf\",\n  \"file_size\": 170524,\n  \"context\": {\n    \"voltage_level\": null,\n    \"product_category\": \"PIX Circuit Breakers\",\n    \"pl_services_hint\": null,\n    \"confidence_score\": 0.8,\n    \"thumbnail_data\": null\n  },\n  \"content\": \"Mock text from PIX2B_Phase_out_Letter.pdf\",\n  \"extracted_text\": \"Mock text from PIX2B_Phase_out_Letter.pdf\",\n  \"extracted_ranges\": [\n    \"Custom\",\n    \"Masterpact NT\",\n    \"ID\",\n    \"Masterpact M\",\n    \"CT\"\n  ],\n  \"extracted_subranges\": [\n    \"NSX100\",\n    \"ATV900\"\n  ],\n  \"extracted_device_types\": [\n    \"LV equipment - Low voltage circuit breaker\"\n  ],\n  \"extracted_brands\": [\n    \"Schneider Electric\"\n  ],\n  \"extracted_pl_services\": [\n    \"PPIBS\"\n  ],\n  \"extracted_technical_specs\": [\n    \"voltage: 690V\",\n    \"current: 630A\"\n  ],\n  \"valid_ranges\": [\n    \"Custom\",\n    \"Masterpact NT\",\n    \"ID\",\n    \"Masterpact M\",\n    \"CT\"\n  ],\n  \"invalid_ranges\": [],\n  \"obsolete_products\": [\n    {\n      \"product_id\": \"APF8686D-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G Flex\",\n      \"commercial_status\": \"18-End of commercialisation\",\n      \"commercialization_end\": \"2024-12-05 00:00:00\",\n      \"service_end\": \"2024-12-05 00:00:00\"\n    },\n    {\n      \"product_id\": \"APF8686-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"18-End of commercialisation\",\n      \"commercialization_end\": \"2024-12-05 00:00:00\",\n      \"service_end\": \"2024-12-05 00:00:00\"\n    },\n    {\n      \"product_id\": \"APF8941BLU-01\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G Flex, Sw\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-09-20 00:00:00\",\n      \"service_end\": \"2023-09-20 00:00:00\"\n    },\n    {\n      \"product_id\": \"APF8941YEL-01\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G Flex, Sw\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-09-20 00:00:00\",\n      \"service_end\": \"2023-09-20 00:00:00\"\n    },\n    {\n      \"product_id\": \"APF8968-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP4424X864\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 230V, 32A,\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP4430X914\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM Rack ATS\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-07-04 00:00:00\",\n      \"service_end\": \"2023-07-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP4452X631\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM Rack ATS\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-10-20 00:00:00\",\n      \"service_end\": \"2022-10-20 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP6003AX665\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM BASIC RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-09-20 00:00:00\",\n      \"service_end\": \"2023-12-26 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP642D18X\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU, ZEROU, Max. 8.4KW(DC\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-19 00:00:00\",\n      \"service_end\": \"2023-12-26 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7304\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, 30A\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-03-17 00:00:00\",\n      \"service_end\": \"2022-03-17 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7553WX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-10-15 00:00:00\",\n      \"service_end\": \"2022-11-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7553X400\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-09-14 00:00:00\",\n      \"service_end\": \"2022-12-31 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7556NAX660\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU,Basic, Zero\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2020-02-24 00:00:00\",\n      \"service_end\": \"2022-02-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7556NAX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU,Basic, Zero\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2020-06-23 00:00:00\",\n      \"service_end\": \"2022-06-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7557BLUX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7557NAX630\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7557REDX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7557X400\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-07-04 00:00:00\",\n      \"service_end\": \"2023-07-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7725\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 230V, 32A\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-06-13 00:00:00\",\n      \"service_end\": \"2022-06-13 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7725X327\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 230V, 32A\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2017-03-01 00:00:00\",\n      \"service_end\": \"2019-03-01 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7752X771\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 120V, 20A,\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7856AX660\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU,Metered, Ze\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-19 00:00:00\",\n      \"service_end\": \"2023-08-24 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7856X669\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU,Metered, Ze\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2020-02-13 00:00:00\",\n      \"service_end\": \"2022-02-12 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7857X638\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Metered, Z\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2019-09-29 00:00:00\",\n      \"service_end\": \"2021-09-28 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7868X632\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Metered, Z\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-02-04 00:00:00\",\n      \"service_end\": \"2023-02-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7901BGRNX874\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM SWITCHED RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7901BNRGX874\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM SWITCHED RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7902BGRNX874\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM SWITCHED RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP7902BNRGX874\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM SWITCHED RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8541X819\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8553X440\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-09-14 00:00:00\",\n      \"service_end\": \"2022-11-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8553X667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Basic,\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8553X924\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM METERED RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-06-24 00:00:00\",\n      \"service_end\": \"2022-06-24 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8558X924\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM BASIC RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-04-06 00:00:00\",\n      \"service_end\": \"2022-11-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8586X440\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8586X667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Basic,\",\n      \"commercial_status\": \"18-End of commercialisation\",\n      \"commercialization_end\": \"2023-05-31 00:00:00\",\n      \"service_end\": \"2023-05-31 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8588X667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU 2G, METERED\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8589X885\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-09-20 00:00:00\",\n      \"service_end\": \"2023-09-20 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8641WHT\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM AP8641\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8641X499\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"18-End of commercialisation\",\n      \"commercialization_end\": \"2022-06-14 00:00:00\",\n      \"service_end\": \"2022-06-14 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8641X629\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G,Switched\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8653BLUX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-30 00:00:00\",\n      \"service_end\": \"2023-06-30 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8653REDX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-30 00:00:00\",\n      \"service_end\": \"2023-06-30 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8653X629\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Switche\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2020-11-04 00:00:00\",\n      \"service_end\": \"2021-12-31 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8653X756\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-10-05 00:00:00\",\n      \"service_end\": \"2022-10-05 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8653X757\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8681BLUX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8681REDX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8681X758\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP87010S-NAX590\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP87010S-NAX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-23 00:00:00\",\n      \"service_end\": \"2023-06-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP87010S-NAX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-23 00:00:00\",\n      \"service_end\": \"2023-06-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP87010S-NAX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-09-15 00:00:00\",\n      \"service_end\": \"2023-09-15 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8702S-NAX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-02 00:00:00\",\n      \"service_end\": \"2023-08-02 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8702S-NAX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-02 00:00:00\",\n      \"service_end\": \"2023-08-02 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8702S-NAX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 EA), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8702SX590\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea , Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8703S-NAX340\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-07-04 00:00:00\",\n      \"service_end\": \"2023-07-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8703S-NAX590\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8703S-NAX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8703S-NAX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8703S-NAX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 EA), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8704S-NAX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8704S-NAX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8704S-NAX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8706S-NAX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8706S-NAX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8706S-NAX778\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 EA , Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8706S-NAX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 EA), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8706S-WWX648\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"18-End of commercialisation\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8712SX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea , Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8712SX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea , Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8712SX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8713SX340\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8713SX590\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-23 00:00:00\",\n      \"service_end\": \"2023-06-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8713SX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea , Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8713SX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea , Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-06-14 00:00:00\",\n      \"service_end\": \"2022-06-14 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8713SX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 EA), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-02 00:00:00\",\n      \"service_end\": \"2023-08-02 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8714SX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-25 00:00:00\",\n      \"service_end\": \"2023-08-25 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8714SX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8714SX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 EA), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-02 00:00:00\",\n      \"service_end\": \"2023-08-02 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8716SX743\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit 6 ea, Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-07-04 00:00:00\",\n      \"service_end\": \"2023-07-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8716SX744\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 ea), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8716SX809\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Power Cord Kit (6 EA), Locking\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-08-02 00:00:00\",\n      \"service_end\": \"2023-08-02 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8801X347\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8833JX477\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU 2G, METERED\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8833JX478\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8841X520\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU 2G, METERED\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-01-04 00:00:00\",\n      \"service_end\": \"2022-01-04 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8845X833\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8858EU3BLU\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-10-16 00:00:00\",\n      \"service_end\": \"2023-10-16 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8858EU3RED\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM RACK PDU\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-10-16 00:00:00\",\n      \"service_end\": \"2023-10-16 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8858X852\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8861X607\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2022-03-18 00:00:00\",\n      \"service_end\": \"2022-03-18 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8863X630\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8864X630\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-22 00:00:00\",\n      \"service_end\": \"2023-06-22 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8865GRNX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2023-06-23 00:00:00\",\n      \"service_end\": \"2023-06-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8865X737\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8865X805\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2021-08-23 00:00:00\",\n      \"service_end\": \"2021-08-23 00:00:00\"\n    },\n    {\n      \"product_id\": \"AP8866BLU\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"19-end of commercialization block\",\n      \"commercialization_end\": \"2024-10-09 00:00:00\",\n      \"service_end\": \"2024-10-09 00:00:00\"\n    }\n  ],\n  \"replacement_products\": [\n    {\n      \"product_id\": \"ANC340\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM THIRD PARTY P\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APDU10324ME-010\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU METERED\",\n      \"commercial_status\": \"04-Validated\"\n    },\n    {\n      \"product_id\": \"APDU10351SM-00B0\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED MBO\",\n      \"commercial_status\": \"04-Validated\"\n    },\n    {\n      \"product_id\": \"APDU10358BA\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU BASIC\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APDU10450SM-0300\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED SMBO\",\n      \"commercial_status\": \"06-Precommercialisation\"\n    },\n    {\n      \"product_id\": \"APDU9953BLU\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APDU9953RED\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APDU9965X969\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APDU9965X970\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APDU9981EU3X968\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APF8453-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU MBO\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APF8465D-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"02-Created\"\n    },\n    {\n      \"product_id\": \"APF8466D-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8469D-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"02-Created\"\n    },\n    {\n      \"product_id\": \"APF8641-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8641-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8653-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G Flex\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8659I-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8665-00003\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU MBO\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8665-00004\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED MBO\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"APF8896D-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM METERED RACK PDU\",\n      \"commercial_status\": \"02-Created\"\n    },\n    {\n      \"product_id\": \"APF8896ID-BLU02\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU METERED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APF8896ID-RED02\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU METERED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APF8941D-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"04-Validated\"\n    },\n    {\n      \"product_id\": \"APF8953D-00001\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"APF8965-00002\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"04-Validated\"\n    },\n    {\n      \"product_id\": \"AP4423X864\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 230V, 16A,\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"AP4423X887\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 230V, 16A,\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP4425\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK ATS\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"AP4452X375\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack ATS, 120V, 20A,\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7301\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, 30A\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"AP7303\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, 32A\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7306\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, 32A\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7545X860\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Basic,\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7553BLUX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7553REDX667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7553X399\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7566-2UX929\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU BASIC\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7921B-BLU\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM MBO RACK PDU\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7921BGRNX967\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU Switched\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7921BNRGX874\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7921BNRGX967\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU Switched\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP7921BX943\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"AP7922BNRGX874\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU SWITCHED\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP8481X902\",\n      \"range_label\": \"Custom\",\n      \"description\": \"RACK PDU MBO\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP8486X266\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP8541X664\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU, Basic, Zer\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"AP8541X923\",\n      \"range_label\": \"Custom\",\n      \"description\": \"CUSTOM BASIC RACK PDU\",\n      \"commercial_status\": \"01-Never commercialised\"\n    },\n    {\n      \"product_id\": \"AP8564X630\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Basic,\",\n      \"commercial_status\": \"08-Commercialised\"\n    },\n    {\n      \"product_id\": \"AP8567X667\",\n      \"range_label\": \"Custom\",\n      \"description\": \"Rack PDU 2G, Metered\",\n      \"commercial_status\": \"01-Never commercialised\"\n    }\n  ],\n  \"obsolete_count\": 100,\n  \"replacement_count\": 50,\n  \"processing_time_ms\": 23.293018341064453,\n  \"search_space_reduction\": 100.0,\n  \"search_strategy\": \"Database Range Validation + Product Matching (183,772 products)\",\n  \"extraction_method\": \"mock_webapp\",\n  \"extraction_confidence\": 0.85,\n  \"error\": \"\"\n}\n",
-    "stderr": "❌ Import error - using mock services\n🔧 WEBAPP PIPELINE INITIALIZED\n✅ All services configured for JSON output\n✅ Loaded 4067 valid ranges from database\n✅ Total obsolete products in database: 183,772\n🔄 Processing: PIX2B_Phase_out_Letter.pdf\n  🧠 Context: PIX Circuit Breakers (Conf: 0.80)\n  📄 Text: 41 characters\n  🔍 Raw extraction: 5 ranges\n  ✅ Valid ranges: 5\n  ❌ Invalid ranges filtered: 0\n  🎯 Obsolete products: 100\n  🔄 Replacement products: 50\n  ⚡ Processing time: 23.3ms\n"
-  }
+  "success": true,
+  "file_name": "PIX2B_Phase_out_Letter.pdf",
+  "file_path": "/Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf",
+  "file_size": 170524,
+  "context": {
+    "voltage_level": null,
+    "product_category": "PIX Circuit Breakers",
+    "pl_services_hint": null,
+    "confidence_score": 0.8,
+    "thumbnail_data": null
+  },
+  "content": " \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nInternal Communication:  \nWithdrawal notice of PIX Double Bus Bar (PIX 2B) offer from all markets  \nExcept Belgium frame contract where we have signed contract. \n \n \nThe Power System Business Unit launched projects to streamline the MV product offers. \n \nIn the frame of this project, please be informed that it has been decided to withdraw the             \nPIX 2B offer, launched in 2014  \n12 – 17.5kV, up to 3150A, 50/60Hz, 31.5kA 3s \n \n \nThere will be NO substitution for this range.  \nNote:  For Belgium utility Frame contract – Schneider will continue to support until end of \nFrame contract – Nov’2023. Hence Belgium utility is out of scope of this PWP.  \n \nTo : Italy, Germany, Kameroon, UK, France, Finland, \nAustria, Netherlands, Norway, South Africa, \nLatin America, Lybia, Tunesia. Australia, \nNewzealand, Algeria, ROW.  \nN/A : North America / China.  \n \n \n \n \n \n \n  \nSchneider Electric  \nPower Systems / Medium Voltage Offer \ndate : 12th March 2020 \nv.réf : PIX 2B \nn.réf : \ntel : +91 (80) 4554 0000 \nfax : \ne-mail : Amar.wategaonkar@se.com \nJosef.Eberl@se.com \n\n\n \n \n \nWe plan: \n• \nThe customer announcement by mid of April 2020. \n• \nNo Orders will be accepted starting post internal communication (Mar’2020). \n \n \nWe kindly ask you to analyze your ongoing opportunities and inform us in case you have  \n• \nQuotations still valid / alive after the last order date \n• \nor coming orders not possible to be booked for analysis purpose. \n• \nFrame contracts still valid – e.g. Belgium utility where there is commitment from =S= \n \n \nTo manage this withdrawal process properly and to coordinate all necessary actions an \noperational PWP (Product Withdrawal Process) team involving MVO (Medium Voltage \nOffer) Activity and Energy Field Services organisation has been set up. \n \nThis team is in charge to define and/or to confirm: \n• \nthe evaluation of Services business \n• \nthe spare part offer that will be maintained for a minimum of 10 years to support \nthe Installed Base of PIX 2B. \n• \nthe Services Ecofit Centre that will support Front Offices and Field Services \nengineers. \n• \nthe customer communication (we will come back to you with the appropriate communication \ncontent for external customers). \n \nThis project/process is splitted into 2 steps \n• \nStop of commercialisation to all countries apart from Belgium \n• \nFull PWP after the end of the Belgium frame contract in 2023 \n \nOne of the key success factors of this withdrawal is the support and the involvement of the \nFront Offices in the process. \n \nThus, we kindly ask for your help to nominate a local contact person in your \ncountry/region who the PWP team can work with and who will lead related activities, \nincluding preparation of customer communication. \n \nWe would appreciate your reply within 31st of Mar 2020, please revert back to offer \nsimplification \nmanager \n(amar.wategaonkar@se.com) \nor \nGlobal \nProduct \nManager \n(josef.eberl@se.com). \n \nBe assure of the full support of MVO Activity in this PWP, do not hesitate to revert to your \nday to day contact (Business Development) or to request support / information. \n \nWe will keep you aware of this Product Withdrawal Project progress in the coming weeks. \n \nYours Faithfully, \n \n \n \n \n------------------------------------------------------------------------------------------------------------------------------------------- \n \nAmar WATEGAONKAR   \n \n \nJosef EBERL  \nMVO - Offer Simplification Manager \n \n \nGlobal Product Manager \n(Medium Voltage Equipment’s) \n \n \n \n \n \n \n                  \n",
+  "extracted_text": " \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nInternal Communication:  \nWithdrawal notice of PIX Double Bus Bar (PIX 2B) offer from all markets  \nExcept Belgium frame contract where we have signed contract. \n \n \nThe Power System Business Unit launched projects to streamline the MV product offers. \n \nIn the frame of this project, please be informed that it has been decided to withdraw the             \nPIX 2B offer, launched in 2014  \n12 – 17.5kV, up to 3150A, 50/60Hz, 31.5kA 3s \n \n \nThere will be NO substitution for this range.  \nNote:  For Belgium utility Frame contract – Schneider will continue to support until end of \nFrame contract – Nov’2023. Hence Belgium utility is out of scope of this PWP.  \n \nTo : Italy, Germany, Kameroon, UK, France, Finland, \nAustria, Netherlands, Norway, South Africa, \nLatin America, Lybia, Tunesia. Australia, \nNewzealand, Algeria, ROW.  \nN/A : North America / China.  \n \n \n \n \n \n \n  \nSchneider Electric  \nPower Systems / Medium Voltage Offer \ndate : 12th March 2020 \nv.réf : PIX 2B \nn.réf : \ntel : +91 (80) 4554 0000 \nfax : \ne-mail : Amar.wategaonkar@se.com \nJosef.Eberl@se.com \n\n\n \n \n \nWe plan: \n• \nThe customer announcement by mid of April 2020. \n• \nNo Orders will be accepted starting post internal communication (Mar’2020). \n \n \nWe kindly ask you to analyze your ongoing opportunities and inform us in case you have  \n• \nQuotations still valid / alive after the last order date \n• \nor coming orders not possible to be booked for analysis purpose. \n• \nFrame contracts still valid – e.g. Belgium utility where there is commitment from =S= \n \n \nTo manage this withdrawal process properly and to coordinate all necessary actions an \noperational PWP (Product Withdrawal Process) team involving MVO (Medium Voltage \nOffer) Activity and Energy Field Services organisation has been set up. \n \nThis team is in charge to define and/or to confirm: \n• \nthe evaluation of Services business \n• \nthe spare part offer that will be maintained for a minimum of 10 years to support \nthe Installed Base of PIX 2B. \n• \nthe Services Ecofit Centre that will support Front Offices and Field Services \nengineers. \n• \nthe customer communication (we will come back to you with the appropriate communication \ncontent for external customers). \n \nThis project/process is splitted into 2 steps \n• \nStop of commercialisation to all countries apart from Belgium \n• \nFull PWP after the end of the Belgium frame contract in 2023 \n \nOne of the key success factors of this withdrawal is the support and the involvement of the \nFront Offices in the process. \n \nThus, we kindly ask for your help to nominate a local contact person in your \ncountry/region who the PWP team can work with and who will lead related activities, \nincluding preparation of customer communication. \n \nWe would appreciate your reply within 31st of Mar 2020, please revert back to offer \nsimplification \nmanager \n(amar.wategaonkar@se.com) \nor \nGlobal \nProduct \nManager \n(josef.eberl@se.com). \n \nBe assure of the full support of MVO Activity in this PWP, do not hesitate to revert to your \nday to day contact (Business Development) or to request support / information. \n \nWe will keep you aware of this Product Withdrawal Project progress in the coming weeks. \n \nYours Faithfully, \n \n \n \n \n------------------------------------------------------------------------------------------------------------------------------------------- \n \nAmar WATEGAONKAR   \n \n \nJosef EBERL  \nMVO - Offer Simplification Manager \n \n \nGlobal Product Manager \n(Medium Voltage Equipment’s) \n \n \n \n \n \n \n                  \n",
+  "extracted_ranges": [
+    "LTA",
+    "REA",
+    "WI",
+    "IL",
+    "REC",
+    "RK",
+    "WZ",
+    "PA",
+    "HF",
+    "D",
+    "AMA",
+    "E",
+    "HAT",
+    "VO",
+    "CTS",
+    "APP",
+    "NDS",
+    "GI",
+    "MS",
+    "FR",
+    "ZE",
+    "HAR",
+    "PIX",
+    "REG",
+    "FA",
+    "DA",
+    "IS",
+    "URP",
+    "PE",
+    "PIX 2B",
+    "RM",
+    "ID",
+    "SIA",
+    "PL",
+    "SC",
+    "CA",
+    "S",
+    "C",
+    "OK",
+    "G",
+    "T",
+    "J",
+    "AML",
+    "STEP",
+    "RTI",
+    "MV",
+    "CL",
+    "BS",
+    "CI",
+    "Custom",
+    "OR",
+    "AM",
+    "GL",
+    "STE",
+    "HN",
+    "INFORM",
+    "Ecofit",
+    "GE",
+    "FE",
+    "CO",
+    "A",
+    "DL",
+    "BAL",
+    "DS",
+    "ITH",
+    "NES",
+    "S Range",
+    "CAS",
+    "NE",
+    "Fit",
+    "AV",
+    "K",
+    "CC",
+    "CH",
+    "HU",
+    "HE",
+    "M",
+    "RL",
+    "LV",
+    "L",
+    "SP",
+    "VA",
+    "AL",
+    "NAL",
+    "UA",
+    "Unica",
+    "KA",
+    "AS",
+    "MM",
+    "LA",
+    "STI",
+    "MA",
+    "OB",
+    "DU",
+    "IVI",
+    "RAM",
+    "AC",
+    "DR",
+    "CT",
+    "ME",
+    "PI",
+    "P",
+    "BAR",
+    "RT",
+    "EB",
+    "M I",
+    "F"
+  ],
+  "extracted_subranges": [
+    "ED",
+    "EC",
+    "AS",
+    "RM",
+    "TRAC",
+    "DL",
+    "SEF",
+    "UD",
+    "RG",
+    "INF",
+    "UNC",
+    "UC",
+    "TTE",
+    "T",
+    "ENC",
+    "SUCC",
+    "FA",
+    "WH",
+    "DIU",
+    "KI",
+    "KA",
+    "EG",
+    "202"
+  ],
+  "extracted_device_types": [],
+  "extracted_brands": [
+    "LITTLEFUSE",
+    "ABN by Schneider Electric",
+    "ASEA",
+    "Isolsec",
+    "RS Isolsec",
+    "SEG",
+    "APRIL",
+    "Westinghouse",
+    "SEREC",
+    "LG",
+    "SEW Usocome",
+    "INFORM",
+    "ICE",
+    "TAC",
+    "Mersen",
+    "Schneider Electric",
+    "Rectiphase",
+    "RS",
+    "MGC MOSER-GLASER",
+    "Jeumont Schneider",
+    "Sensys",
+    "SEA Trasformatori",
+    "Fuji (not Schneider)",
+    "XANTREX (not Schneider)",
+    "CEM",
+    "Toshiba (not Schneider)",
+    "FIR",
+    "Sachsenwerk",
+    "ERE",
+    "Telemecanique Sensors",
+    "SEMAR Electric",
+    "PE",
+    "Sesh"
+  ],
+  "extracted_pl_services": [
+    "PSIBS",
+    "PPIBS",
+    "DBIBS"
+  ],
+  "extracted_technical_specs": [
+    "current: 3150",
+    "voltage: 5",
+    "voltage: 2020",
+    "frequency: 60"
+  ],
+  "valid_ranges": [
+    "LTA",
+    "REA",
+    "WI",
+    "IL",
+    "REC",
+    "RK",
+    "WZ",
+    "PA",
+    "HF",
+    "D",
+    "AMA",
+    "E",
+    "HAT",
+    "VO",
+    "CTS",
+    "APP",
+    "NDS",
+    "GI",
+    "MS",
+    "FR",
+    "ZE",
+    "HAR",
+    "PIX",
+    "REG",
+    "FA",
+    "DA",
+    "IS",
+    "URP",
+    "PE",
+    "PIX 2B",
+    "RM",
+    "ID",
+    "SIA",
+    "PL",
+    "SC",
+    "CA",
+    "S",
+    "C",
+    "OK",
+    "G",
+    "T",
+    "J",
+    "AML",
+    "STEP",
+    "RTI",
+    "MV",
+    "CL",
+    "BS",
+    "CI",
+    "Custom",
+    "OR",
+    "AM",
+    "GL",
+    "STE",
+    "HN",
+    "INFORM",
+    "Ecofit",
+    "GE",
+    "FE",
+    "CO",
+    "A",
+    "DL",
+    "BAL",
+    "DS",
+    "ITH",
+    "NES",
+    "S Range",
+    "CAS",
+    "NE",
+    "Fit",
+    "AV",
+    "K",
+    "CC",
+    "CH",
+    "HU",
+    "HE",
+    "M",
+    "RL",
+    "LV",
+    "L",
+    "SP",
+    "VA",
+    "AL",
+    "NAL",
+    "UA",
+    "Unica",
+    "KA",
+    "AS",
+    "MM",
+    "LA",
+    "STI",
+    "MA",
+    "OB",
+    "DU",
+    "IVI",
+    "RAM",
+    "AC",
+    "DR",
+    "CT",
+    "ME",
+    "PI",
+    "P",
+    "BAR",
+    "RT",
+    "EB",
+    "M I",
+    "F"
+  ],
+  "invalid_ranges": [],
+  "obsolete_products": [
+    {
+      "product_id": "APF8686D-00001",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G Flex",
+      "commercial_status": "18-End of commercialisation",
+      "commercialization_end": "2024-12-05 00:00:00",
+      "service_end": "2024-12-05 00:00:00"
+    },
+    {
+      "product_id": "APF8686-00002",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "18-End of commercialisation",
+      "commercialization_end": "2024-12-05 00:00:00",
+      "service_end": "2024-12-05 00:00:00"
+    },
+    {
+      "product_id": "APF8941BLU-01",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G Flex, Sw",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-09-20 00:00:00",
+      "service_end": "2023-09-20 00:00:00"
+    },
+    {
+      "product_id": "APF8941YEL-01",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G Flex, Sw",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-09-20 00:00:00",
+      "service_end": "2023-09-20 00:00:00"
+    },
+    {
+      "product_id": "APF8968-00001",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP4424X864",
+      "range_label": "Custom",
+      "description": "Rack ATS, 230V, 32A,",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    },
+    {
+      "product_id": "AP4430X914",
+      "range_label": "Custom",
+      "description": "CUSTOM Rack ATS",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-07-04 00:00:00",
+      "service_end": "2023-07-04 00:00:00"
+    },
+    {
+      "product_id": "AP4452X631",
+      "range_label": "Custom",
+      "description": "CUSTOM Rack ATS",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-10-20 00:00:00",
+      "service_end": "2022-10-20 00:00:00"
+    },
+    {
+      "product_id": "AP6003AX665",
+      "range_label": "Custom",
+      "description": "CUSTOM BASIC RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-09-20 00:00:00",
+      "service_end": "2023-12-26 00:00:00"
+    },
+    {
+      "product_id": "AP642D18X",
+      "range_label": "Custom",
+      "description": "RACK PDU, ZEROU, Max. 8.4KW(DC",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-19 00:00:00",
+      "service_end": "2023-12-26 00:00:00"
+    },
+    {
+      "product_id": "AP7304",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, 30A",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-03-17 00:00:00",
+      "service_end": "2022-03-17 00:00:00"
+    },
+    {
+      "product_id": "AP7553WX667",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-10-15 00:00:00",
+      "service_end": "2022-11-09 00:00:00"
+    },
+    {
+      "product_id": "AP7553X400",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-09-14 00:00:00",
+      "service_end": "2022-12-31 00:00:00"
+    },
+    {
+      "product_id": "AP7556NAX660",
+      "range_label": "Custom",
+      "description": "Rack PDU,Basic, Zero",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2020-02-24 00:00:00",
+      "service_end": "2022-02-23 00:00:00"
+    },
+    {
+      "product_id": "AP7556NAX667",
+      "range_label": "Custom",
+      "description": "Rack PDU,Basic, Zero",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2020-06-23 00:00:00",
+      "service_end": "2022-06-23 00:00:00"
+    },
+    {
+      "product_id": "AP7557BLUX667",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP7557NAX630",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP7557REDX667",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP7557X400",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-07-04 00:00:00",
+      "service_end": "2023-07-04 00:00:00"
+    },
+    {
+      "product_id": "AP7725",
+      "range_label": "Custom",
+      "description": "Rack ATS, 230V, 32A",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-06-13 00:00:00",
+      "service_end": "2022-06-13 00:00:00"
+    },
+    {
+      "product_id": "AP7725X327",
+      "range_label": "Custom",
+      "description": "Rack ATS, 230V, 32A",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2017-03-01 00:00:00",
+      "service_end": "2019-03-01 00:00:00"
+    },
+    {
+      "product_id": "AP7752X771",
+      "range_label": "Custom",
+      "description": "Rack ATS, 120V, 20A,",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP7856AX660",
+      "range_label": "Custom",
+      "description": "Rack PDU,Metered, Ze",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-19 00:00:00",
+      "service_end": "2023-08-24 00:00:00"
+    },
+    {
+      "product_id": "AP7856X669",
+      "range_label": "Custom",
+      "description": "Rack PDU,Metered, Ze",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2020-02-13 00:00:00",
+      "service_end": "2022-02-12 00:00:00"
+    },
+    {
+      "product_id": "AP7857X638",
+      "range_label": "Custom",
+      "description": "Rack PDU, Metered, Z",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2019-09-29 00:00:00",
+      "service_end": "2021-09-28 00:00:00"
+    },
+    {
+      "product_id": "AP7868X632",
+      "range_label": "Custom",
+      "description": "Rack PDU, Metered, Z",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-02-04 00:00:00",
+      "service_end": "2023-02-04 00:00:00"
+    },
+    {
+      "product_id": "AP7901BGRNX874",
+      "range_label": "Custom",
+      "description": "CUSTOM SWITCHED RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    },
+    {
+      "product_id": "AP7901BNRGX874",
+      "range_label": "Custom",
+      "description": "CUSTOM SWITCHED RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    },
+    {
+      "product_id": "AP7902BGRNX874",
+      "range_label": "Custom",
+      "description": "CUSTOM SWITCHED RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    },
+    {
+      "product_id": "AP7902BNRGX874",
+      "range_label": "Custom",
+      "description": "CUSTOM SWITCHED RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    },
+    {
+      "product_id": "AP8541X819",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8553X440",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-09-14 00:00:00",
+      "service_end": "2022-11-09 00:00:00"
+    },
+    {
+      "product_id": "AP8553X667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Basic,",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP8553X924",
+      "range_label": "Custom",
+      "description": "CUSTOM METERED RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-06-24 00:00:00",
+      "service_end": "2022-06-24 00:00:00"
+    },
+    {
+      "product_id": "AP8558X924",
+      "range_label": "Custom",
+      "description": "CUSTOM BASIC RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-04-06 00:00:00",
+      "service_end": "2022-11-09 00:00:00"
+    },
+    {
+      "product_id": "AP8586X440",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP8586X667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Basic,",
+      "commercial_status": "18-End of commercialisation",
+      "commercialization_end": "2023-05-31 00:00:00",
+      "service_end": "2023-05-31 00:00:00"
+    },
+    {
+      "product_id": "AP8588X667",
+      "range_label": "Custom",
+      "description": "RACK PDU 2G, METERED",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8589X885",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-09-20 00:00:00",
+      "service_end": "2023-09-20 00:00:00"
+    },
+    {
+      "product_id": "AP8641WHT",
+      "range_label": "Custom",
+      "description": "CUSTOM AP8641",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8641X499",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "18-End of commercialisation",
+      "commercialization_end": "2022-06-14 00:00:00",
+      "service_end": "2022-06-14 00:00:00"
+    },
+    {
+      "product_id": "AP8641X629",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G,Switched",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8653BLUX667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-30 00:00:00",
+      "service_end": "2023-06-30 00:00:00"
+    },
+    {
+      "product_id": "AP8653REDX667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-30 00:00:00",
+      "service_end": "2023-06-30 00:00:00"
+    },
+    {
+      "product_id": "AP8653X629",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Switche",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2020-11-04 00:00:00",
+      "service_end": "2021-12-31 00:00:00"
+    },
+    {
+      "product_id": "AP8653X756",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-10-05 00:00:00",
+      "service_end": "2022-10-05 00:00:00"
+    },
+    {
+      "product_id": "AP8653X757",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8681BLUX667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8681REDX667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8681X758",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP87010S-NAX590",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP87010S-NAX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-23 00:00:00",
+      "service_end": "2023-06-23 00:00:00"
+    },
+    {
+      "product_id": "AP87010S-NAX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-23 00:00:00",
+      "service_end": "2023-06-23 00:00:00"
+    },
+    {
+      "product_id": "AP87010S-NAX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-09-15 00:00:00",
+      "service_end": "2023-09-15 00:00:00"
+    },
+    {
+      "product_id": "AP8702S-NAX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-02 00:00:00",
+      "service_end": "2023-08-02 00:00:00"
+    },
+    {
+      "product_id": "AP8702S-NAX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-02 00:00:00",
+      "service_end": "2023-08-02 00:00:00"
+    },
+    {
+      "product_id": "AP8702S-NAX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 EA), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8702SX590",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea , Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8703S-NAX340",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-07-04 00:00:00",
+      "service_end": "2023-07-04 00:00:00"
+    },
+    {
+      "product_id": "AP8703S-NAX590",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8703S-NAX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8703S-NAX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8703S-NAX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 EA), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8704S-NAX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8704S-NAX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8704S-NAX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8706S-NAX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8706S-NAX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8706S-NAX778",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 EA , Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP8706S-NAX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 EA), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8706S-WWX648",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "18-End of commercialisation",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8712SX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea , Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8712SX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea , Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8712SX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8713SX340",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8713SX590",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-23 00:00:00",
+      "service_end": "2023-06-23 00:00:00"
+    },
+    {
+      "product_id": "AP8713SX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea , Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8713SX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea , Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-06-14 00:00:00",
+      "service_end": "2022-06-14 00:00:00"
+    },
+    {
+      "product_id": "AP8713SX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 EA), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-02 00:00:00",
+      "service_end": "2023-08-02 00:00:00"
+    },
+    {
+      "product_id": "AP8714SX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-25 00:00:00",
+      "service_end": "2023-08-25 00:00:00"
+    },
+    {
+      "product_id": "AP8714SX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8714SX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 EA), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-02 00:00:00",
+      "service_end": "2023-08-02 00:00:00"
+    },
+    {
+      "product_id": "AP8716SX743",
+      "range_label": "Custom",
+      "description": "Power Cord Kit 6 ea, Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-07-04 00:00:00",
+      "service_end": "2023-07-04 00:00:00"
+    },
+    {
+      "product_id": "AP8716SX744",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 ea), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8716SX809",
+      "range_label": "Custom",
+      "description": "Power Cord Kit (6 EA), Locking",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-08-02 00:00:00",
+      "service_end": "2023-08-02 00:00:00"
+    },
+    {
+      "product_id": "AP8801X347",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP8833JX477",
+      "range_label": "Custom",
+      "description": "RACK PDU 2G, METERED",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8833JX478",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8841X520",
+      "range_label": "Custom",
+      "description": "RACK PDU 2G, METERED",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-01-04 00:00:00",
+      "service_end": "2022-01-04 00:00:00"
+    },
+    {
+      "product_id": "AP8845X833",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8858EU3BLU",
+      "range_label": "Custom",
+      "description": "CUSTOM RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-10-16 00:00:00",
+      "service_end": "2023-10-16 00:00:00"
+    },
+    {
+      "product_id": "AP8858EU3RED",
+      "range_label": "Custom",
+      "description": "CUSTOM RACK PDU",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-10-16 00:00:00",
+      "service_end": "2023-10-16 00:00:00"
+    },
+    {
+      "product_id": "AP8858X852",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8861X607",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2022-03-18 00:00:00",
+      "service_end": "2022-03-18 00:00:00"
+    },
+    {
+      "product_id": "AP8863X630",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8864X630",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-22 00:00:00",
+      "service_end": "2023-06-22 00:00:00"
+    },
+    {
+      "product_id": "AP8865GRNX667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2023-06-23 00:00:00",
+      "service_end": "2023-06-23 00:00:00"
+    },
+    {
+      "product_id": "AP8865X737",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    },
+    {
+      "product_id": "AP8865X805",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2021-08-23 00:00:00",
+      "service_end": "2021-08-23 00:00:00"
+    },
+    {
+      "product_id": "AP8866BLU",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "19-end of commercialization block",
+      "commercialization_end": "2024-10-09 00:00:00",
+      "service_end": "2024-10-09 00:00:00"
+    }
+  ],
+  "replacement_products": [
+    {
+      "product_id": "ANC340",
+      "range_label": "Custom",
+      "description": "CUSTOM THIRD PARTY P",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APDU10324ME-010",
+      "range_label": "Custom",
+      "description": "RACK PDU METERED",
+      "commercial_status": "04-Validated"
+    },
+    {
+      "product_id": "APDU10351SM-00B0",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED MBO",
+      "commercial_status": "04-Validated"
+    },
+    {
+      "product_id": "APDU10358BA",
+      "range_label": "Custom",
+      "description": "RACK PDU BASIC",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APDU10450SM-0300",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED SMBO",
+      "commercial_status": "06-Precommercialisation"
+    },
+    {
+      "product_id": "APDU9953BLU",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APDU9953RED",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APDU9965X969",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APDU9965X970",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APDU9981EU3X968",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APF8453-00002",
+      "range_label": "Custom",
+      "description": "RACK PDU MBO",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APF8465D-00001",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "02-Created"
+    },
+    {
+      "product_id": "APF8466D-00001",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8469D-00002",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "02-Created"
+    },
+    {
+      "product_id": "APF8641-00001",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8641-00002",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8653-00001",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G Flex",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8659I-00002",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8665-00003",
+      "range_label": "Custom",
+      "description": "RACK PDU MBO",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8665-00004",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED MBO",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "APF8896D-00002",
+      "range_label": "Custom",
+      "description": "CUSTOM METERED RACK PDU",
+      "commercial_status": "02-Created"
+    },
+    {
+      "product_id": "APF8896ID-BLU02",
+      "range_label": "Custom",
+      "description": "RACK PDU METERED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APF8896ID-RED02",
+      "range_label": "Custom",
+      "description": "RACK PDU METERED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APF8941D-00001",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "04-Validated"
+    },
+    {
+      "product_id": "APF8953D-00001",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "APF8965-00002",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "04-Validated"
+    },
+    {
+      "product_id": "AP4423X864",
+      "range_label": "Custom",
+      "description": "Rack ATS, 230V, 16A,",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "AP4423X887",
+      "range_label": "Custom",
+      "description": "Rack ATS, 230V, 16A,",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP4425",
+      "range_label": "Custom",
+      "description": "RACK ATS",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "AP4452X375",
+      "range_label": "Custom",
+      "description": "Rack ATS, 120V, 20A,",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7301",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, 30A",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "AP7303",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, 32A",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7306",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, 32A",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7545X860",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Basic,",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7553BLUX667",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7553REDX667",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7553X399",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7566-2UX929",
+      "range_label": "Custom",
+      "description": "RACK PDU BASIC",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7921B-BLU",
+      "range_label": "Custom",
+      "description": "CUSTOM MBO RACK PDU",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7921BGRNX967",
+      "range_label": "Custom",
+      "description": "RACK PDU Switched",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7921BNRGX874",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7921BNRGX967",
+      "range_label": "Custom",
+      "description": "RACK PDU Switched",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP7921BX943",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "AP7922BNRGX874",
+      "range_label": "Custom",
+      "description": "RACK PDU SWITCHED",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP8481X902",
+      "range_label": "Custom",
+      "description": "RACK PDU MBO",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP8486X266",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP8541X664",
+      "range_label": "Custom",
+      "description": "Rack PDU, Basic, Zer",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "AP8541X923",
+      "range_label": "Custom",
+      "description": "CUSTOM BASIC RACK PDU",
+      "commercial_status": "01-Never commercialised"
+    },
+    {
+      "product_id": "AP8564X630",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Basic,",
+      "commercial_status": "08-Commercialised"
+    },
+    {
+      "product_id": "AP8567X667",
+      "range_label": "Custom",
+      "description": "Rack PDU 2G, Metered",
+      "commercial_status": "01-Never commercialised"
+    }
+  ],
+  "obsolete_count": 100,
+  "replacement_count": 50,
+  "processing_time_ms": 90.66438674926758,
+  "search_space_reduction": 100,
+  "search_strategy": "Production Database Range Validation + Enhanced Semantic Matching (181,364 products)",
+  "extraction_method": "enhanced_multi_dimensional",
+  "extraction_confidence": 0.9304333764553717,
+  "error": ""
+}

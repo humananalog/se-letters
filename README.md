@@ -6,6 +6,8 @@
 
 A comprehensive automated pipeline for processing Schneider Electric obsolescence letters and matching them to the **IBcatalogue.xlsx master referential** containing **342,229 electrical products** using advanced AI/ML techniques and comprehensive metadata extraction.
 
+**Current Version: 2.1.0** - Production Webapp Integration Release
+
 ## 🚀 Enhanced Features
 
 ### 🔍 Multi-Dimensional Semantic Extraction
@@ -327,6 +329,8 @@ pytest tests/
 - **[Comprehensive Extraction Guide](docs/COMPREHENSIVE_METADATA_EXTRACTION_GUIDE.md)**: AI extraction capabilities
 - **[Product Export Guide](docs/COMPREHENSIVE_PRODUCT_EXPORT_GUIDE.md)**: Usage and examples
 - **[Project Documentation](docs/Obsolescence%20Letter%20Matching%20Pipeline%20Project.md)**: Technical architecture
+- **[Pipeline Version Control](docs/PIPELINE_VERSION_CONTROL.md)**: Version control and compatibility information
+- **[Version Header Template](docs/VERSION_HEADER_TEMPLATE.md)**: Standard template for production scripts
 
 ## 🤝 Contributing
 

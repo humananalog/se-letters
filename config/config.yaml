@@ -4,7 +4,7 @@
 api:
   xai:
     base_url: "https://api.x.ai/v1"
-    model: "grok-beta"
+    model: "grok-3-latest"
     api_key: "xai-RPhTjf3SzTbm11ZKcpFV0hsOqVTSj8QUbTFhUrrQWaE"
     max_tokens: 4096
     temperature: 0.1

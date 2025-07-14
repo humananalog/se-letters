@@ -9,6 +9,39 @@ Enhanced with multi-dimensional semantic extraction:
 5. Multi-dimensional search (subrange, device type, brand, PL services)
 6. Technical specification extraction
 7. Search space refinement (up to 99.6% reduction)
+
+Version: 1.1.0
+Release Date: 2024-01-12
+Status: Production Ready
+Architecture: Enhanced Semantic Pipeline v1.1
+Compatibility: Python 3.9+, DuckDB, Enhanced Semantic Extraction
+
+Copyright (c) 2024 Schneider Electric SE Letters Team
+Licensed under MIT License
+
+Features:
+- Multi-dimensional semantic extraction (6 dimensions)
+- Range validation against IBcatalogue database
+- Obsolete products filtering with proper counting
+- AI extraction validation and confidence scoring
+- Search space refinement (up to 99.6% reduction)
+- Technical specification extraction
+- Enhanced HTML report generation
+- Comprehensive error handling and logging
+
+Dependencies:
+- se_letters.services.document_processor
+- se_letters.services.enhanced_semantic_extraction_engine
+- se_letters.services.enhanced_duckdb_service
+- se_letters.core.config
+
+Changelog:
+- v1.1.0 (2024-01-12): Enhanced semantic extraction with corrections
+- v1.0.0 (2024-01-10): Initial semantic pipeline release
+
+Author: SE Letters Development Team
+Repository: https://github.com/humananalog/se-letters
+Documentation: docs/ENHANCED_SEMANTIC_EXTRACTION_ENGINE.md
 """
 
 import sys

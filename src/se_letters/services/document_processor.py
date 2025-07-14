@@ -18,12 +18,8 @@ from ..core.exceptions import FileProcessingError
 from ..models.document import Document
 from ..utils.logger import get_logger
 
-# Import the new enhanced image processor
-try:
-    from .enhanced_image_processor import EnhancedImageProcessor
-    IMAGE_PROCESSOR_AVAILABLE = True
-except ImportError:
-    IMAGE_PROCESSOR_AVAILABLE = False
+# Enhanced image processor has been archived
+IMAGE_PROCESSOR_AVAILABLE = False
 
 logger = get_logger(__name__)
 
@@ -40,18 +36,9 @@ class DocumentProcessor:
         self.config = config
         self.supported_formats = config.data.supported_formats
         
-        # Initialize enhanced image processor if available
-        if IMAGE_PROCESSOR_AVAILABLE:
-            self.image_processor = EnhancedImageProcessor()
-            logger.info(
-                "Enhanced image processor initialized for embedded image extraction"
-            )
-        else:
-            self.image_processor = None
-            logger.warning(
-                "Enhanced image processor not available - "
-                "embedded image extraction disabled"
-            )
+        # Enhanced image processor has been archived
+        self.image_processor = None
+        logger.info("Using standard document processing without enhanced image extraction")
 
     def process_document(self, file_path: Path) -> Optional[Document]:
         """Process a single document and extract text with robust fallback and embedded image processing.
@@ -86,47 +73,14 @@ class DocumentProcessor:
                 )
                 return None
             
-            # Process embedded images for modernization content (Word documents only)
-            image_results = None
-            if (self.image_processor and 
-                file_path.suffix.lower() in ['.docx', '.doc'] and 
-                result["success"]):
-                
-                try:
-                    logger.info(f"Processing embedded images in {file_path.name}")
-                    image_results = self.image_processor.extract_embedded_images(
-                        file_path
-                    )
-                    
-                    if image_results["processed_images"] > 0:
-                        logger.info(
-                            f"Processed {image_results['processed_images']} "
-                            f"embedded images, found "
-                            f"{len(image_results['modernization_content'])} "
-                            f"with modernization content"
-                        )
-                        
-                        # Enhance text with image-extracted content
-                        result = self._enhance_text_with_image_content(
-                            result, image_results
-                        )
-                    else:
-                        logger.info("No embedded images found or processed")
-                        
-                except Exception as e:
-                    logger.warning(f"Embedded image processing failed: {e}")
-                    # Continue with text-only processing
+            # Enhanced image processing has been archived
+            if result["success"]:
+                logger.debug("Enhanced image processing disabled")
             
             processing_time = time.time() - start_time
             
-            # Add image processing results to metadata
-            if image_results:
-                result["metadata"]["embedded_images"] = {
-                    "total_images": image_results["total_images"],
-                    "processed_images": image_results["processed_images"],
-                    "modernization_images": len(image_results["modernization_content"]),
-                    "extraction_errors": image_results["extraction_errors"]
-                }
+            # Enhanced image processing has been archived
+            # No image processing results to add to metadata
             
             # Create document
             document = Document.from_file(

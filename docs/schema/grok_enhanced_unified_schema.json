@@ -1,0 +1,172 @@
+{
+  "schema_categories": {
+    "document_information": {
+      "fields": [
+        "document_type",
+        "communication_type",
+        "language",
+        "document_number",
+        "document_title",
+        "total_products",
+        "has_tables",
+        "has_technical_specs",
+        "has_images",
+        "extraction_complexity",
+        "page_count",
+        "word_count"
+      ],
+      "description": "Enhanced document metadata with communication type classification"
+    },
+    "product_information": {
+      "fields": [
+        "product_identifier",
+        "range_label",
+        "subrange_label",
+        "product_line",
+        "product_description",
+        "technical_specifications",
+        "commercial_information",
+        "replacement_information"
+      ],
+      "description": "Product identification, specifications, and lifecycle details"
+    },
+    "technical_specifications": {
+      "fields": [
+        "voltage_level",
+        "current_rating",
+        "power_rating",
+        "frequency",
+        "short_circuit_rating",
+        "protection_class",
+        "insulation_level",
+        "operating_temperature",
+        "dimensions",
+        "weight"
+      ],
+      "description": "Comprehensive technical product specifications"
+    },
+    "commercial_information": {
+      "fields": [
+        "part_number",
+        "obsolescence_status",
+        "last_order_date",
+        "end_of_service_date"
+      ],
+      "description": "Commercial and obsolescence status details with ISO dates"
+    },
+    "replacement_information": {
+      "fields": [
+        "replacement_suggestions",
+        "migration_path"
+      ],
+      "description": "Modernization and EcoFit solutions"
+    },
+    "business_information": {
+      "fields": [
+        "affected_ranges",
+        "affected_countries",
+        "customer_segments",
+        "business_impact"
+      ],
+      "description": "Business context and impact of obsolescence"
+    },
+    "lifecycle_information": {
+      "fields": [
+        "announcement_date",
+        "effective_date",
+        "publication_date",
+        "lifecycle_stage",
+        "transition_period",
+        "key_dates"
+      ],
+      "description": "Enhanced lifecycle dates and milestones with ISO format"
+    },
+    "key_dates": {
+      "fields": [
+        "last_order_date",
+        "end_of_service_date",
+        "spare_parts_availability_date",
+        "spare_parts_availability_duration",
+        "commercialization_end_date",
+        "manufacturing_end_date",
+        "repair_service_end_date"
+      ],
+      "description": "Comprehensive lifecycle dates for obsolescence management"
+    },
+    "contact_information": {
+      "fields": [
+        "contact_details",
+        "migration_guidance"
+      ],
+      "description": "Contact and support information for migration"
+    }
+  },
+  "field_types": {
+    "document_information.document_type": ["str"],
+    "document_information.communication_type": ["str", "NoneType"],
+    "document_information.language": ["str", "NoneType"],
+    "document_information.document_number": ["str", "NoneType"],
+    "document_information.document_title": ["str", "NoneType"],
+    "document_information.total_products": ["int", "NoneType"],
+    "document_information.has_tables": ["bool", "NoneType"],
+    "document_information.has_technical_specs": ["bool", "NoneType"],
+    "document_information.has_images": ["bool", "NoneType"],
+    "document_information.extraction_complexity": ["str", "NoneType"],
+    "document_information.page_count": ["int", "NoneType"],
+    "document_information.word_count": ["int", "NoneType"],
+    "technical_specifications.voltage_level": ["str", "NoneType"],
+    "technical_specifications.current_rating": ["str", "NoneType"],
+    "technical_specifications.power_rating": ["str", "NoneType"],
+    "technical_specifications.frequency": ["str", "NoneType"],
+    "technical_specifications.short_circuit_rating": ["str", "NoneType"],
+    "technical_specifications.protection_class": ["str", "NoneType"],
+    "technical_specifications.insulation_level": ["str", "NoneType"],
+    "technical_specifications.operating_temperature": ["str", "NoneType"],
+    "technical_specifications.dimensions": ["str", "NoneType"],
+    "technical_specifications.weight": ["str", "NoneType"],
+    "lifecycle_information.announcement_date": ["str", "NoneType"],
+    "lifecycle_information.effective_date": ["str", "NoneType"],
+    "lifecycle_information.publication_date": ["str", "NoneType"],
+    "lifecycle_information.lifecycle_stage": ["str", "NoneType"],
+    "lifecycle_information.transition_period": ["str", "NoneType"],
+    "key_dates.last_order_date": ["str", "NoneType"],
+    "key_dates.end_of_service_date": ["str", "NoneType"],
+    "key_dates.spare_parts_availability_date": ["str", "NoneType"],
+    "key_dates.spare_parts_availability_duration": ["str", "NoneType"],
+    "key_dates.commercialization_end_date": ["str", "NoneType"],
+    "key_dates.manufacturing_end_date": ["str", "NoneType"],
+    "key_dates.repair_service_end_date": ["str", "NoneType"]
+  },
+  "field_examples": {
+    "document_information.document_type": ["obsolescence_letter", "withdrawal_notice", "end_of_life_notice"],
+    "document_information.communication_type": ["Internal", "External"],
+    "document_information.language": ["English", "French", "German"],
+    "document_information.document_title": ["PIX 2B Withdrawal Notice", "SEPAM2040 End of Life"],
+    "document_information.extraction_complexity": ["Low", "Medium", "High"],
+    "technical_specifications.voltage_level": ["12-17.5kV", "up to 24 kV", "690V AC"],
+    "technical_specifications.current_rating": ["up to 3150A", "400A", "2500A"],
+    "technical_specifications.short_circuit_rating": ["31.5kA 3s", "40 kA", "25kA"],
+    "technical_specifications.protection_class": ["IP54", "IP65", "IP20"],
+    "lifecycle_information.announcement_date": ["2020-03-12", "2022-05-11"],
+    "lifecycle_information.lifecycle_stage": ["Active", "Obsolete", "Withdrawn", "EOL"],
+    "key_dates.last_order_date": ["2020-03", "2023-03-31", "2024"],
+    "key_dates.end_of_service_date": ["2023-11", "2030-12-31", "2025"]
+  },
+  "extraction_confidence": 0.95,
+  "_schema_info": {
+    "generation_timestamp": "2025-07-14T10:00:00Z",
+    "source_documents": 40,
+    "total_fields_analyzed": 45,
+    "common_fields_count": 38,
+    "model_used": "grok-3-latest",
+    "schema_version": "3.0.0",
+    "enhancements": [
+      "Added communication_type classification (Internal/External)",
+      "Enhanced technical specifications with 6 additional fields",
+      "Standardized ISO date formats (YYYY-MM-DD or YYYY)",
+      "Added lifecycle_stage and transition_period fields",
+      "Extended key_dates with 4 additional date fields",
+      "Added document metadata fields (title, page_count, word_count, has_images)"
+    ]
+  }
+} 

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📄 Document Metadata Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-2">📄 Document Metadata Dashboard</h1>
+            <p class="text-gray-400">Extracted metadata from obsolescence letters using Enhanced SOTA Grok Service</p>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="text-center">
+            <div class="text-xl text-gray-400">Loading documents metadata...</div>
+        </div>
+
+        <!-- Error -->
+        <div id="error" class="hidden text-center">
+            <div class="text-xl text-red-400">Error loading data</div>
+        </div>
+
+        <!-- Statistics -->
+        <div id="statistics" class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+                <div id="stat-documents" class="text-3xl font-bold text-blue-400">0</div>
+                <div class="text-gray-400">Documents</div>
+            </div>
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+                <div id="stat-products" class="text-3xl font-bold text-green-400">0</div>
+                <div class="text-gray-400">Products</div>
+            </div>
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+                <div id="stat-confidence" class="text-3xl font-bold text-yellow-400">0%</div>
+                <div class="text-gray-400">Avg Confidence</div>
+            </div>
+            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+                <div id="stat-lines" class="text-3xl font-bold text-purple-400">0</div>
+                <div class="text-gray-400">Product Lines</div>
+            </div>
+        </div>
+
+        <!-- Documents Grid -->
+        <div id="documents-grid" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+        </div>
+
+        <!-- Document Details Modal -->
+        <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 id="modal-title" class="text-2xl font-bold text-white"></h2>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl">×</button>
+                    </div>
+                    <div id="modal-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let documentsData = [];
+        let statisticsData = {};
+
+        async function loadDocuments() {
+            try {
+                const response = await fetch('http://localhost:5001/api/documents');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                documentsData = data.documents || [];
+                statisticsData = data.statistics || {};
+                
+                displayStatistics();
+                displayDocuments();
+                
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('statistics').classList.remove('hidden');
+                document.getElementById('documents-grid').classList.remove('hidden');
+                
+            } catch (error) {
+                console.error('Error loading documents:', error);
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+            }
+        }
+
+        function displayStatistics() {
+            document.getElementById('stat-documents').textContent = statisticsData.total_documents || 0;
+            document.getElementById('stat-products').textContent = statisticsData.total_products || 0;
+            document.getElementById('stat-confidence').textContent = 
+                Math.round((statisticsData.avg_confidence || 0) * 100) + '%';
+            document.getElementById('stat-lines').textContent = statisticsData.unique_product_lines || 0;
+            
+            // Update confidence color
+            const confidenceEl = document.getElementById('stat-confidence');
+            const confidence = statisticsData.avg_confidence || 0;
+            if (confidence >= 0.9) confidenceEl.className = 'text-3xl font-bold text-green-400';
+            else if (confidence >= 0.7) confidenceEl.className = 'text-3xl font-bold text-yellow-400';
+            else confidenceEl.className = 'text-3xl font-bold text-red-400';
+        }
+
+        function displayDocuments() {
+            const grid = document.getElementById('documents-grid');
+            grid.innerHTML = '';
+
+            documentsData.forEach(doc => {
+                const card = createDocumentCard(doc);
+                grid.appendChild(card);
+            });
+        }
+
+        function createDocumentCard(doc) {
+            const card = document.createElement('div');
+            card.className = 'bg-gray-800 border border-gray-700 rounded-lg p-6';
+            
+            const confidence = Math.round(doc.extraction_confidence * 100);
+            const confidenceColor = confidence >= 90 ? 'text-green-400' : 
+                                  confidence >= 70 ? 'text-yellow-400' : 'text-red-400';
+            
+            const productLines = doc.product_lines ? doc.product_lines.split(', ') : [];
+            const productLineBadges = productLines.map(line => {
+                const colors = {
+                    'PSIBS': 'bg-blue-500/20 text-blue-300',
+                    'DPIBS': 'bg-green-500/20 text-green-300',
+                    'SPIBS': 'bg-purple-500/20 text-purple-300',
+                    'PPIBS': 'bg-orange-500/20 text-orange-300'
+                };
+                const color = colors[line.trim()] || 'bg-gray-500/20 text-gray-300';
+                return `<span class="px-2 py-1 rounded text-xs font-medium ${color}">${line.trim()}</span>`;
+            }).join(' ');
+
+            card.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-1">
+                                ${doc.document_name.replace(/_/g, ' ')}
+                            </h3>
+                            <div class="flex items-center space-x-2 text-sm">
+                                <span class="text-gray-400">${doc.language}</span>
+                                <span class="text-gray-600">•</span>
+                                <span class="text-gray-400">${doc.extraction_complexity}</span>
+                            </div>
+                        </div>
+                        <div class="text-lg font-bold ${confidenceColor}">
+                            ${confidence}%
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-400">
+                            <span class="font-medium text-white">${doc.actual_products}</span> products extracted
+                            ${doc.has_technical_specs ? '<span class="ml-2 text-green-400">• Tech specs</span>' : ''}
+                        </div>
+                    </div>
+
+                    ${productLineBadges ? `<div class="flex flex-wrap gap-2">${productLineBadges}</div>` : ''}
+
+                    <div class="pt-2">
+                        <button onclick="viewDocumentDetails(${doc.id})" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        async function viewDocumentDetails(documentId) {
+            try {
+                const response = await fetch(`http://localhost:5001/api/documents?id=${documentId}`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                displayDocumentModal(data);
+                
+            } catch (error) {
+                console.error('Error loading document details:', error);
+                alert('Error loading document details');
+            }
+        }
+
+        function displayDocumentModal(data) {
+            const { document, products, businessInfo } = data;
+            
+            document.getElementById('modal-title').textContent = 
+                document.document_name.replace(/_/g, ' ');
+            
+            const confidence = Math.round(document.extraction_confidence * 100);
+            const confidenceColor = confidence >= 90 ? 'text-green-400' : 
+                                  confidence >= 70 ? 'text-yellow-400' : 'text-red-400';
+
+            let content = `
+                <!-- Document Information -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">Document Information</h3>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div><span class="text-gray-400">Type:</span> <span class="ml-2 text-white">${document.document_type}</span></div>
+                        <div><span class="text-gray-400">Language:</span> <span class="ml-2 text-white">${document.language}</span></div>
+                        <div><span class="text-gray-400">Confidence:</span> <span class="ml-2 font-medium ${confidenceColor}">${confidence}%</span></div>
+                        <div><span class="text-gray-400">Complexity:</span> <span class="ml-2 text-white">${document.extraction_complexity}</span></div>
+                        <div class="col-span-2"><span class="text-gray-400">Source:</span> <span class="ml-2 text-white text-xs break-all">${document.source_file_path}</span></div>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">Products (${products.length})</h3>
+                    <div class="space-y-4">
+            `;
+
+            products.forEach(product => {
+                const lineColors = {
+                    'PSIBS': 'bg-blue-500/20 text-blue-300',
+                    'DPIBS': 'bg-green-500/20 text-green-300',
+                    'SPIBS': 'bg-purple-500/20 text-purple-300',
+                    'PPIBS': 'bg-orange-500/20 text-orange-300'
+                };
+                const lineColor = lineColors[product.product_line] || 'bg-gray-500/20 text-gray-300';
+
+                content += `
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-semibold text-white">${product.product_identifier}</h4>
+                                <p class="text-sm text-gray-400">${product.range_label}</p>
+                            </div>
+                            <span class="px-2 py-1 rounded text-xs font-medium ${lineColor}">
+                                ${product.product_line}
+                            </span>
+                        </div>
+                        
+                        <p class="text-sm text-gray-300 mb-3">${product.product_description}</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                            ${product.voltage_level ? `<div><span class="text-gray-400">Voltage:</span> <span class="ml-1 text-white">${product.voltage_level}</span></div>` : ''}
+                            ${product.current_rating ? `<div><span class="text-gray-400">Current:</span> <span class="ml-1 text-white">${product.current_rating}</span></div>` : ''}
+                            ${product.obsolescence_status ? `<div><span class="text-gray-400">Status:</span> <span class="ml-1 text-red-400">${product.obsolescence_status}</span></div>` : ''}
+                            ${product.last_order_date ? `<div><span class="text-gray-400">Last Order:</span> <span class="ml-1 text-white">${product.last_order_date}</span></div>` : ''}
+                        </div>
+                        
+                        ${product.replacement_suggestions && product.replacement_suggestions !== '[]' ? 
+                            `<div class="mt-3 text-xs">
+                                <span class="text-gray-400">Replacements:</span> 
+                                <span class="ml-1 text-green-400">${formatJson(product.replacement_suggestions)}</span>
+                            </div>` : ''}
+                    </div>
+                `;
+            });
+
+            content += `</div></div>`;
+
+            // Business Information
+            if (businessInfo) {
+                content += `
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-white mb-3">Business Information</h3>
+                        <div class="bg-gray-700 rounded-lg p-4 space-y-3 text-sm">
+                            ${businessInfo.business_impact ? `<div><span class="text-gray-400">Impact:</span><p class="text-white mt-1">${businessInfo.business_impact}</p></div>` : ''}
+                            ${businessInfo.affected_ranges ? `<div><span class="text-gray-400">Affected Ranges:</span> <span class="ml-2 text-white">${formatJson(businessInfo.affected_ranges)}</span></div>` : ''}
+                            ${businessInfo.contact_details ? `<div><span class="text-gray-400">Contact:</span><p class="text-white mt-1">${businessInfo.contact_details}</p></div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function formatJson(value) {
+            try {
+                const parsed = JSON.parse(value);
+                return Array.isArray(parsed) ? parsed.join(', ') : value;
+            } catch {
+                return value;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        // Load documents when page loads
+        window.addEventListener('load', loadDocuments);
+    </script>
+</body>
+</html> 
