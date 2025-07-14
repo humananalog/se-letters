@@ -28,6 +28,7 @@ transformers>=4.30.0
 requests>=2.31.0
 httpx>=0.25.0
 aiohttp>=3.8.0
+xai-sdk>=1.0.0
 
 # Logging & Monitoring
 loguru>=0.7.0

@@ -5,7 +5,7 @@ api:
   xai:
     base_url: "https://api.x.ai/v1"
     model: "grok-3-latest"
-    api_key: "xai-RPhTjf3SzTbm11ZKcpFV0hsOqVTSj8QUbTFhUrrQWaE"
+    # api_key loaded from XAI_API_KEY environment variable
     max_tokens: 4096
     temperature: 0.1
     timeout: 30
