@@ -1,0 +1,262 @@
+{
+  "test_metadata": {
+    "source_file": "data/output/json_outputs/SEPAM2040_PWP_Notice_20/latest/grok_metadata.json",
+    "test_timestamp": 1752499763.1107268,
+    "processing_time_ms": 0.6639957427978516
+  },
+  "sepam_products": [
+    {
+      "product_identifier": "SEPAM 20",
+      "range_label": "SEPAM",
+      "subrange_label": "20",
+      "series": "SEPAMSeries.SERIES_20",
+      "application": "SEPAMApplication.SUBSTATION",
+      "model_variant": "S20",
+      "protection_functions": [
+        "earth_fault",
+        "directional",
+        "overcurrent"
+      ],
+      "communication_protocols": [
+        "Modbus",
+        "IEC61850"
+      ],
+      "hardware_options": [
+        "MES114F",
+        "ACE990",
+        "ACE919CA"
+      ],
+      "obsolescence_status": "End of Commercialization",
+      "replacement_suggestions": "Not specified",
+      "confidence_score": 0.9
+    },
+    {
+      "product_identifier": "SEPAM 40",
+      "range_label": "SEPAM",
+      "subrange_label": "40",
+      "series": "SEPAMSeries.SERIES_40",
+      "application": "SEPAMApplication.SUBSTATION",
+      "model_variant": "S40",
+      "protection_functions": [
+        "earth_fault",
+        "directional",
+        "overcurrent"
+      ],
+      "communication_protocols": [
+        "Modbus",
+        "IEC61850",
+        "DNP3"
+      ],
+      "hardware_options": [
+        "MES114F",
+        "ACE990",
+        "ACE919CA"
+      ],
+      "obsolescence_status": "End of Commercialization",
+      "replacement_suggestions": "Not specified",
+      "confidence_score": 0.9
+    }
+  ],
+  "micom_products": [
+    {
+      "product_identifier": "MiCOM P20",
+      "range_label": "MiCOM",
+      "subrange_label": "P20",
+      "series": "SEPAMSeries.SERIES_20",
+      "application": "SEPAMApplication.SUBSTATION",
+      "model_variant": "MiCOM_P20",
+      "protection_functions": [
+        "overcurrent",
+        "earth_fault",
+        "directional",
+        "monitoring"
+      ],
+      "communication_protocols": [
+        "Modbus",
+        "IEC61850"
+      ],
+      "hardware_options": [
+        "MES114F",
+        "ACE919CA"
+      ],
+      "obsolescence_status": "End of Commercialization",
+      "replacement_suggestions": "Not specified",
+      "confidence_score": 0.85
+    },
+    {
+      "product_identifier": "MiCOM P521",
+      "range_label": "MiCOM",
+      "subrange_label": "P521",
+      "series": "SEPAMSeries.SERIES_40",
+      "application": "SEPAMApplication.SUBSTATION",
+      "model_variant": "MiCOM_P521",
+      "protection_functions": [
+        "overcurrent",
+        "earth_fault",
+        "directional",
+        "monitoring"
+      ],
+      "communication_protocols": [
+        "Modbus",
+        "IEC61850"
+      ],
+      "hardware_options": [
+        "MES114F",
+        "ACE919CA"
+      ],
+      "obsolescence_status": "End of Commercialization",
+      "replacement_suggestions": "PowerLogic P5L",
+      "confidence_score": 0.85
+    }
+  ],
+  "powerlogic_products": [
+    {
+      "product_identifier": "PowerLogic P5L",
+      "range_label": "PowerLogic",
+      "subrange_label": "P5L",
+      "series": "SEPAMSeries.SERIES_60",
+      "application": "SEPAMApplication.SUBSTATION",
+      "model_variant": "PowerLogic_P5L",
+      "protection_functions": [
+        "advanced_overcurrent",
+        "power_quality",
+        "monitoring",
+        "communication"
+      ],
+      "communication_protocols": [
+        "Modbus",
+        "IEC61850",
+        "DNP3",
+        "TCP/IP"
+      ],
+      "hardware_options": [
+        "MES114F",
+        "MET148-2",
+        "ACE919CA"
+      ],
+      "obsolescence_status": "Active",
+      "replacement_suggestions": "Not applicable",
+      "confidence_score": 0.9
+    }
+  ],
+  "series_analysis": {
+    "total_sepam_products": 2,
+    "series_distribution": {
+      "Series 20": {
+        "count": 1,
+        "percentage": 50.0,
+        "complexity": "Standard"
+      },
+      "Series 40": {
+        "count": 1,
+        "percentage": 50.0,
+        "complexity": "Enhanced"
+      }
+    },
+    "most_common_series": "Series 20"
+  },
+  "application_analysis": {
+    "total_applications": 1,
+    "application_distribution": {
+      "Substation Protection": {
+        "count": 2,
+        "percentage": 100.0
+      }
+    },
+    "primary_application": "Substation Protection"
+  },
+  "modernization_recommendations": [
+    {
+      "obsolete_product": "SEPAM 20",
+      "series": "20",
+      "application": "S",
+      "recommendation_type": "modernization",
+      "recommended_series": "60",
+      "modernization_benefits": [
+        "Enhanced communication protocols",
+        "Advanced protection functions",
+        "Improved monitoring capabilities",
+        "Smart grid compatibility"
+      ],
+      "migration_complexity": "Medium"
+    },
+    {
+      "obsolete_product": "SEPAM 40",
+      "series": "40",
+      "application": "S",
+      "recommendation_type": "modernization",
+      "recommended_series": "80",
+      "modernization_benefits": [
+        "Enhanced communication protocols",
+        "Advanced protection functions",
+        "Improved monitoring capabilities",
+        "Smart grid compatibility"
+      ],
+      "migration_complexity": "High"
+    },
+    {
+      "obsolete_product": "MiCOM P20",
+      "product_type": "MiCOM Protection Relay",
+      "recommendation_type": "direct_replacement",
+      "recommended_product": "PowerLogic P5L",
+      "modernization_benefits": [
+        "Maintained protection philosophy",
+        "Enhanced monitoring capabilities",
+        "Improved communication options",
+        "Extended support lifecycle"
+      ],
+      "migration_complexity": "Low"
+    },
+    {
+      "obsolete_product": "MiCOM P521",
+      "product_type": "MiCOM Protection Relay",
+      "recommendation_type": "direct_replacement",
+      "recommended_product": "PowerLogic P5L",
+      "modernization_benefits": [
+        "Maintained protection philosophy",
+        "Enhanced monitoring capabilities",
+        "Improved communication options",
+        "Extended support lifecycle"
+      ],
+      "migration_complexity": "Low"
+    }
+  ],
+  "obsolescence_timeline": {
+    "obsolete_count": 4,
+    "active_count": 1,
+    "obsolete_products": [
+      {
+        "product": "SEPAM 20",
+        "series": "20",
+        "status": "End of Commercialization"
+      },
+      {
+        "product": "SEPAM 40",
+        "series": "40",
+        "status": "End of Commercialization"
+      },
+      {
+        "product": "MiCOM P20",
+        "series": "20",
+        "status": "End of Commercialization"
+      },
+      {
+        "product": "MiCOM P521",
+        "series": "40",
+        "status": "End of Commercialization"
+      }
+    ],
+    "active_products": [
+      {
+        "product": "PowerLogic P5L",
+        "series": "60"
+      }
+    ],
+    "obsolescence_rate": 80.0
+  },
+  "confidence_summary": {
+    "average_confidence": 0.8800000000000001,
+    "high_confidence_rate": 100.0,
+    "total_products_analyzed": 5
+  }
+}
