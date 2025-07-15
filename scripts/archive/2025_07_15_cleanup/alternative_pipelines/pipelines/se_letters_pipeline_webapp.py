@@ -594,13 +594,8 @@ class ProductionPipeline:
             # Get file info
             file_size = file_path.stat().st_size if file_path.exists() else 0
             
-            # Extract document text first (like in production test)
-            document_processor = DocumentProcessor(self.config)
-            document_result = document_processor.process_document(file_path)
-            extracted_text = document_result.text if hasattr(document_result, 'text') else ""
-            
-            # Process with SOTA Grok service using extracted text
-            grok_metadata = self.grok_service.process_raw_document(file_path, extracted_text)
+            # Process document directly with SOTA Grok service (NO OCR EXTRACTION)
+            grok_metadata = self.grok_service.process_raw_document(file_path)
             
             # Store in letter database
             letter_id = self.letter_db_service.store_letter_metadata(grok_metadata)
