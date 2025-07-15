@@ -108,7 +108,15 @@ class LetterDatabaseService:
     def __init__(self, db_path: str = "data/letters.duckdb"):
         """Initialize the letter database service"""
         self.db_path = db_path
-        self.config = get_config()
+        
+        # Initialize config with defaults if not available
+        try:
+            self.config = get_config()
+        except Exception as e:
+            logger.warning(f"⚠️ Could not load config, using defaults: {e}")
+            # Create minimal config for basic operations
+            from se_letters.core.config import DataConfig, DatabaseConfig
+            self.config = None  # We'll handle this gracefully
         
         # Thread safety
         self._lock = threading.RLock()

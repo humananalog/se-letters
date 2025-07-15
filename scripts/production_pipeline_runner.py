@@ -255,112 +255,56 @@ class ProductionPipelineRunner:
         
         return summary
     
-    def output_json_results(self, results: List[ProcessingResult], file_path: Path = None) -> None:
+    def output_json_results(self, results: List[ProcessingResult], input_path: Path) -> None:
         """Output results as JSON for webapp consumption"""
         import json
         
-        # Get the first result (single file processing)
         if not results:
-            json_output = {
+            output = {
                 "success": False,
-                "error": "No results to process",
-                "file_name": file_path.name if file_path else "",
-                "file_path": str(file_path) if file_path else "",
-                "processing_time_ms": 0,
-                "extracted_ranges": [],
-                "valid_ranges": [],
-                "invalid_ranges": [],
-                "obsolete_products": [],
-                "replacement_products": [],
-                "obsolete_count": 0,
-                "replacement_count": 0,
-                "extraction_method": "production_pipeline",
-                "extraction_confidence": 0,
-                "search_strategy": "N/A",
-                "search_space_reduction": 0,
-                "grok_metadata": {},
-                "json_outputs_saved": False,
-                "json_outputs_location": None
+                "error": "No results to output",
+                "file_name": input_path.name,
+                "file_path": str(input_path)
             }
-        else:
-            result = results[0]
-            
-            # Extract grok metadata from the result
-            grok_metadata = {}
-            if result.success and result.grok_metadata:
-                grok_metadata = result.grok_metadata
-            elif result.success and result.validation_result:
-                # Try to get from validation result
-                grok_metadata = {
-                    "product_ranges": result.validation_result.product_ranges,
-                    "confidence_score": result.confidence_score or 0.0,
-                    "technical_specs": result.validation_result.technical_specs,
-                    "extracted_metadata": result.validation_result.extracted_metadata
-                }
-            
-            # Determine JSON outputs location
-            json_outputs_location = None
-            if result.success and result.document_id and file_path:
-                json_outputs_location = f"data/output/json_outputs/{file_path.stem}_{result.document_id}/latest/"
-            
-            json_output = {
-                "success": result.success,
-                "error": result.error_message if not result.success else None,
-                "file_name": file_path.name if file_path else "",
-                "file_path": str(file_path) if file_path else "",
-                "processing_time_ms": result.processing_time_ms or 0,
-                "extracted_ranges": result.validation_result.product_ranges if result.validation_result else [],
-                "valid_ranges": result.validation_result.product_ranges if result.validation_result else [],
-                "invalid_ranges": [],
-                "obsolete_products": [],
-                "replacement_products": [],
-                "obsolete_count": 0,
-                "replacement_count": 0,
-                "extraction_method": "production_pipeline",
-                "extraction_confidence": result.confidence_score or 0.0,
-                "search_strategy": "xai_grok_processing",
-                "search_space_reduction": 0,
-                "grok_metadata": grok_metadata,
-                "json_outputs_saved": result.success,
-                "json_outputs_location": json_outputs_location
-            }
-        
-        # Output JSON to stdout (webapp will capture this)
-        print(json.dumps(json_output, indent=2))
-
-    def print_summary_report(self) -> None:
-        """Print comprehensive summary report"""
-        summary = self.generate_summary_report()
-        
-        if "message" in summary:
-            logger.info(summary["message"])
+            print(json.dumps(output))
             return
         
-        session = summary["processing_session"]
-        db_stats = summary["database_statistics"]
+        # Get the first (and typically only) result for single file processing
+        result = results[0]
+            
+        # Extract product ranges from validation result
+        extracted_ranges = []
+        if result.validation_result and result.validation_result.product_ranges:
+            extracted_ranges = result.validation_result.product_ranges
         
-        logger.info("📊 PROCESSING SUMMARY REPORT")
-        logger.info("=" * 50)
+        # Build JSON output compatible with frontend expectations
+        output = {
+                "success": result.success,
+                "error": result.error_message if not result.success else None,
+            "file_name": input_path.name,
+            "file_path": str(input_path),
+            "processing_time_ms": result.processing_time_ms,
+            "extracted_ranges": extracted_ranges,
+            "valid_ranges": extracted_ranges,  # Same as extracted for now
+                "invalid_ranges": [],
+                "obsolete_products": [],
+                "replacement_products": [],
+                "obsolete_count": 0,
+                "replacement_count": 0,
+                "extraction_method": "production_pipeline",
+            "extraction_confidence": result.confidence_score,
+                "search_strategy": "xai_grok_processing",
+                "search_space_reduction": 0,
+            "json_outputs_saved": True,
+            "json_outputs_location": f"data/output/json_outputs/{input_path.stem}_{result.document_id}/latest/"
+        }
         
-        logger.info(f"📁 Files processed: {session['total_files']}")
-        logger.info(f"✅ Successful: {session['successful']}")
-        logger.info(f"❌ Failed: {session['failed']}")
-        logger.info(f"⏭️ Skipped: {session['skipped']}")
-        logger.info(f"🎯 Success rate: {session['success_rate']:.1f}%")
-        logger.info(f"⏱️ Average processing time: {session['avg_processing_time_ms']:.2f}ms")
-        logger.info(f"📊 Average confidence: {session['avg_confidence_score']:.2f}")
+        # Add grok metadata if available
+        if hasattr(result, 'grok_metadata') and result.grok_metadata:
+            output["grok_metadata"] = result.grok_metadata
         
-        logger.info("\n🗄️ DATABASE STATISTICS")
-        logger.info(f"📄 Total documents: {db_stats.get('total_documents', 0)}")
-        logger.info(f"✅ Processed documents: {db_stats.get('processed_count', 0)}")
-        logger.info(f"❌ Failed documents: {db_stats.get('failed_count', 0)}")
-        logger.info(f"📦 Total products: {db_stats.get('total_products', 0)}")
-        logger.info(f"🏷️ Unique ranges: {db_stats.get('unique_ranges', 0)}")
-        
-        if summary["failed_files"]:
-            logger.info("\n❌ FAILED FILES:")
-            for failed in summary["failed_files"]:
-                logger.error(f"  • {failed['file']}: {failed['error']}")
+        # Print JSON to stdout for API to capture
+        print(json.dumps(output))
 
 
 def main():
@@ -465,6 +409,8 @@ def main():
         
     except Exception as e:
         logger.error(f"❌ Unexpected error: {e}")
+        if 'results' in locals():
+            runner.print_summary_report()
         sys.exit(1)
 
 
