@@ -389,7 +389,10 @@ def main():
             runner.output_json_results(results, input_path)
         else:
             # Print summary for CLI usage
-            runner.print_summary_report()
+            summary = runner.generate_summary_report()
+            logger.info("📊 Processing Summary:")
+            logger.info(f"✅ Successful: {summary.get('successful_count', 0)}")
+            logger.info(f"❌ Failed: {summary.get('failed_count', 0)}")
         
         # Exit with appropriate code
         failed_count = sum(1 for r in results if not r.success)
@@ -404,13 +407,16 @@ def main():
             
     except KeyboardInterrupt:
         logger.warning("⚠️ Processing interrupted by user")
-        runner.print_summary_report()
+        if 'runner' in locals():
+            summary = runner.generate_summary_report()
+            logger.info(f"📊 Processed: {summary.get('successful_count', 0)}")
         sys.exit(130)
         
     except Exception as e:
         logger.error(f"❌ Unexpected error: {e}")
-        if 'results' in locals():
-            runner.print_summary_report()
+        if 'results' in locals() and 'runner' in locals():
+            summary = runner.generate_summary_report()
+            logger.info(f"📊 Processed: {summary.get('successful_count', 0)}")
         sys.exit(1)
 
 

@@ -21,7 +21,9 @@ from loguru import logger
 from se_letters.core.config import get_config
 from se_letters.services.xai_service import XAIService
 from se_letters.services.document_processor import DocumentProcessor
-from se_letters.utils.json_output_manager import JSONOutputManager, OutputMetadata, save_pipeline_outputs
+from se_letters.services.intelligent_product_matching_service import IntelligentProductMatchingService
+from se_letters.services.sota_product_database_service import SOTAProductDatabaseService
+from se_letters.utils.json_output_manager import JSONOutputManager, OutputMetadata
 
 
 class ProcessingStatus(Enum):
@@ -68,6 +70,7 @@ class ProcessingResult:
     validation_result: Optional[ContentValidationResult] = None
     grok_metadata: Optional[Dict[str, Any]] = None
     ingestion_details: Optional[Dict[str, Any]] = None
+    product_matching_result: Optional[Dict[str, Any]] = None
 
 
 class ProductionPipelineService:
@@ -82,6 +85,8 @@ class ProductionPipelineService:
         self.xai_service = XAIService(self.config)
         self.document_processor = DocumentProcessor(self.config)
         self.json_output_manager = JSONOutputManager()
+        self.product_matching_service = IntelligentProductMatchingService(debug_mode=True)
+        self.product_database_service = SOTAProductDatabaseService()
         
         # Initialize database
         self._init_database()
@@ -133,6 +138,7 @@ class ProductionPipelineService:
                 conn.execute("CREATE SEQUENCE IF NOT EXISTS letters_id_seq START 1")
                 conn.execute("CREATE SEQUENCE IF NOT EXISTS products_id_seq START 1")
                 conn.execute("CREATE SEQUENCE IF NOT EXISTS debug_id_seq START 1")
+                conn.execute("CREATE SEQUENCE IF NOT EXISTS matches_id_seq START 1")
                 
                 # Create letters table
                 conn.execute("""
@@ -170,7 +176,7 @@ class ProductionPipelineService:
                 except Exception:
                     pass  # Column already exists
                 
-                # Create products table
+                # Create products table (extracted products from Grok)
                 conn.execute("""
                     CREATE TABLE IF NOT EXISTS letter_products (
                         id INTEGER PRIMARY KEY DEFAULT nextval('products_id_seq'),
@@ -186,6 +192,26 @@ class ProductionPipelineService:
                         confidence_score REAL DEFAULT 0.0,
                         validation_status TEXT DEFAULT 'validated',
                         FOREIGN KEY (letter_id) REFERENCES letters(id)
+                    )
+                """)
+                
+                # Create product matches table (matched IBcatalogue products)
+                conn.execute("""
+                    CREATE TABLE IF NOT EXISTS letter_product_matches (
+                        id INTEGER PRIMARY KEY DEFAULT nextval('matches_id_seq'),
+                        letter_id INTEGER NOT NULL,
+                        letter_product_id INTEGER NOT NULL,
+                        ibcatalogue_product_identifier TEXT NOT NULL,
+                        match_confidence REAL NOT NULL,
+                        match_reason TEXT,
+                        technical_match_score REAL DEFAULT 0.0,
+                        nomenclature_match_score REAL DEFAULT 0.0,
+                        product_line_match_score REAL DEFAULT 0.0,
+                        match_type TEXT,
+                        range_based_matching BOOLEAN DEFAULT FALSE,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (letter_id) REFERENCES letters(id),
+                        FOREIGN KEY (letter_product_id) REFERENCES letter_products(id)
                     )
                 """)
                 
@@ -205,14 +231,30 @@ class ProductionPipelineService:
                 """)
                 
                 # Create indexes for performance
-                conn.execute("CREATE INDEX IF NOT EXISTS idx_letters_source_path ON letters(source_file_path)")
-                conn.execute("CREATE INDEX IF NOT EXISTS idx_letters_status ON letters(status)")
-                conn.execute("CREATE INDEX IF NOT EXISTS idx_products_letter_id ON letter_products(letter_id)")
-                conn.execute("CREATE INDEX IF NOT EXISTS idx_debug_letter_id ON processing_debug(letter_id)")
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_letters_source_path ON letters(source_file_path)"
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_letters_status ON letters(status)"
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_products_letter_id ON letter_products(letter_id)"
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_matches_letter_id ON letter_product_matches(letter_id)"
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_matches_product_id ON letter_product_matches(letter_product_id)"
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_debug_letter_id ON processing_debug(letter_id)"
+                )
                 
                 # Create file_hash index if column exists
                 try:
-                    conn.execute("CREATE INDEX IF NOT EXISTS idx_letters_file_hash ON letters(file_hash)")
+                    conn.execute(
+                        "CREATE INDEX IF NOT EXISTS idx_letters_file_hash ON letters(file_hash)"
+                    )
                 except Exception:
                     pass  # Column doesn't exist yet
                 
@@ -250,6 +292,8 @@ class ProductionPipelineService:
                 )
             elif check_result.exists and force_reprocess:
                 logger.info(f"🔄 Force reprocessing existing document: {file_path}")
+                # Store the existing document ID for updating instead of creating new
+                existing_document_id = check_result.document_id
                 # Delete existing record to allow reprocessing
                 self._delete_existing_document(check_result.document_id)
             
@@ -281,10 +325,15 @@ class ProductionPipelineService:
                     processing_time_ms=(time.time() - start_time) * 1000
                 )
             
-            # Step 4: Ingest into database
-            logger.info("💾 Step 4: Ingesting into database")
+            # Step 4: Intelligent Product Matching
+            logger.info("🔍 Step 4: Intelligent Product Matching")
+            product_matching_result = self._process_product_matching(grok_result, file_path)
+            
+            # Step 5: Ingest into database
+            logger.info("💾 Step 5: Ingesting into database")
             ingestion_result = self._ingest_into_database(
-                file_path, validation_result, grok_result
+                file_path, validation_result, grok_result, product_matching_result,
+                existing_document_id if 'existing_document_id' in locals() else None
             )
             
             if not ingestion_result["success"]:
@@ -300,8 +349,8 @@ class ProductionPipelineService:
             
             processing_time = (time.time() - start_time) * 1000
             
-            # Step 5: Save JSON outputs
-            logger.info("💾 Step 5: Saving JSON outputs")
+            # Step 6: Save JSON outputs
+            logger.info("💾 Step 6: Saving JSON outputs")
             try:
                 self._save_json_outputs(
                     file_path=file_path,
@@ -328,7 +377,8 @@ class ProductionPipelineService:
                 confidence_score=validation_result.confidence_score,
                 validation_result=validation_result,
                 grok_metadata=grok_result,
-                ingestion_details=ingestion_result
+                ingestion_details=ingestion_result,
+                product_matching_result=product_matching_result
             )
             
         except Exception as e:
@@ -405,18 +455,19 @@ class ProductionPipelineService:
             return DocumentCheckResult(exists=False)
     
     def _delete_existing_document(self, document_id: int) -> None:
-        """Delete existing document and related records for reprocessing"""
+        """Delete existing document child records for reprocessing, keep letter record for update"""
         try:
             with duckdb.connect(self.db_path) as conn:
-                # Delete in correct order due to foreign key constraints
+                # Delete only child records due to foreign key constraints, keep letter record
                 conn.execute("DELETE FROM processing_debug WHERE letter_id = ?", [document_id])
+                conn.execute("DELETE FROM letter_product_matches WHERE letter_id = ?", [document_id])
                 conn.execute("DELETE FROM letter_products WHERE letter_id = ?", [document_id])
-                conn.execute("DELETE FROM letters WHERE id = ?", [document_id])
+                # Do NOT delete the letter record - we will update it instead
                 
-                logger.info(f"🗑️ Deleted existing document record: ID={document_id}")
+                logger.info(f"🗑️ Deleted child records for document: ID={document_id}")
                 
         except Exception as e:
-            logger.error(f"❌ Error deleting existing document: {e}")
+            logger.error(f"❌ Error deleting existing document child records: {e}")
             raise
     
     def _calculate_file_hash(self, file_path: Path) -> str:
@@ -529,11 +580,17 @@ class ProductionPipelineService:
     def _parse_validation_response(self, response: str) -> Dict[str, Any]:
         """Parse validation response from XAI"""
         try:
+            # DEBUG: Log the raw response
+            logger.debug(f"🔍 DEBUG: Raw XAI validation response:\n{response}")
+            
             # Try to extract JSON from response
             if "{" in response and "}" in response:
                 json_start = response.find("{")
                 json_end = response.rfind("}") + 1
                 json_str = response[json_start:json_end]
+                
+                # DEBUG: Log the extracted JSON string
+                logger.debug(f"🔍 DEBUG: Extracted JSON string:\n{json_str}")
                 
                 validation_data = json.loads(json_str)
                 
@@ -559,6 +616,7 @@ class ProductionPipelineService:
             
         except json.JSONDecodeError as e:
             logger.error(f"❌ JSON parsing error: {e}")
+            logger.error(f"❌ Raw response that caused error:\n{response}")
             return {
                 "is_compliant": False,
                 "confidence_score": 0.0,
@@ -706,7 +764,7 @@ class ProductionPipelineService:
             logger.error(f"❌ Grok JSON parsing error: {e}")
             return None
     
-    def _ingest_into_database(self, file_path: Path, validation_result: ContentValidationResult, grok_data: Dict[str, Any]) -> Dict[str, Any]:
+    def _ingest_into_database(self, file_path: Path, validation_result: ContentValidationResult, grok_data: Dict[str, Any], product_matching_result: Optional[Dict[str, Any]] = None, existing_document_id: Optional[int] = None) -> Dict[str, Any]:
         """Ingest processed data into database with comprehensive validation"""
         try:
             logger.info("💾 Starting database ingestion")
@@ -716,30 +774,55 @@ class ProductionPipelineService:
                 file_hash = self._calculate_file_hash(file_path)
                 file_size = file_path.stat().st_size
                 
-                conn.execute("""
-                    INSERT INTO letters (
-                        document_name, document_type, document_title, source_file_path,
-                        file_hash, file_size, processing_method, extraction_confidence,
-                        status, raw_grok_json, validation_details_json
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, [
-                    file_path.name,
-                    grok_data.get("document_information", {}).get("document_type"),
-                    grok_data.get("document_information", {}).get("document_title"),
-                    str(file_path),
-                    file_hash,
-                    file_size,
-                    "production_pipeline",
-                    validation_result.confidence_score,
-                    "processed",
-                    json.dumps(grok_data, indent=2),
-                    json.dumps(asdict(validation_result), indent=2)
-                ])
-                
-                # Get letter ID
-                letter_id = conn.execute("SELECT currval('letters_id_seq')").fetchone()[0]
-                
-                logger.info(f"📝 Letter record created: ID={letter_id}")
+                if existing_document_id:
+                    # Update existing document
+                    conn.execute("""
+                        UPDATE letters SET
+                            document_name = ?, document_type = ?, document_title = ?, 
+                            source_file_path = ?, file_hash = ?, file_size = ?, 
+                            processing_method = ?, extraction_confidence = ?,
+                            status = ?, raw_grok_json = ?, validation_details_json = ?, 
+                            updated_at = CURRENT_TIMESTAMP
+                        WHERE id = ?
+                    """, [
+                        file_path.name,
+                        grok_data.get("document_information", {}).get("document_type"),
+                        grok_data.get("document_information", {}).get("document_title"),
+                        str(file_path),
+                        file_hash,
+                        file_size,
+                        "production_pipeline",
+                        validation_result.confidence_score,
+                        "processed",
+                        json.dumps(grok_data, indent=2),
+                        json.dumps(asdict(validation_result), indent=2),
+                        existing_document_id
+                    ])
+                    letter_id = existing_document_id
+                    logger.info(f"📝 Existing document record updated: ID={letter_id}")
+                else:
+                    # Insert new document
+                    conn.execute("""
+                        INSERT INTO letters (
+                            document_name, document_type, document_title, source_file_path,
+                            file_hash, file_size, processing_method, extraction_confidence,
+                            status, raw_grok_json, validation_details_json
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, [
+                        file_path.name,
+                        grok_data.get("document_information", {}).get("document_type"),
+                        grok_data.get("document_information", {}).get("document_title"),
+                        str(file_path),
+                        file_hash,
+                        file_size,
+                        "production_pipeline",
+                        validation_result.confidence_score,
+                        "processed",
+                        json.dumps(grok_data, indent=2),
+                        json.dumps(asdict(validation_result), indent=2)
+                    ])
+                    letter_id = conn.execute("SELECT currval('letters_id_seq')").fetchone()[0]
+                    logger.info(f"📝 New document record created: ID={letter_id}")
                 
                 # Insert product records
                 products_inserted = 0
@@ -771,6 +854,93 @@ class ProductionPipelineService:
                     conn, letter_id, "database_ingestion", 
                     True, f"Successfully ingested {products_inserted} products"
                 )
+                
+                # Ingest product matching results
+                if product_matching_result and product_matching_result.get("success"):
+                    matches_inserted = 0
+                    for result in product_matching_result.get("matching_results", []):
+                        # Get the letter product from the matching result
+                        letter_product_info = result.get("letter_product")
+                        matching_result = result.get("matching_result")
+                        
+                        if not letter_product_info or not matching_result:
+                            continue
+                            
+                        # Find the corresponding letter_product record
+                        # Handle both dict and dataclass objects
+                        if hasattr(letter_product_info, 'product_identifier'):
+                            product_identifier = letter_product_info.product_identifier
+                        else:
+                            product_identifier = letter_product_info.get("product_identifier")
+                            
+                        letter_product_id = conn.execute("""
+                            SELECT id FROM letter_products 
+                            WHERE letter_id = ? AND product_identifier = ?
+                        """, [letter_id, product_identifier]).fetchone()
+                        
+                        if letter_product_id:
+                            letter_product_id = letter_product_id[0]
+                            
+                            # Insert each matching product
+                            # Handle both dict and dataclass objects for matching result
+                            if hasattr(matching_result, 'matching_products'):
+                                matching_products = matching_result.matching_products
+                                range_based = matching_result.range_based_matching
+                            else:
+                                matching_products = matching_result.get("matching_products", [])
+                                range_based = matching_result.get("range_based_matching", False)
+                            
+                            for match in matching_products:
+                                # Handle both dict and dataclass objects for individual matches
+                                if hasattr(match, 'product_identifier'):
+                                    conn.execute("""
+                                        INSERT INTO letter_product_matches (
+                                            letter_id, letter_product_id, 
+                                            ibcatalogue_product_identifier,
+                                            match_confidence, match_reason, 
+                                            technical_match_score,
+                                            nomenclature_match_score, 
+                                            product_line_match_score, 
+                                            match_type, range_based_matching
+                                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                    """, [
+                                        letter_id,
+                                        letter_product_id,
+                                        match.product_identifier,
+                                        match.confidence,
+                                        match.reason,
+                                        match.technical_match_score,
+                                        match.nomenclature_match_score,
+                                        match.product_line_match_score,
+                                        match.match_type,
+                                        range_based
+                                    ])
+                                else:
+                                    conn.execute("""
+                                        INSERT INTO letter_product_matches (
+                                            letter_id, letter_product_id, 
+                                            ibcatalogue_product_identifier,
+                                            match_confidence, match_reason, 
+                                            technical_match_score,
+                                            nomenclature_match_score, 
+                                            product_line_match_score, 
+                                            match_type, range_based_matching
+                                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                    """, [
+                                        letter_id,
+                                        letter_product_id,
+                                        match.get("product_identifier"),
+                                        match.get("confidence", 0.0),
+                                        match.get("reason", ""),
+                                        match.get("technical_match_score", 0.0),
+                                        match.get("nomenclature_match_score", 0.0),
+                                        match.get("product_line_match_score", 0.0),
+                                        match.get("match_type", "unknown"),
+                                        range_based
+                                    ])
+                                matches_inserted += 1
+                    
+                    logger.info(f"🎯 Product matches inserted: {matches_inserted}")
                 
                 logger.info("✅ Database ingestion completed successfully")
                 
@@ -908,3 +1078,102 @@ class ProductionPipelineService:
         except Exception as e:
             logger.error(f"❌ Error getting statistics: {e}")
             return {} 
+    
+    def _process_product_matching(self, grok_result: Dict[str, Any], file_path: Path) -> Dict[str, Any]:
+        """Process product matching for extracted products"""
+        try:
+            from se_letters.models.product_matching import LetterProductInfo
+            
+            logger.info("🔍 Starting product matching process")
+            
+            # Create letter product info from grok result
+            letter_products = self.product_matching_service.create_letter_product_info_from_grok_metadata(grok_result)
+            
+            if not letter_products:
+                logger.warning("⚠️ No products found in Grok result for matching")
+                return {
+                    "success": False,
+                    "error": "No products found in Grok result",
+                    "matching_results": []
+                }
+            
+            # Process each product
+            all_matching_results = []
+            
+            for letter_product in letter_products:
+                try:
+                    logger.info(f"🔍 Processing product: {letter_product.product_identifier}")
+                    
+                    # Discover product candidates
+                    discovery_result = self.product_database_service.discover_product_candidates(
+                        letter_product, max_candidates=100
+                    )
+                    
+                    if not discovery_result.candidates:
+                        logger.warning(f"⚠️ No candidates found for {letter_product.product_identifier}")
+                        continue
+                    
+                    # Perform intelligent matching
+                    matching_result = self.product_matching_service.match_products(
+                        letter_product, discovery_result.candidates
+                    )
+                    
+                    all_matching_results.append({
+                        "letter_product": letter_product,
+                        "discovery_result": discovery_result,
+                        "matching_result": matching_result
+                    })
+                    
+                    logger.info(f"✅ Product matching completed for {letter_product.product_identifier}")
+                    logger.info(f"📊 Found {matching_result.total_matches} matches")
+                    
+                except Exception as e:
+                    logger.error(f"❌ Product matching failed for {letter_product.product_identifier}: {e}")
+                    continue
+            
+            # Save run data
+            run_id = f"run_{int(time.time())}_{file_path.stem}"
+            
+            # Save product matching data
+            product_matching_data = {
+                "matching_request": {
+                    "letter_products": [asdict(lp) for lp in letter_products],
+                    "timestamp": time.time()
+                },
+                "matching_results": [
+                    {
+                        "letter_product": asdict(result["letter_product"]),
+                        "discovery_result": asdict(result["discovery_result"]),
+                        "matching_result": asdict(result["matching_result"])
+                    }
+                    for result in all_matching_results
+                ]
+            }
+            
+            self.product_matching_service.save_run_data(
+                run_id, "product_matching", product_matching_data
+            )
+            
+            logger.info(f"✅ Product matching process completed")
+            logger.info(f"📊 Processed {len(letter_products)} products")
+            logger.info(f"🎯 Generated {len(all_matching_results)} matching results")
+            
+            return {
+                "success": True,
+                "run_id": run_id,
+                "total_products": len(letter_products),
+                "matching_results": all_matching_results,
+                "processing_summary": {
+                    "total_products_processed": len(letter_products),
+                    "successful_matches": len(all_matching_results),
+                    "failed_matches": len(letter_products) - len(all_matching_results)
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"❌ Product matching process failed: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "matching_results": []
+            } 
