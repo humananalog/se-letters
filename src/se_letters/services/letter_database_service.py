@@ -257,7 +257,11 @@ class LetterDatabaseService:
                     }
                     
                     sort_field = valid_sort_fields.get(filters.sort_by, 'l.created_at')
-                    sort_order = filters.sort_order.value.upper()
+                    # Handle both string and enum values for sort_order
+                    if hasattr(filters.sort_order, 'value'):
+                        sort_order = filters.sort_order.value.upper()
+                    else:
+                        sort_order = str(filters.sort_order).upper()
                     query += f" ORDER BY {sort_field} {sort_order}"
                     
                     # Get total count
@@ -333,9 +337,27 @@ class LetterDatabaseService:
                         products_result = conn.execute(products_query, [letter_id]).fetchall()
                         product_columns = [desc[0] for desc in conn.description]
                         
-                        letter_data['products'] = [
-                            dict(zip(product_columns, row)) for row in products_result
-                        ]
+                        letter_data['products'] = []
+                        for product_row in products_result:
+                            product_data = dict(zip(product_columns, product_row))
+                            
+                            # Get matched IBcatalogue products for this letter product
+                            matches_query = """
+                                SELECT * FROM letter_product_matches 
+                                WHERE letter_product_id = ?
+                                ORDER BY match_confidence DESC
+                            """
+                            matches_result = conn.execute(matches_query, [product_data['id']]).fetchall()
+                            
+                            if matches_result:
+                                match_columns = [desc[0] for desc in conn.description]
+                                product_data['ibcatalogue_matches'] = [
+                                    dict(zip(match_columns, match_row)) for match_row in matches_result
+                                ]
+                            else:
+                                product_data['ibcatalogue_matches'] = []
+                            
+                            letter_data['products'].append(product_data)
                     
                     # Get debug info if requested
                     if include_debug:

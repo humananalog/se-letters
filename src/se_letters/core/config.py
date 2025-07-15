@@ -23,15 +23,24 @@ class APIConfig:
 
 
 @dataclass
+class DatabaseConfig:
+    """Configuration for database settings."""
+    
+    product_database: str
+    letter_database: str
+
+
+@dataclass
 class DataConfig:
     """Configuration for data paths and settings."""
 
     letters_directory: str
-    excel_file: str
     json_directory: str
-    excel_output: str
     temp_directory: str
     logs_directory: str
+    database: DatabaseConfig
+    excel_file: Optional[str] = None  # Legacy - backward compatibility
+    excel_output: Optional[str] = None  # Legacy - backward compatibility
     supported_formats: List[str] = field(
         default_factory=lambda: [".pdf", ".docx", ".doc"]
     )
@@ -123,13 +132,25 @@ class Config:
             raise ConfigurationError(f"Invalid YAML configuration: {e}")
 
         try:
+            # Prepare data config parameters
+            data_config_params = {}
+            
+            # Get paths from data section
+            if "input" in config_data["data"]:
+                data_config_params.update(config_data["data"]["input"])
+            if "output" in config_data["data"]:
+                data_config_params.update(config_data["data"]["output"])
+            if "temp" in config_data["data"]:
+                data_config_params.update(config_data["data"]["temp"])
+            
+            # Add database configuration
+            data_config_params["database"] = DatabaseConfig(
+                **config_data["data"]["database"]
+            )
+            
             return cls(
                 api=APIConfig(**config_data["api"]["xai"]),
-                data=DataConfig(
-                    **config_data["data"]["input"],
-                    **config_data["data"]["output"],
-                    **config_data["data"]["temp"]
-                ),
+                data=DataConfig(**data_config_params),
                 processing=ProcessingConfig(**config_data["processing"]),
                 embedding=EmbeddingConfig(**config_data["embedding"]),
                 faiss=FAISSConfig(**config_data["faiss"]),
