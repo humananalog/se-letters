@@ -4,8 +4,8 @@ Intelligent Product Matching Service - Production Version
 Enhanced filtering layer that uses Grok to intelligently match ALL products
 based on technical specifications and comprehensive product metadata
 
-Version: 2.0.0
-Author: SE Letters Team
+Version: 2.2.0
+Author: Alexandre Huther
 Status: Production Ready
 """
 
@@ -176,7 +176,7 @@ Find ALL products that match the obsolescence letter product. Look for:
     
     def _create_matching_prompt(self, letter_product_info: LetterProductInfo, 
                                product_candidates: List[ProductCandidate]) -> str:
-        """Create intelligent matching prompt"""
+        """Create intelligent matching prompt with database scoring"""
         # Format letter product info
         letter_info = f"""
 Product Identifier: {letter_product_info.product_identifier}
@@ -190,32 +190,57 @@ End of Service Date: {letter_product_info.end_of_service_date or 'Not specified'
 Replacement Suggestions: {letter_product_info.replacement_suggestions or 'Not specified'}
 """
         
-        # Format candidates
+        # Format candidates with database scores
         candidates_formatted = []
-        for candidate in product_candidates:
+        for i, candidate in enumerate(product_candidates[:50]):  # Limit to top 50 for LLM
             candidates_formatted.append(f"""
+Candidate #{i+1}:
 Product Identifier: {candidate.product_identifier}
 Product Type: {candidate.product_type or 'N/A'}
 Description: {candidate.product_description or 'N/A'}
 Brand: {candidate.brand_code or 'N/A'} ({candidate.brand_label or 'N/A'})
-Range: {candidate.range_code or 'N/A'} ({candidate.range_label or 'N/A'})
-Subrange: {candidate.subrange_code or 'N/A'} ({candidate.subrange_label or 'N/A'})
+Range: {candidate.range_label or 'N/A'}
+Subrange: {candidate.subrange_label or 'N/A'}
 Device Type: {candidate.devicetype_label or 'N/A'}
-PL Services: {candidate.pl_services or 'N/A'}
+Product Line: {candidate.pl_services or 'N/A'}
+Database Score: {candidate.match_score:.2f}/10.0 (Higher = better match)
 """)
         
         candidates_text = "\n".join(candidates_formatted)
         
-        # Create full prompt
-        system_prompt = self.prompts.get('system', '')
-        user_template = self.prompts.get('user', '')
-        
-        user_prompt = user_template.format(
+        # Enhanced prompt with scoring guidance
+        prompt = self.prompts['user'].format(
             letter_product_info=letter_info,
             discovered_candidates=candidates_text
         )
         
-        return f"{system_prompt}\n\n{user_prompt}"
+        # Add scoring guidance
+        prompt += f"""
+
+**DATABASE SCORING CONTEXT:**
+The candidates above are pre-scored by the database system (0.0-10.0 scale):
+- 8.0-10.0: Excellent matches (exact identifiers, ranges, subranges)
+- 5.0-7.9: Good matches (fuzzy similarity, product line alignment)
+- 3.0-4.9: Moderate matches (partial alignment, brand matches)
+- 0.0-2.9: Weak matches (minimal alignment)
+
+**ENHANCED MATCHING INSTRUCTIONS:**
+1. Consider database scores as a strong indicator of relevance
+2. Products with high database scores (>=6.0) are likely good matches
+3. Products with low database scores (<3.0) should only be included if you have strong technical reasoning
+4. Combine database scoring with your technical analysis for final confidence
+5. If letter mentions a specific range/subrange (e.g., "Galaxy 6000"), prioritize exact matches over broad range matches
+6. Ensure all selected products have confidence >= 0.5 after your analysis
+
+**FINAL CONFIDENCE CALCULATION:**
+Consider both database score and your technical analysis:
+- High database score (>=6.0) + good technical match = High confidence (0.8-1.0)
+- Medium database score (3.0-5.9) + good technical match = Medium confidence (0.6-0.79)
+- Low database score (<3.0) + excellent technical match = Low confidence (0.5-0.59)
+- Low database score + poor technical match = Exclude (confidence <0.5)
+"""
+        
+        return prompt
     
     def _make_grok_call(self, prompt: str) -> str:
         """Make API call to Grok"""

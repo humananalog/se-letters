@@ -3,8 +3,9 @@
 Production Pipeline Service
 Handles document processing with deduplication, validation, and ingestion
 
-Version: 2.1.0
-Last Updated: 2025-01-27
+Version: 2.2.0
+Author: Alexandre Huther
+Last Updated: 2025-07-16
 """
 
 import json

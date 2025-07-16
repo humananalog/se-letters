@@ -1,6 +1,6 @@
 # Readme
 
-**Version: 2.2.0**  
+**Version: 2.2.1**  
 **Author: Alexandre Huther**  
 **Date: 2025-07-16**
 
@@ -313,85 +313,4 @@ curl -X GET http://localhost:3000/api/pipeline/status
 ```
 
 ### Quality Assurance
-```bash
-# Format code
-black src/ tests/ scripts/
-
-# Type checking
-mypy src/
-
-# Run test suite
-pytest tests/
 ```
-
-## 📈 Performance
-
-### Current Benchmarks
-- **Document Processing**: ~12 seconds per letter (including AI analysis)
-- **xAI API Response**: Sub-second for content validation
-- **Database Operations**: ~100ms for storage and retrieval
-- **Web Interface**: Real-time processing with progress tracking
-- **Memory Usage**: ~2GB for full IBcatalogue processing
-
-### Scalability Features
-- **Batch Processing**: Multiple documents simultaneously
-- **Memory Optimization**: Efficient handling of large datasets
-- **Incremental Updates**: Process new letters without full reprocessing
-- **API Rate Limiting**: Proper handling of xAI API limits
-- **Database Optimization**: Indexed queries for fast retrieval
-
-## 🎯 Key Enhancements (v2.2.0)
-
-### ✅ What's Working Perfectly
-- **xAI Service Integration**: Official SDK with 100% success rate
-- **Production Pipeline**: Complete end-to-end processing
-- **Database Schema**: Fixed confidence scoring and all constraints
-- **Web Application**: Real-time processing and document management
-- **Error Handling**: Comprehensive error tracking and recovery
-
-### 🚀 Recent Improvements
-- **Official xAI SDK**: Upgraded from HTTP calls to official SDK
-- **Environment Variables**: Proper XAI_API_KEY configuration
-- **Database Schema**: Added confidence_score column for products
-- **Production Ready**: 100% success rate with actual documents
-- **Performance Optimization**: Sub-second API responses
-
-### 🎉 Benefits
-- **Complete Reliability**: 100% success rate for document processing
-- **Business Intelligence**: Comprehensive analysis for decision-making
-- **Universal Applicability**: Works across all Schneider Electric ranges
-- **Accurate Extraction**: 95% confidence with no hallucination
-- **Production Deployment**: Ready for enterprise use
-
-## 📖 Documentation
-
-- **[Database Documentation](docs/LETTER_DATABASE_DOCUMENTATION.md)**: Complete database schema and API
-- **[Comprehensive Extraction Guide](docs/COMPREHENSIVE_METADATA_EXTRACTION_GUIDE.md)**: AI extraction capabilities
-- **[Product Export Guide](docs/COMPREHENSIVE_PRODUCT_EXPORT_GUIDE.md)**: Usage and examples
-- **[Production Architecture](docs/PRODUCTION_PIPELINE_ARCHITECTURE.md)**: Technical architecture
-- **[Project Documentation](docs/Obsolescence%20Letter%20Matching%20Pipeline%20Project.md)**: Complete project overview
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes with comprehensive tests
-4. Update documentation
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔗 Links
-
-- **Project Repository**: [https://github.com/humananalog/se-letters](https://github.com/humananalog/se-letters)
-- **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/humananalog/se-letters/issues)
-- **xAI Documentation**: [https://docs.x.ai/](https://docs.x.ai/)
-
----
-
-**SE Letters Pipeline** - Transforming obsolescence letter processing into comprehensive business intelligence for Schneider Electric product analysis with **100% success rate** and **95% confidence scoring**. 
-
-**Status**: ✅ **Production Ready** | **xAI Integration**: ✅ **Official SDK** | **Success Rate**: ✅ **100%** 

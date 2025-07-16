@@ -1,0 +1,16 @@
+{
+  "letter_products": [
+    {
+      "product_identifier": "Galaxy 6000",
+      "range_label": "Galaxy 6000",
+      "subrange_label": "6000",
+      "product_line": "SPIBS (Secure Power)",
+      "product_description": "Galaxy 6000 UPS Range",
+      "technical_specifications": {},
+      "obsolescence_status": "End of Service",
+      "end_of_service_date": "2024-12-31",
+      "replacement_suggestions": "Galaxy VM series"
+    }
+  ],
+  "timestamp": 1752634807.012394
+}

@@ -4,8 +4,8 @@ SOTA Product Database Service - Production Version
 High-performance service for querying the IBcatalogue database
 and discovering product candidates for intelligent matching
 
-Version: 2.0.0
-Author: SE Letters Team
+Version: 2.2.0
+Author: Alexandre Huther
 Status: Production Ready
 """
 
@@ -48,9 +48,11 @@ class SOTAProductDatabaseService:
         logger.info("📊 SOTA Product Database Service initialized")
         logger.info(f"🗄️ Database: {self.db_path}")
     
-    def discover_product_candidates(self, 
-                                    letter_product_info: Any,
-                                    max_candidates: int = 1000) -> ProductDiscoveryResult:
+    def discover_product_candidates(
+        self, 
+        letter_product_info: Any,
+        max_candidates: int = 1000
+    ) -> ProductDiscoveryResult:
         """Discover product candidates based on letter product information"""
         start_time = time.time()
         
@@ -101,7 +103,9 @@ class SOTAProductDatabaseService:
         
         # Extract key search terms
         if hasattr(letter_product_info, 'product_identifier'):
-            filters['product_identifier'] = letter_product_info.product_identifier
+            filters['product_identifier'] = (
+                letter_product_info.product_identifier
+            )
         
         if hasattr(letter_product_info, 'range_label'):
             filters['range_label'] = letter_product_info.range_label
@@ -110,24 +114,164 @@ class SOTAProductDatabaseService:
             filters['product_line'] = letter_product_info.product_line
         
         if hasattr(letter_product_info, 'product_description'):
-            filters['product_description'] = letter_product_info.product_description
+            filters['product_description'] = (
+                letter_product_info.product_description
+            )
         
         return filters
     
-    def _execute_discovery_query(self, filters: Dict[str, Any], 
-                               max_candidates: int) -> List[ProductCandidate]:
-        """Execute product discovery query against database"""
+    def _build_discovery_query(
+        self, filters: Dict[str, Any], 
+        max_candidates: int
+    ) -> str:
+        """Build dynamic discovery query with multi-factor scoring system"""
+        
+        # Build the base query with scoring
+        base_query = """
+        SELECT 
+            PRODUCT_IDENTIFIER,
+            PRODUCT_TYPE,
+            PRODUCT_DESCRIPTION,
+            BRAND_CODE,
+            BRAND_LABEL,
+            RANGE_CODE,
+            RANGE_LABEL,
+            SUBRANGE_CODE,
+            SUBRANGE_LABEL,
+            DEVICETYPE_LABEL,
+            PL_SERVICES,
+            -- Multi-factor scoring system
+            (
+                -- Exact matches (highest priority)
+                CASE WHEN RANGE_LABEL = ? THEN 3.0 ELSE 0.0 END +
+                CASE WHEN SUBRANGE_LABEL = ? THEN 3.0 ELSE 0.0 END +
+                CASE WHEN PRODUCT_IDENTIFIER = ? THEN 4.0 ELSE 0.0 END +
+                
+                -- Fuzzy similarity matches (medium priority)
+                CASE WHEN ? != '' AND RANGE_LABEL ILIKE '%' || ? || '%' THEN 2.0 ELSE 0.0 END +
+                CASE WHEN ? != '' AND SUBRANGE_LABEL ILIKE '%' || ? || '%' THEN 2.0 ELSE 0.0 END +
+                CASE WHEN ? != '' AND PRODUCT_IDENTIFIER ILIKE '%' || ? || '%' THEN 2.5 ELSE 0.0 END +
+                
+                -- Product line alignment
+                CASE WHEN PL_SERVICES = ? THEN 1.5 ELSE 0.0 END +
+                CASE WHEN ? != '' AND PL_SERVICES ILIKE '%' || ? || '%' THEN 1.0 ELSE 0.0 END +
+                
+                -- Brand alignment
+                CASE WHEN BRAND_LABEL = ? THEN 1.0 ELSE 0.0 END +
+                CASE WHEN ? != '' AND BRAND_LABEL ILIKE '%' || ? || '%' THEN 0.5 ELSE 0.0 END +
+                
+                -- Device type alignment (if specified)
+                CASE WHEN ? != '' AND DEVICETYPE_LABEL ILIKE '%' || ? || '%' THEN 0.5 ELSE 0.0 END +
+                
+                -- Description relevance
+                CASE WHEN ? != '' AND PRODUCT_DESCRIPTION ILIKE '%' || ? || '%' THEN 0.5 ELSE 0.0 END
+            ) AS match_score
+        FROM products
+        WHERE 1=1
+        """
+        
+        # Add basic filtering to reduce search space
+        where_conditions = []
+        
+        # If we have a range label, filter to reduce search space
+        if filters.get('range_label'):
+            range_label = filters['range_label'].strip()
+            # Use broader initial filter to include potential matches
+            where_conditions.append(
+                f"(RANGE_LABEL ILIKE '%{range_label}%' OR "
+                f"SUBRANGE_LABEL ILIKE '%{range_label}%' OR "
+                f"PRODUCT_DESCRIPTION ILIKE '%{range_label}%')"
+            )
+        
+        # If we have product line, add as additional filter
+        if filters.get('product_line'):
+            pl_main = filters['product_line'].split('(')[0].strip()
+            where_conditions.append(f"PL_SERVICES ILIKE '%{pl_main}%'")
+        
+        # Add device type filter if available
+        device_type = self._extract_device_type(filters.get('product_description', ''))
+        if device_type:
+            where_conditions.append(f"DEVICETYPE_LABEL ILIKE '%{device_type}%'")
+        
+        # Add WHERE conditions
+        if where_conditions:
+            base_query += " AND (" + " OR ".join(where_conditions) + ")"
+        
+        # Add ordering by score and limit
+        base_query += " ORDER BY match_score DESC LIMIT ?"
+        
+        return base_query
+    
+    def _extract_device_type(self, description: str) -> str:
+        """Extract device type from product description"""
+        if not description:
+            return ""
+        
+        desc = description.lower()
+        if 'switchgear' in desc:
+            return 'switchgear'
+        elif 'transformer' in desc:
+            return 'transformer'
+        elif 'drive' in desc or 'vsd' in desc:
+            return 'drive'
+        elif 'contactor' in desc:
+            return 'contactor'
+        elif 'relay' in desc:
+            return 'relay'
+        elif 'ups' in desc:
+            return 'ups'
+        elif 'circuit breaker' in desc or 'acb' in desc:
+            return 'circuit breaker'
+        elif 'motor' in desc:
+            return 'motor'
+        elif 'sensor' in desc:
+            return 'sensor'
+        elif 'controller' in desc:
+            return 'controller'
+        
+        return ""
+    
+    def _execute_discovery_query(
+        self, filters: Dict[str, Any], 
+        max_candidates: int
+    ) -> List[ProductCandidate]:
+        """Execute product discovery query with scoring"""
         try:
             with duckdb.connect(self.db_path) as conn:
                 # Build dynamic query based on filters
                 query = self._build_discovery_query(filters, max_candidates)
                 
-                logger.debug(f"🔍 Executing discovery query: {query}")
+                # Prepare parameters for the query (DuckDB uses ? placeholders)
+                params = [
+                    filters.get('range_label', ''),  # Exact range match
+                    filters.get('subrange_label', ''),  # Exact subrange match
+                    filters.get('product_identifier', ''),  # Exact product ID match
+                    filters.get('range_label', ''),  # Fuzzy range check
+                    filters.get('range_label', ''),  # Fuzzy range value
+                    filters.get('subrange_label', ''),  # Fuzzy subrange check
+                    filters.get('subrange_label', ''),  # Fuzzy subrange value
+                    filters.get('product_identifier', ''),  # Fuzzy product ID check
+                    filters.get('product_identifier', ''),  # Fuzzy product ID value
+                    filters.get('product_line', '').split('(')[0].strip(),  # Exact PL match
+                    filters.get('product_line', '').split('(')[0].strip(),  # Fuzzy PL check
+                    filters.get('product_line', '').split('(')[0].strip(),  # Fuzzy PL value
+                    filters.get('brand_label', ''),  # Exact brand match
+                    filters.get('brand_label', ''),  # Fuzzy brand check
+                    filters.get('brand_label', ''),  # Fuzzy brand value
+                    self._extract_device_type(filters.get('product_description', '')),  # Device type check
+                    self._extract_device_type(filters.get('product_description', '')),  # Device type value
+                    filters.get('product_description', ''),  # Description check
+                    filters.get('product_description', ''),  # Description value
+                    max_candidates  # Limit
+                ]
                 
-                # Execute query
-                results = conn.execute(query).fetchall()
+                logger.debug(f"🔍 Executing scored discovery query")
+                logger.debug(f"📊 Parameters: {params[:5]}...")  # Log first 5 params
                 
-                # Convert to ProductCandidate objects
+                # Execute query with parameters
+                results = conn.execute(query, params).fetchall()
+                
+                # Convert to ProductCandidate objects with scores
                 candidates = []
                 for row in results:
                     candidate = ProductCandidate(
@@ -141,104 +285,25 @@ class SOTAProductDatabaseService:
                         subrange_code=row[7] or '',
                         subrange_label=row[8] or '',
                         devicetype_label=row[9] or '',
-                        pl_services=row[10] or ''
+                        pl_services=row[10] or '',
+                        match_score=float(row[11]) if row[11] else 0.0
                     )
                     candidates.append(candidate)
+                
+                # Log scoring results
+                if candidates:
+                    top_score = max(c.match_score for c in candidates)
+                    avg_score = sum(c.match_score for c in candidates) / len(candidates)
+                    logger.info(f"📊 Scoring results - Top: {top_score:.2f}, Avg: {avg_score:.2f}")
+                    logger.info(f"🎯 Top 3 candidates:")
+                    for i, candidate in enumerate(candidates[:3]):
+                        logger.info(f"  {i+1}. {candidate.range_label} {candidate.subrange_label} (Score: {candidate.match_score:.2f})")
                 
                 return candidates
                 
         except Exception as e:
             logger.error(f"❌ Database query failed: {e}")
             return []
-    
-    def _build_discovery_query(self, filters: Dict[str, Any], 
-                             max_candidates: int) -> str:
-        """Build dynamic discovery query with improved logic"""
-        base_query = """
-        SELECT 
-            PRODUCT_IDENTIFIER,
-            PRODUCT_TYPE,
-            PRODUCT_DESCRIPTION,
-            BRAND_CODE,
-            BRAND_LABEL,
-            RANGE_CODE,
-            RANGE_LABEL,
-            SUBRANGE_CODE,
-            SUBRANGE_LABEL,
-            DEVICETYPE_LABEL,
-            PL_SERVICES
-        FROM products
-        WHERE 1=1
-        """
-        
-        primary_conditions = []
-        secondary_conditions = []
-        
-        # Primary conditions: Exact matches on key identifiers
-        if 'product_identifier' in filters and filters['product_identifier']:
-            primary_conditions.append(
-                f"PRODUCT_IDENTIFIER ILIKE "
-                f"'%{filters['product_identifier']}%'"
-            )
-        
-        if 'range_label' in filters and filters['range_label']:
-            primary_conditions.append(
-                f"RANGE_LABEL ILIKE '%{filters['range_label']}%'"
-            )
-        
-        # Secondary conditions: Support filters
-        if 'product_line' in filters and filters['product_line']:
-            # Extract main product line identifier (e.g., "PSIBS" from "PSIBS (Power Systems)")
-            pl_main = filters['product_line'].split('(')[0].strip()
-            secondary_conditions.append(
-                f"PL_SERVICES ILIKE '%{pl_main}%'"
-            )
-        
-        # Extract device type from description for filtering
-        device_type_filter = None
-        if 'product_description' in filters and filters['product_description']:
-            desc = filters['product_description'].lower()
-            if 'switchgear' in desc:
-                device_type_filter = "DEVICETYPE_LABEL ILIKE '%switchgear%'"
-            elif 'transformer' in desc:
-                device_type_filter = "DEVICETYPE_LABEL ILIKE '%transformer%'"
-            elif 'drive' in desc or 'vsd' in desc:
-                device_type_filter = "DEVICETYPE_LABEL ILIKE '%drive%'"
-            elif 'contactor' in desc:
-                device_type_filter = "DEVICETYPE_LABEL ILIKE '%contactor%'"
-            elif 'relay' in desc:
-                device_type_filter = "DEVICETYPE_LABEL ILIKE '%relay%'"
-        
-        # Build the final query logic
-        if primary_conditions:
-            # If we have primary conditions, use them with AND logic
-            base_query += " AND (" + " OR ".join(primary_conditions) + ")"
-            
-            # Add device type filter if available
-            if device_type_filter:
-                base_query += f" AND {device_type_filter}"
-            
-            # Add secondary conditions with OR logic for broader matching
-            if secondary_conditions:
-                base_query += " OR (" + " OR ".join(secondary_conditions) + ")"
-        
-        elif secondary_conditions:
-            # Fallback to secondary conditions if no primary ones
-            base_query += " AND (" + " OR ".join(secondary_conditions) + ")"
-            
-            # Add device type filter if available
-            if device_type_filter:
-                base_query += f" AND {device_type_filter}"
-        
-        else:
-            # Last resort: broad search with device type filter
-            if device_type_filter:
-                base_query += f" AND {device_type_filter}"
-        
-        # Add ordering and limit
-        base_query += f" ORDER BY PRODUCT_IDENTIFIER LIMIT {max_candidates}"
-        
-        return base_query
     
     def _get_search_strategy(self, filters: Dict[str, Any]) -> str:
         """Get search strategy description"""
