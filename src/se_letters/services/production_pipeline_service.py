@@ -314,14 +314,22 @@ class ProductionPipelineService:
                     processing_time_ms=(time.time() - start_time) * 1000
                 )
             
-            # Step 3: Process with Grok (now with comprehensive fallback)
-            logger.info("🤖 Step 3: Processing with Grok and fallback system")
+            # Step 3: Process with Grok (NO FALLBACK - pipeline stops if Grok fails)
+            logger.info("🤖 Step 3: Processing with Grok (no fallback)")
             grok_result = self._process_with_grok(file_path, validation_result)
             
-            # grok_result is now guaranteed to be a valid dictionary (never None)
-            logger.info(f"✅ Extraction completed with method: {grok_result.get('extraction_metadata', {}).get('processing_method', 'unknown')}")
+            if not grok_result:
+                logger.error("❌ Grok processing failed - pipeline stopped")
+                return ProcessingResult(
+                    success=False,
+                    status=ProcessingStatus.FAILED,
+                    error_message="Grok processing failed - pipeline stopped as required",
+                    validation_result=validation_result,
+                    processing_time_ms=(time.time() - start_time) * 1000
+                )
+            
+            logger.info(f"✅ Grok extraction completed successfully")
             logger.info(f"📊 Extracted {len(grok_result.get('products', []))} products")
-            logger.info(f"🎯 Confidence: {grok_result.get('extraction_metadata', {}).get('confidence_score', 0.0)}")
             
             # Step 4: Intelligent Product Matching
             logger.info("🔍 Step 4: Intelligent Product Matching")
@@ -672,50 +680,18 @@ class ProductionPipelineService:
                 "extracted_metadata": {}
             }
     
-    def _process_with_grok(self, file_path: Path, validation_result: ContentValidationResult) -> Dict[str, Any]:
-        """Process document with Grok and comprehensive fallback mechanisms"""
-        logger.info("🤖 Processing document with Grok and fallback system")
-        
-        # Try multiple extraction methods in order of preference
-        extraction_methods = [
-            ("grok_primary", self._extract_with_grok_primary),
-            ("grok_fallback", self._extract_with_grok_fallback),
-            ("rule_based", self._extract_with_rule_based),
-            ("filename_analysis", self._extract_from_filename),
-            ("intelligent_fallback", self._create_intelligent_fallback)
-        ]
-        
-        for method_name, method_func in extraction_methods:
-            try:
-                logger.info(f"🔄 Trying extraction method: {method_name}")
-                result = method_func(file_path, validation_result)
-                
-                if result and self._validate_extraction_result(result):
-                    logger.info(f"✅ Extraction successful with {method_name}")
-                    result["extraction_metadata"]["processing_method"] = method_name
-                    result["extraction_metadata"]["fallback_used"] = method_name != "grok_primary"
-                    return result
-                else:
-                    logger.warning(f"⚠️ {method_name} returned invalid result, trying next method")
-                    
-            except Exception as e:
-                logger.warning(f"⚠️ {method_name} failed: {e}, trying next method")
-                continue
-        
-        # This should never happen due to intelligent fallback
-        logger.error("❌ All extraction methods failed - this should not happen")
-        return self._create_emergency_fallback(file_path, validation_result)
-    
-    def _extract_with_grok_primary(self, file_path: Path, validation_result: ContentValidationResult) -> Optional[Dict[str, Any]]:
-        """Primary Grok extraction with full API access"""
+    def _process_with_grok(self, file_path: Path, validation_result: ContentValidationResult) -> Optional[Dict[str, Any]]:
+        """Process document with Grok - NO FALLBACK, pipeline stops if Grok fails"""
         try:
+            logger.info("🤖 Processing document with Grok (no fallback)")
+            
             # Extract document content
             document = self.document_processor.process_document(file_path)
             if not document:
                 raise Exception("Failed to process document")
             document_content = document.text
             
-            # Get comprehensive extraction prompt
+            # Get comprehensive extraction prompt from prompts.yaml
             grok_prompt = self._get_grok_prompt(validation_result, document_content, file_path.name)
             
             logger.info("🔄 Requesting comprehensive extraction from Grok")
@@ -726,452 +702,49 @@ class ProductionPipelineService:
             )
             
             if not grok_response:
-                raise Exception("Grok response is empty")
+                logger.error("❌ Grok response is empty")
+                return None
             
             # Parse Grok response
             grok_data = self._parse_grok_response(grok_response)
             
             if not grok_data:
-                raise Exception("Failed to parse Grok response")
-            
-            logger.info(f"📊 Extracted {len(grok_data.get('products', []))} products")
-            return grok_data
-            
-        except Exception as e:
-            logger.warning(f"⚠️ Primary Grok extraction failed: {e}")
-            return None
-    
-    def _extract_with_grok_fallback(self, file_path: Path, validation_result: ContentValidationResult) -> Optional[Dict[str, Any]]:
-        """Fallback Grok extraction with simplified prompt"""
-        try:
-            # Extract document content
-            document = self.document_processor.process_document(file_path)
-            if not document:
-                raise Exception("Failed to process document")
-            document_content = document.text
-            
-            # Use simplified prompt for fallback
-            simplified_prompt = self._get_simplified_grok_prompt()
-            
-            logger.info("🔄 Requesting simplified extraction from Grok")
-            grok_response = self.xai_service.generate_completion(
-                prompt=simplified_prompt,
-                document_content=document_content,
-                document_name=file_path.name
-            )
-            
-            if not grok_response:
-                raise Exception("Grok response is empty")
-            
-            # Parse with more lenient parsing
-            grok_data = self._parse_grok_response_lenient(grok_response)
-            
-            if not grok_data:
-                raise Exception("Failed to parse Grok response")
-            
-            logger.info(f"📊 Fallback extracted {len(grok_data.get('products', []))} products")
-            return grok_data
-            
-        except Exception as e:
-            logger.warning(f"⚠️ Fallback Grok extraction failed: {e}")
-            return None
-    
-    def _extract_with_rule_based(self, file_path: Path, validation_result: ContentValidationResult) -> Optional[Dict[str, Any]]:
-        """Rule-based extraction using predefined patterns and validation results"""
-        try:
-            logger.info("🔍 Using rule-based extraction")
-            
-            # Extract document content
-            document = self.document_processor.process_document(file_path)
-            if not document:
-                raise Exception("Failed to process document")
-            document_content = document.text
-            
-            # Use validation results and content analysis
-            products = self._extract_products_by_rules(document_content, file_path.name)
-            
-            result = {
-                "document_information": {
-                    "document_type": "Obsolescence Letter",
-                    "document_title": file_path.stem,
-                    "document_date": self._extract_date_from_content(document_content),
-                    "language": "English"
-                },
-                "products": products,
-                "technical_specifications": {
-                    "voltage_levels": [],
-                    "current_ratings": [],
-                    "power_ratings": [],
-                    "frequencies": []
-                },
-                "business_information": {
-                    "customer_impact": "Product obsolescence notice",
-                    "migration_timeline": "Refer to document for specific dates",
-                    "support_contacts": "Contact Schneider Electric support"
-                },
-                "extraction_metadata": {
-                    "confidence_score": 0.6,
-                    "processing_method": "rule_based",
-                    "extraction_timestamp": datetime.now().isoformat()
-                }
-            }
-            
-            logger.info(f"📊 Rule-based extracted {len(products)} products")
-            return result
-            
-        except Exception as e:
-            logger.warning(f"⚠️ Rule-based extraction failed: {e}")
-            return None
-    
-    def _extract_from_filename(self, file_path: Path, validation_result: ContentValidationResult) -> Optional[Dict[str, Any]]:
-        """Extract product information from filename analysis"""
-        try:
-            logger.info("📁 Using filename-based extraction")
-            
-            filename = file_path.name
-            products = self._extract_products_from_filename(filename)
-            
-            result = {
-                "document_information": {
-                    "document_type": "Obsolescence Letter",
-                    "document_title": file_path.stem,
-                    "document_date": datetime.now().strftime("%Y-%m-%d"),
-                    "language": "English"
-                },
-                "products": products,
-                "technical_specifications": {
-                    "voltage_levels": [],
-                    "current_ratings": [],
-                    "power_ratings": [],
-                    "frequencies": []
-                },
-                "business_information": {
-                    "customer_impact": "Product obsolescence notice",
-                    "migration_timeline": "Refer to document for specific dates",
-                    "support_contacts": "Contact Schneider Electric support"
-                },
-                "extraction_metadata": {
-                    "confidence_score": 0.4,
-                    "processing_method": "filename_analysis",
-                    "extraction_timestamp": datetime.now().isoformat()
-                }
-            }
-            
-            logger.info(f"📊 Filename analysis extracted {len(products)} products")
-            return result
-            
-        except Exception as e:
-            logger.warning(f"⚠️ Filename extraction failed: {e}")
-            return None
-    
-    def _create_intelligent_fallback(self, file_path: Path, validation_result: ContentValidationResult) -> Dict[str, Any]:
-        """Intelligent fallback that never fails - creates structured content from available information"""
-        logger.info("🧠 Using intelligent fallback extraction")
-        
-        # Create basic product information from validation results
-        products = []
-        for range_name in validation_result.product_ranges:
-            products.append({
-                "product_identifier": range_name,
-                "range_label": range_name.split()[0] if range_name else "",
-                "subrange_label": " ".join(range_name.split()[1:]) if len(range_name.split()) > 1 else None,
-                "product_line": self._classify_product_line(range_name),
-                "product_description": f"Product from {range_name} range",
-                "obsolescence_status": "End of Commercialization",
-                "end_of_service_date": "Refer to document",
-                "replacement_suggestions": "Contact Schneider Electric"
-            })
-        
-        # If no products from validation, create from filename
-        if not products:
-            products = self._extract_products_from_filename(file_path.name)
-        
-        result = {
-            "document_information": {
-                "document_type": "Obsolescence Letter",
-                "document_title": file_path.stem,
-                "document_date": datetime.now().strftime("%Y-%m-%d"),
-                "language": "English"
-            },
-            "products": products,
-            "technical_specifications": {
-                "voltage_levels": [],
-                "current_ratings": [],
-                "power_ratings": [],
-                "frequencies": []
-            },
-            "business_information": {
-                "customer_impact": "Product obsolescence notice",
-                "migration_timeline": "Refer to document for specific dates",
-                "support_contacts": "Contact Schneider Electric support"
-            },
-            "extraction_metadata": {
-                "confidence_score": 0.3,
-                "processing_method": "intelligent_fallback",
-                "extraction_timestamp": datetime.now().isoformat()
-            }
-        }
-        
-        logger.info(f"📊 Intelligent fallback created {len(products)} products")
-        return result
-    
-    def _create_emergency_fallback(self, file_path: Path, validation_result: ContentValidationResult) -> Dict[str, Any]:
-        """Emergency fallback that absolutely never fails"""
-        logger.warning("🚨 Using emergency fallback - all other methods failed")
-        
-        return {
-            "document_information": {
-                "document_type": "Document",
-                "document_title": file_path.name,
-                "document_date": datetime.now().strftime("%Y-%m-%d"),
-                "language": "Unknown"
-            },
-            "products": [{
-                "product_identifier": "Unknown Product",
-                "range_label": "Unknown",
-                "subrange_label": None,
-                "product_line": "Unknown",
-                "product_description": "Product information could not be extracted",
-                "obsolescence_status": "Unknown",
-                "end_of_service_date": "Unknown",
-                "replacement_suggestions": "Contact Schneider Electric"
-            }],
-            "technical_specifications": {
-                "voltage_levels": [],
-                "current_ratings": [],
-                "power_ratings": [],
-                "frequencies": []
-            },
-            "business_information": {
-                "customer_impact": "Document processing failed",
-                "migration_timeline": "Manual review required",
-                "support_contacts": "Contact Schneider Electric support"
-            },
-            "extraction_metadata": {
-                "confidence_score": 0.1,
-                "processing_method": "emergency_fallback",
-                "extraction_timestamp": datetime.now().isoformat()
-            }
-        }
-    
-    def _validate_extraction_result(self, result: Dict[str, Any]) -> bool:
-        """Validate that extraction result has required structure"""
-        try:
-            required_keys = ["document_information", "products", "extraction_metadata"]
-            for key in required_keys:
-                if key not in result:
-                    return False
-            
-            if not isinstance(result.get("products"), list):
-                return False
-            
-            return True
-        except Exception:
-            return False
-    
-    def _get_simplified_grok_prompt(self) -> str:
-        """Get simplified Grok prompt for fallback extraction"""
-        return """
-        Extract basic product information from this Schneider Electric document.
-        
-        Return JSON with:
-        {{
-            "document_information": {{
-                "document_type": "string",
-                "document_title": "string",
-                "document_date": "string",
-                "language": "string"
-            }},
-            "products": [
-                {{
-                    "product_identifier": "string",
-                    "range_label": "string",
-                    "subrange_label": "string",
-                    "product_line": "string",
-                    "product_description": "string",
-                    "obsolescence_status": "string",
-                    "end_of_service_date": "string",
-                    "replacement_suggestions": "string"
-                }}
-            ],
-            "technical_specifications": {{
-                "voltage_levels": [],
-                "current_ratings": [],
-                "power_ratings": [],
-                "frequencies": []
-            }},
-            "business_information": {{
-                "customer_impact": "string",
-                "migration_timeline": "string",
-                "support_contacts": "string"
-            }},
-            "extraction_metadata": {{
-                "confidence_score": 0.5,
-                "processing_method": "grok_fallback",
-                "extraction_timestamp": "ISO timestamp"
-            }}
-        }}
-        
-        Document: {{document_name}}
-        Content: {{document_content}}
-        """
-    
-    def _parse_grok_response_lenient(self, response: str) -> Optional[Dict[str, Any]]:
-        """Parse Grok response with more lenient parsing for fallback"""
-        try:
-            # Try multiple JSON extraction methods
-            json_str = self._extract_json_from_response(response)
-            if not json_str:
+                logger.error("❌ Failed to parse Grok response")
                 return None
             
-            grok_data = json.loads(json_str)
-            
-            # Ensure required structure exists
-            if "products" not in grok_data:
-                grok_data["products"] = []
-            if "document_information" not in grok_data:
-                grok_data["document_information"] = {}
-            if "extraction_metadata" not in grok_data:
-                grok_data["extraction_metadata"] = {}
+            logger.info("✅ Grok processing completed successfully")
+            logger.info(f"📊 Extracted {len(grok_data.get('products', []))} products")
             
             return grok_data
             
         except Exception as e:
-            logger.warning(f"⚠️ Lenient parsing failed: {e}")
+            logger.error(f"❌ Grok processing failed: {e}")
             return None
     
-    def _extract_json_from_response(self, response: str) -> Optional[str]:
-        """Extract JSON from response using multiple methods"""
-        # Method 1: Look for JSON between curly braces
-        if "{" in response and "}" in response:
-            json_start = response.find("{")
-            json_end = response.rfind("}") + 1
-            json_str = response[json_start:json_end]
-            try:
-                json.loads(json_str)  # Validate JSON
-                return json_str
-            except:
-                pass
-        
-        # Method 2: Look for JSON in code blocks
-        if "```json" in response:
-            start = response.find("```json") + 7
-            end = response.find("```", start)
-            if end > start:
-                json_str = response[start:end].strip()
-                try:
-                    json.loads(json_str)
-                    return json_str
-                except:
-                    pass
-        
-        # Method 3: Look for any JSON-like structure
-        import re
-        json_pattern = r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}'
-        matches = re.findall(json_pattern, response, re.DOTALL)
-        for match in matches:
-            try:
-                json.loads(match)
-                return match
-            except:
-                continue
-        
-        return None
-    
-    def _extract_products_by_rules(self, content: str, filename: str) -> List[Dict[str, Any]]:
-        """Extract products using rule-based patterns"""
-        products = []
-        
-        # Common product patterns
-        patterns = {
-            "MiCOM": r"MiCOM\s+[A-Z0-9]+",
-            "SEPAM": r"SEPAM\s+[A-Z0-9]+",
-            "PowerLogic": r"PowerLogic\s+[A-Z0-9]+",
-            "Galaxy": r"Galaxy\s+[0-9]+",
-            "PIX": r"PIX\s*[A-Z0-9]*",
-            "Masterpact": r"Masterpact\s+[A-Z0-9]+",
-            "Powerpact": r"Powerpact\s+[A-Z0-9]+"
-        }
-        
-        for range_name, pattern in patterns.items():
-            matches = re.findall(pattern, content, re.IGNORECASE)
-            for match in matches:
-                products.append({
-                    "product_identifier": match,
-                    "range_label": range_name,
-                    "subrange_label": match.replace(range_name, "").strip(),
-                    "product_line": self._classify_product_line(match),
-                    "product_description": f"{match} product",
-                    "obsolescence_status": "End of Commercialization",
-                    "end_of_service_date": "Refer to document",
-                    "replacement_suggestions": "Contact Schneider Electric"
-                })
-        
-        return products
-    
-    def _extract_products_from_filename(self, filename: str) -> List[Dict[str, Any]]:
-        """Extract product information from filename"""
-        products = []
-        
-        # Common patterns in filenames
-        patterns = {
-            "MiCOM": r"MiCOM\s*[A-Z0-9]*",
-            "SEPAM": r"SEPAM\s*[A-Z0-9]*",
-            "PowerLogic": r"PowerLogic\s*[A-Z0-9]*",
-            "Galaxy": r"Galaxy\s*[0-9]*",
-            "PIX": r"PIX\s*[A-Z0-9]*",
-            "Masterpact": r"Masterpact\s*[A-Z0-9]*",
-            "Powerpact": r"Powerpact\s*[A-Z0-9]*"
-        }
-        
-        for range_name, pattern in patterns.items():
-            matches = re.findall(pattern, filename, re.IGNORECASE)
-            for match in matches:
-                products.append({
-                    "product_identifier": match,
-                    "range_label": range_name,
-                    "subrange_label": match.replace(range_name, "").strip(),
-                    "product_line": self._classify_product_line(match),
-                    "product_description": f"{match} product from filename analysis",
-                    "obsolescence_status": "End of Commercialization",
-                    "end_of_service_date": "Refer to document",
-                    "replacement_suggestions": "Contact Schneider Electric"
-                })
-        
-        return products
-    
-    def _classify_product_line(self, product_name: str) -> str:
-        """Classify product line based on product name"""
-        product_upper = product_name.upper()
-        
-        if any(keyword in product_upper for keyword in ["MICOM", "SEPAM", "POWERLOGIC"]):
-            return "DPIBS"
-        elif any(keyword in product_upper for keyword in ["GALAXY", "UPS"]):
-            return "SPIBS"
-        elif any(keyword in product_upper for keyword in ["MASTERPACT", "POWERPACT", "ACB"]):
-            return "PPIBS"
-        elif any(keyword in product_upper for keyword in ["PIX", "SWITCHGEAR"]):
-            return "PSIBS"
-        else:
-            return "Unknown"
-    
-    def _extract_date_from_content(self, content: str) -> str:
-        """Extract date from content using patterns"""
-        import re
-        
-        # Common date patterns
-        date_patterns = [
-            r'\d{1,2}/\d{1,2}/\d{4}',
-            r'\d{4}-\d{2}-\d{2}',
-            r'\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}'
-        ]
-        
-        for pattern in date_patterns:
-            matches = re.findall(pattern, content)
-            if matches:
-                return matches[0]
-        
-        return datetime.now().strftime("%Y-%m-%d") 
+    def _parse_grok_response(self, response: str) -> Optional[Dict[str, Any]]:
+        """Parse Grok response into structured data"""
+        try:
+            # Extract JSON from response
+            if "{" in response and "}" in response:
+                json_start = response.find("{")
+                json_end = response.rfind("}") + 1
+                json_str = response[json_start:json_end]
+                
+                grok_data = json.loads(json_str)
+                
+                # Validate required structure
+                if not isinstance(grok_data.get("products"), list):
+                    logger.warning("⚠️ No products list in Grok response")
+                    grok_data["products"] = []
+                
+                return grok_data
+            
+            logger.warning("⚠️ No valid JSON found in Grok response")
+            return None
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"❌ Grok JSON parsing error: {e}")
+            return None 
 
     def _get_grok_prompt(self, validation_result: ContentValidationResult, document_content: str = None, document_name: str = None) -> str:
         """Get comprehensive Grok extraction prompt from prompts.yaml configuration"""
@@ -1199,78 +772,5 @@ class ProductionPipelineService:
             return full_prompt
             
         except Exception as e:
-            logger.warning(f"⚠️ Failed to load prompt from prompts.yaml: {e}")
-            # Fallback to hardcoded prompt
-            return self._get_fallback_grok_prompt(validation_result, document_content, document_name)
-    
-    def _get_fallback_grok_prompt(self, validation_result: ContentValidationResult, document_content: str = None, document_name: str = None) -> str:
-        """Fallback hardcoded prompt if prompts.yaml fails"""
-        return """
-        Extract comprehensive product information from this Schneider Electric document.
-        
-        Based on validation results:
-        - Product ranges detected: {product_ranges}
-        - Technical specs: {technical_specs}
-        
-        **CRITICAL PRODUCT LINE CLASSIFICATION RULES:**
-        
-        **DPIBS (Digital Power)**: Protection relays, monitoring devices, power quality analyzers
-        - Keywords: MiCOM, SEPAM, PowerLogic, protection relay, monitoring, power quality, digital protection
-        - Examples: MiCOM P20, SEPAM 20, SEPAM 40, MiCOM P521, PowerLogic P5L
-        
-        **PSIBS (Power Systems)**: Power distribution, transformers, medium voltage equipment
-        - Keywords: power distribution, transformer, medium voltage, switchgear, SM6, VM6
-        
-        **PPIBS (Power Products)**: Circuit breakers, contactors, low voltage products
-        - Keywords: circuit breaker, contactor, Masterpact, Powerpact, Easypact, ACB
-        
-        **SPIBS (Secure Power)**: UPS systems, backup power, critical infrastructure
-        - Keywords: UPS, Galaxy, battery, backup power, uninterruptible power supply
-        
-        **IDIBS (Industrial Automation)**: PLCs, industrial controls, automation
-        - Keywords: PLC, Modicon, industrial control, automation, SCADA
-        
-        Extract and return JSON with:
-        {{
-            "document_information": {{
-                "document_type": "string",
-                "document_title": "string",
-                "document_date": "string",
-                "language": "string"
-            }},
-            "products": [
-                {{
-                    "product_identifier": "string",
-                    "range_label": "string",
-                    "subrange_label": "string",
-                    "product_line": "string (MUST be DPIBS for protection relays like MiCOM, SEPAM, PowerLogic)",
-                    "product_description": "string",
-                    "obsolescence_status": "string",
-                    "end_of_service_date": "string",
-                    "replacement_suggestions": "string"
-                }}
-            ],
-            "technical_specifications": {{
-                "voltage_levels": ["list"],
-                "current_ratings": ["list"],
-                "power_ratings": ["list"],
-                "frequencies": ["list"]
-            }},
-            "business_information": {{
-                "customer_impact": "string",
-                "migration_timeline": "string",
-                "support_contacts": "string"
-            }},
-            "extraction_metadata": {{
-                "confidence_score": float,
-                "processing_method": "grok_production",
-                "extraction_timestamp": "ISO timestamp"
-            }}
-        }}
-        
-        Document: {{document_name}}
-        Content: {{document_content}}
-        """.format(
-            product_ranges=validation_result.product_ranges,
-            technical_specs=validation_result.technical_specs
-        ) 
+            logger.error(f"❌ Failed to load prompt from prompts.yaml: {e}")
+            raise Exception(f"Failed to load prompt configuration: {e}") 
