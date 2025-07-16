@@ -156,6 +156,7 @@ class ProductionPipelineService:
                         processing_time_ms REAL,
                         extraction_confidence REAL,
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         status TEXT DEFAULT 'processed',
                         raw_grok_json TEXT,
                         ocr_supplementary_json TEXT,
@@ -598,8 +599,10 @@ class ProductionPipelineService:
             # Test DNS resolution
             socket.gethostbyname("api.x.ai")
             
-            # Test HTTP connectivity (with timeout)
-            urllib.request.urlopen("https://api.x.ai", timeout=5)
+            # Test HTTP connectivity with proper headers (avoid 403)
+            req = urllib.request.Request("https://api.x.ai")
+            req.add_header('User-Agent', 'SE-Letters-Pipeline/2.2.0')
+            urllib.request.urlopen(req, timeout=5)
             
             return True
         except Exception as e:
@@ -691,86 +694,239 @@ class ProductionPipelineService:
                 raise Exception("Failed to process document")
             document_content = document.text
             
-            # Get comprehensive extraction prompt from prompts.yaml
-            grok_prompt = self._get_grok_prompt(validation_result, document_content, file_path.name)
-            
             logger.info("🔄 Requesting comprehensive extraction from Grok")
-            grok_response = self.xai_service.generate_completion(
-                prompt=grok_prompt,
-                document_content=document_content,
+            
+            # Use the comprehensive metadata extraction method
+            grok_data = self.xai_service.extract_comprehensive_metadata(
+                text=document_content,
                 document_name=file_path.name
             )
             
-            if not grok_response:
+            if not grok_data:
                 logger.error("❌ Grok response is empty")
                 return None
             
-            # Parse Grok response
-            grok_data = self._parse_grok_response(grok_response)
-            
-            if not grok_data:
-                logger.error("❌ Failed to parse Grok response")
-                return None
+            # Convert the comprehensive metadata to the expected format
+            processed_data = self._convert_comprehensive_metadata(grok_data)
             
             logger.info("✅ Grok processing completed successfully")
-            logger.info(f"📊 Extracted {len(grok_data.get('products', []))} products")
+            logger.info(f"📊 Extracted {len(processed_data.get('products', []))} products")
             
-            return grok_data
+            return processed_data
             
         except Exception as e:
             logger.error(f"❌ Grok processing failed: {e}")
             return None
     
-    def _parse_grok_response(self, response: str) -> Optional[Dict[str, Any]]:
-        """Parse Grok response into structured data"""
+    def _convert_comprehensive_metadata(self, comprehensive_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Convert comprehensive metadata to the expected pipeline format"""
         try:
-            # Extract JSON from response
-            if "{" in response and "}" in response:
-                json_start = response.find("{")
-                json_end = response.rfind("}") + 1
-                json_str = response[json_start:json_end]
-                
-                grok_data = json.loads(json_str)
-                
-                # Validate required structure
-                if not isinstance(grok_data.get("products"), list):
-                    logger.warning("⚠️ No products list in Grok response")
-                    grok_data["products"] = []
-                
-                return grok_data
+            # Extract product information
+            product_info = comprehensive_data.get('product_identification', {})
+            ranges = product_info.get('ranges', [])
+            product_codes = product_info.get('product_codes', [])
+            descriptions = product_info.get('descriptions', [])
             
-            logger.warning("⚠️ No valid JSON found in Grok response")
-            return None
+            # Create products list
+            products = []
+            for i, range_name in enumerate(ranges):
+                product = {
+                    'product_identifier': product_codes[i] if i < len(product_codes) else f"PROD_{i+1}",
+                    'range_label': range_name,
+                    'product_description': descriptions[i] if i < len(descriptions) else range_name,
+                    'confidence_score': comprehensive_data.get('extraction_metadata', {}).get('confidence', 0.8)
+                }
+                products.append(product)
             
-        except json.JSONDecodeError as e:
-            logger.error(f"❌ Grok JSON parsing error: {e}")
-            return None 
-
-    def _get_grok_prompt(self, validation_result: ContentValidationResult, document_content: str = None, document_name: str = None) -> str:
-        """Get comprehensive Grok extraction prompt from prompts.yaml configuration"""
-        try:
-            # Load prompts configuration
-            import yaml
-            with open('config/prompts.yaml', 'r') as f:
-                prompts_config = yaml.safe_load(f)
-            
-            # Get the unified metadata extraction prompt
-            unified_prompt = prompts_config['prompts']['unified_metadata_extraction']
-            system_prompt = unified_prompt['system_prompt']
-            user_prompt_template = unified_prompt['user_prompt_template']
-            
-            # Format the user prompt with document information
-            user_prompt = user_prompt_template.format(
-                document_name=document_name or "Unknown Document",
-                document_content=document_content or ""
-            )
-            
-            # Combine system and user prompts
-            full_prompt = f"{system_prompt}\n\n{user_prompt}"
-            
-            logger.info("📋 Loaded Grok prompt from prompts.yaml configuration")
-            return full_prompt
+            # Return in expected format
+            return {
+                'products': products,
+                'extraction_metadata': comprehensive_data.get('extraction_metadata', {}),
+                'processing_timestamp': comprehensive_data.get('extraction_metadata', {}).get('processing_time', 0),
+                'confidence_score': comprehensive_data.get('extraction_metadata', {}).get('confidence', 0.8)
+            }
             
         except Exception as e:
-            logger.error(f"❌ Failed to load prompt from prompts.yaml: {e}")
-            raise Exception(f"Failed to load prompt configuration: {e}") 
+            logger.error(f"❌ Failed to convert comprehensive metadata: {e}")
+            return {
+                'products': [],
+                'extraction_metadata': {},
+                'processing_timestamp': 0,
+                'confidence_score': 0.0
+            } 
+
+    def _process_product_matching(self, grok_result: Dict[str, Any], file_path: Path) -> Dict[str, Any]:
+        """Process product matching using intelligent matching service"""
+        try:
+            logger.info("🔍 Processing product matching")
+            
+            # Convert Grok products to LetterProductInfo objects
+            letter_products = self.product_matching_service.create_letter_product_info_from_grok_metadata(grok_result)
+            if not letter_products:
+                logger.warning("⚠️ No products found for matching")
+                return {
+                    'success': True,
+                    'matched_products': [],
+                    'matching_confidence': 0.0,
+                    'matching_errors': ['No products to match']
+                }
+            
+            # For each letter product, discover candidates and match
+            all_matches = []
+            for letter_product in letter_products:
+                discovery_result = self.product_database_service.discover_product_candidates(letter_product, max_candidates=1000)
+                candidates = discovery_result.candidates
+                match_result = self.product_matching_service.match_products(letter_product, candidates)
+                all_matches.extend(match_result.matching_products)
+            
+            logger.info(f"✅ Product matching completed: {len(all_matches)} matches")
+            return {
+                'success': True,
+                'matched_products': all_matches,
+                'matching_confidence': max((m.confidence for m in all_matches), default=0.0),
+                'matching_errors': []
+            }
+        except Exception as e:
+            logger.error(f"❌ Product matching failed: {e}")
+            return {
+                'success': False,
+                'matched_products': [],
+                'matching_confidence': 0.0,
+                'matching_errors': [f'Product matching failed: {e}']
+            }
+
+    def _ingest_into_database(self, file_path: Path, validation_result: ContentValidationResult, 
+                             grok_result: Dict[str, Any], product_matching_result: Dict[str, Any],
+                             existing_document_id: Optional[int] = None) -> Dict[str, Any]:
+        """Ingest processing results into database"""
+        try:
+            logger.info("💾 Ingesting results into database")
+            
+            # Calculate file hash
+            file_hash = self._calculate_file_hash(file_path)
+            
+            with duckdb.connect(self.db_path) as conn:
+                # Insert or update letter record
+                if existing_document_id:
+                    # Update existing record
+                    conn.execute("""
+                        UPDATE letters 
+                        SET document_name = ?, source_file_path = ?, file_hash = ?, 
+                            validation_details_json = ?, updated_at = CURRENT_TIMESTAMP,
+                            status = 'processed'
+                        WHERE id = ?
+                    """, [
+                        file_path.name,
+                        str(file_path.resolve()),
+                        file_hash,
+                        json.dumps(validation_result.__dict__),
+                        existing_document_id
+                    ])
+                    document_id = existing_document_id
+                else:
+                    # Insert new record
+                    result = conn.execute("""
+                        INSERT INTO letters (document_name, source_file_path, file_hash, 
+                                           validation_details_json, status)
+                        VALUES (?, ?, ?, ?, 'processed')
+                        RETURNING id
+                    """, [
+                        file_path.name,
+                        str(file_path.resolve()),
+                        file_hash,
+                        json.dumps(validation_result.__dict__)
+                    ]).fetchone()
+                    document_id = result[0]
+                
+                # Insert products
+                products = grok_result.get('products', [])
+                for product in products:
+                    conn.execute("""
+                        INSERT INTO letter_products (letter_id, product_identifier, range_label, 
+                                                   product_description, confidence_score)
+                        VALUES (?, ?, ?, ?, ?)
+                    """, [
+                        document_id,
+                        product.get('product_identifier', ''),
+                        product.get('range_label', ''),
+                        product.get('product_description', ''),
+                        product.get('confidence_score', 0.0)
+                    ])
+                
+                # Insert product matches
+                matched_products = product_matching_result.get('matched_products', [])
+                for match in matched_products:
+                    conn.execute("""
+                        INSERT INTO letter_product_matches (letter_id, letter_product_id, ibcatalogue_product_identifier, 
+                                                          match_confidence, match_reason, technical_match_score, nomenclature_match_score, product_line_match_score, match_type, range_based_matching)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, [
+                        document_id,
+                        None,  # letter_product_id (can be linked if available)
+                        match.product_identifier,
+                        match.confidence,
+                        match.reason,
+                        match.technical_match_score,
+                        match.nomenclature_match_score,
+                        match.product_line_match_score,
+                        match.match_type,
+                        False  # range_based_matching (can be set if available)
+                    ])
+                
+                logger.info(f"✅ Database ingestion completed: Document ID {document_id}")
+                return {
+                    'success': True,
+                    'document_id': document_id,
+                    'products_inserted': len(products),
+                    'matches_inserted': len(matched_products)
+                }
+                
+        except Exception as e:
+            logger.error(f"❌ Database ingestion failed: {e}")
+            return {
+                'success': False,
+                'error': str(e)
+            }
+
+    def get_processing_statistics(self) -> Dict[str, Any]:
+        """Get processing statistics from database"""
+        try:
+            with duckdb.connect(self.db_path) as conn:
+                # Get basic statistics
+                total_documents = conn.execute("SELECT COUNT(*) FROM letters").fetchone()[0]
+                processed_documents = conn.execute("SELECT COUNT(*) FROM letters WHERE status = 'processed'").fetchone()[0]
+                failed_documents = conn.execute("SELECT COUNT(*) FROM letters WHERE status = 'failed'").fetchone()[0]
+                
+                # Get recent processing stats
+                recent_processing = conn.execute("""
+                    SELECT COUNT(*) FROM letters 
+                    WHERE created_at >= CURRENT_DATE - INTERVAL 7 DAY
+                """).fetchone()[0]
+                
+                # Get average confidence scores
+                avg_confidence = conn.execute("""
+                    SELECT AVG(CAST(JSON_EXTRACT(validation_details_json, '$.confidence_score') AS FLOAT))
+                    FROM letters 
+                    WHERE validation_details_json IS NOT NULL
+                """).fetchone()[0] or 0.0
+                
+                return {
+                    'total_documents': total_documents,
+                    'processed_documents': processed_documents,
+                    'failed_documents': failed_documents,
+                    'recent_processing_7_days': recent_processing,
+                    'average_confidence_score': round(avg_confidence, 2),
+                    'success_rate': round((processed_documents / total_documents * 100) if total_documents > 0 else 0, 2)
+                }
+                
+        except Exception as e:
+            logger.error(f"❌ Failed to get processing statistics: {e}")
+            return {
+                'total_documents': 0,
+                'processed_documents': 0,
+                'failed_documents': 0,
+                'recent_processing_7_days': 0,
+                'average_confidence_score': 0.0,
+                'success_rate': 0.0,
+                'error': str(e)
+            } 

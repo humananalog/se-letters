@@ -436,8 +436,11 @@ JSON Response:"""
                     f"Making API call (attempt {attempt + 1}/{self.max_retries})"
                 )
 
-                # Create chat using official SDK
-                chat = self.client.chat.create(model=self.model, temperature=0.1)
+                # Create chat using official SDK pattern
+                chat = self.client.chat.create(
+                    model=self.model, 
+                    temperature=0.1
+                )
 
                 # Add system and user messages
                 chat.append(
@@ -447,7 +450,7 @@ JSON Response:"""
                 )
                 chat.append(user(prompt))
 
-                # Get response using official SDK
+                # Get response using official SDK pattern
                 response = chat.sample()
 
                 if not response or not response.content:
@@ -499,8 +502,11 @@ JSON Response:"""
             # Combine prompt with document content
             full_prompt = f"{prompt}\n\nDocument Content:\n{document_content}"
 
-            # Create chat using official SDK
-            chat = self.client.chat.create(model=self.model, temperature=0.1)
+            # Create chat using official SDK pattern
+            chat = self.client.chat.create(
+                model=self.model, 
+                temperature=0.1
+            )
 
             # Add system and user messages
             chat.append(
@@ -510,7 +516,7 @@ JSON Response:"""
             )
             chat.append(user(full_prompt))
 
-            # Get response using official SDK
+            # Get response using official SDK pattern
             response = chat.sample()
 
             if not response or not response.content:

@@ -1,34 +1,40 @@
 #!/usr/bin/env python3
 """
 Database Lock Cleanup Utility
-Helps resolve DuckDB lock conflicts by identifying and cleaning up stale processes
+Enhanced version to resolve DuckDB lock conflicts from concurrent processes
+
+This script specifically handles:
+1. Next.js webapp holding DuckDB connections
+2. Python pipeline processes trying to access the same database
+3. Stale processes that may be holding locks
 """
 
 import os
 import sys
-import signal
-import subprocess
 import time
+import psutil
 from pathlib import Path
 
 def find_processes_using_database():
     """Find processes that might be using the DuckDB database"""
     try:
-        # Find Python processes that might be using the database
-        result = subprocess.run(['ps', 'aux'], capture_output=True, text=True)
-        lines = result.stdout.split('\n')
-        
         db_processes = []
-        for line in lines:
-            if ('python' in line.lower() and 
-                ('production_pipeline' in line or 'se_letters' in line or 'duckdb' in line)):
-                parts = line.split()
-                if len(parts) > 1:
-                    try:
-                        pid = int(parts[1])
-                        db_processes.append((pid, line.strip()))
-                    except ValueError:
-                        continue
+        
+        # Find all processes that might be using the database
+        for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+            try:
+                cmdline = ' '.join(proc.info['cmdline'] or [])
+                
+                # Check for relevant processes
+                keywords = ['next', 'node', 'duckdb', 'production_pipeline', 
+                           'se_letters']
+                if any(keyword in cmdline.lower() for keyword in keywords):
+                    db_processes.append((
+                        proc.info['pid'],
+                        f"{proc.info['name']}: {cmdline[:100]}..."
+                    ))
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
         
         return db_processes
     except Exception as e:
@@ -50,33 +56,31 @@ def check_database_lock():
     return True
 
 def kill_process_safely(pid):
-    """Safely kill a process"""
+    """Kill process safely with proper error handling"""
     try:
-        # First try graceful termination
-        os.kill(pid, signal.SIGTERM)
-        time.sleep(2)
+        proc = psutil.Process(pid)
+        print(f"💀 Terminating PID {pid} ({proc.name()})")
         
-        # Check if process is still running
+        # Try graceful termination first
+        proc.terminate()
+        
+        # Wait for graceful shutdown
         try:
-            os.kill(pid, 0)  # This doesn't kill, just checks if process exists
-            print(f"⚠️  Process {pid} still running, using SIGKILL")
-            os.kill(pid, signal.SIGKILL)
-            time.sleep(1)
-        except ProcessLookupError:
-            print(f"✅ Process {pid} terminated gracefully")
-            return True
+            proc.wait(timeout=5)
+            print(f"✅ PID {pid} terminated gracefully")
+        except psutil.TimeoutExpired:
+            # Force kill if graceful termination fails
+            print(f"⚠️ Force killing PID {pid}")
+            proc.kill()
+            proc.wait(timeout=2)
+            print(f"✅ PID {pid} force killed")
             
-    except ProcessLookupError:
-        print(f"✅ Process {pid} was already terminated")
-        return True
-    except PermissionError:
-        print(f"❌ Permission denied to kill process {pid}")
-        return False
+    except psutil.NoSuchProcess:
+        print(f"ℹ️ PID {pid} already terminated")
+    except psutil.AccessDenied:
+        print(f"❌ Access denied to PID {pid}")
     except Exception as e:
-        print(f"❌ Error killing process {pid}: {e}")
-        return False
-    
-    return True
+        print(f"❌ Error killing PID {pid}: {e}")
 
 def test_database_connection():
     """Test if we can connect to the database"""
@@ -91,9 +95,31 @@ def test_database_connection():
         print(f"❌ Database connection test failed: {e}")
         return False
 
+def check_specific_lock_issue():
+    """Check for the specific lock issue we're seeing"""
+    print("\n🔍 Checking for specific lock issues...")
+    
+    # Check for Next.js processes holding DuckDB connections
+    nextjs_processes = []
+    for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+        try:
+            cmdline = ' '.join(proc.info['cmdline'] or [])
+            if 'next' in cmdline.lower() and 'duckdb' in cmdline.lower():
+                nextjs_processes.append(proc.info['pid'])
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    
+    if nextjs_processes:
+        print(f"⚠️ Found {len(nextjs_processes)} Next.js processes that may be holding DuckDB connections:")
+        for pid in nextjs_processes:
+            print(f"  - PID {pid}")
+        return nextjs_processes
+    
+    return []
+
 def main():
-    print("🧹 SE LETTERS - DATABASE LOCK CLEANUP UTILITY")
-    print("=" * 50)
+    print("🧹 SE LETTERS - ENHANCED DATABASE LOCK CLEANUP UTILITY")
+    print("=" * 60)
     
     # Check current directory
     if not Path("data").exists():
@@ -106,23 +132,26 @@ def main():
     # Check database file
     has_db = check_database_lock()
     
-    # Find problematic processes
+    # Check for specific lock issues
+    nextjs_processes = check_specific_lock_issue()
+    
+    # Find all problematic processes
     print("\n🔍 Scanning for database-related processes...")
     processes = find_processes_using_database()
     
-    if not processes:
+    if not processes and not nextjs_processes:
         print("✅ No database-related processes found")
     else:
-        print(f"⚠️  Found {len(processes)} database-related processes:")
-        for pid, cmd in processes:
-            print(f"  PID {pid}: {cmd[:100]}...")
+        all_processes = processes + [(pid, f"Next.js process {pid}") for pid in nextjs_processes]
+        print(f"⚠️  Found {len(all_processes)} database-related processes:")
+        for pid, cmd in all_processes:
+            print(f"  PID {pid}: {cmd}")
         
         # Ask user if they want to kill these processes
         response = input("\n🤔 Kill these processes? (y/N): ").strip().lower()
         if response in ['y', 'yes']:
             print("\n💀 Terminating processes...")
-            for pid, cmd in processes:
-                print(f"Killing PID {pid}...")
+            for pid, cmd in all_processes:
                 kill_process_safely(pid)
             
             # Wait a moment for processes to clean up
@@ -139,9 +168,10 @@ def main():
         else:
             print("❌ Database is still locked")
             print("💡 You may need to:")
-            print("   1. Check for other Python processes")
-            print("   2. Restart your terminal")
-            print("   3. Reboot if the issue persists")
+            print("   1. Restart the webapp: ./scripts/stop_app.sh && ./scripts/start_app.sh")
+            print("   2. Check for other Python processes")
+            print("   3. Restart your terminal")
+            print("   4. Reboot if the issue persists")
     
     print("\n✅ Cleanup completed")
 
