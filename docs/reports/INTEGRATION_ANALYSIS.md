@@ -1,4 +1,14 @@
-# SE Letters Pipeline Integration Analysis
+# Integration Analysis
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## Overview
 

@@ -1,4 +1,14 @@
-# SE Letters - Schneider Electric Obsolescence Letter Matching Pipeline
+# Readme
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -8,7 +18,7 @@
 
 A comprehensive automated pipeline for processing Schneider Electric obsolescence letters and matching them to the **IBcatalogue.xlsx master referential** containing **342,229 electrical products** using advanced AI/ML techniques with the **official xAI SDK** and comprehensive metadata extraction.
 
-**Current Version: 2.2.0** - Production Ready with xAI SDK Integration
+**Current Version: 2.2.0
 
 ## 🚀 Enhanced Features
 

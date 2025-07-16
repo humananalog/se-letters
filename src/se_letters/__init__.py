@@ -1,23 +1,24 @@
-"""SE Letters - Schneider Electric Obsolescence Letter Matching Pipeline.
+"""
+SE Letters - Schneider Electric Obsolescence Letter Processing Pipeline
 
-This package provides tools for processing obsolescence letters and matching
-them to product records using AI/ML techniques.
+A comprehensive automated pipeline for processing Schneider Electric obsolescence letters
+and matching them to the IBcatalogue product database using advanced AI/ML techniques.
+
+Author: Alexandre Huther
+Version: 2.2.0
 """
 
-__version__ = "1.0.0"
-__author__ = "SE Letters Team"
-__email__ = "team@se-letters.com"
+__version__ = "2.2.0"
+__author__ = "Alexandre Huther"
+__description__ = "Schneider Electric Obsolescence Letter Processing Pipeline"
 
-from .core.pipeline import Pipeline
 from .core.config import get_config
-from .models.document import Document, DocumentResult
-from .models.letter import Letter, LetterMetadata
+from .services.production_pipeline_service import ProductionPipelineService
 
 __all__ = [
-    "Pipeline",
     "get_config",
-    "Document",
-    "DocumentResult",
-    "Letter",
-    "LetterMetadata",
+    "ProductionPipelineService",
+    "__version__",
+    "__author__",
+    "__description__",
 ] 

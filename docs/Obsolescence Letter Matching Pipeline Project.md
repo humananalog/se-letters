@@ -1,3 +1,14 @@
+# Obsolescence Letter Matching Pipeline Project
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
 # Schneider Electric Obsolescence Letter Matching Pipeline

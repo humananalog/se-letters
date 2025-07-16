@@ -1,0 +1,27 @@
+{
+  "letter_products": [
+    {
+      "product_identifier": "PIX 2B",
+      "range_label": "PIX Double Bus Bar",
+      "subrange_label": "PIX 2B",
+      "product_line": "PSIBS (Power Systems)",
+      "product_description": "Medium Voltage switchgear offer, launched in 2014, with specifications of 12 \u2013 17.5kV, up to 3150A, 50/60Hz, 31.5kA 3s.",
+      "technical_specifications": {
+        "voltage_levels": [
+          "12 \u2013 17.5kV"
+        ],
+        "current_ratings": [
+          "up to 3150A"
+        ],
+        "power_ratings": [],
+        "frequencies": [
+          "50/60Hz"
+        ]
+      },
+      "obsolescence_status": "Withdrawn",
+      "end_of_service_date": "November 2023 (for Belgium frame contract only)",
+      "replacement_suggestions": "No substitution available for this range."
+    }
+  ],
+  "timestamp": 1752575038.62665
+}

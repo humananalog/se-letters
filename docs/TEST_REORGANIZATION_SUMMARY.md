@@ -1,5 +1,15 @@
 # Test Reorganization Summary
 
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
+
 ## Overview
 
 This document summarizes the reorganization of test scripts from the `scripts/` directory to the `tests/` directory, following standard Python project structure and best practices.

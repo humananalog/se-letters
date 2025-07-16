@@ -1,4 +1,14 @@
-# SE Letters - IBcatalogue Integration Test Report
+# Test Report
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 **Date**: December 2024  
 **Test Environment**: macOS 14.5.0 (arm64)  

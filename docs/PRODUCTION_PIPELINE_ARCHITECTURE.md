@@ -1,4 +1,14 @@
-# SE Letters Production Pipeline Architecture - Modular Design
+# Production Pipeline Architecture
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## 📋 Table of Contents
 
@@ -1125,7 +1135,7 @@ CMD ["python", "-m", "se_letters.cli"]
 #### Docker Compose with Plugins
 ```yaml
 # docker-compose.yml
-version: '3.8'
+Version: 2.2.0
 services:
   se-letters:
     build: .

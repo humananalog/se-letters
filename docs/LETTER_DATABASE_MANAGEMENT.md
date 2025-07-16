@@ -1,7 +1,16 @@
-# Letter Database Management Documentation
+# Letter Database Management
 
 **Version: 2.2.0**  
-**Last Updated: 2025-01-27**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
 **Component: Letter Database Management Page**  
 **Framework: Next.js 14 with TypeScript**
 

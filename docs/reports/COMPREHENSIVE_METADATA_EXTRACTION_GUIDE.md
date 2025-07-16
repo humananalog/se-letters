@@ -1,4 +1,14 @@
-# SE Letters Pipeline - Comprehensive Metadata Extraction Guide
+# Comprehensive Metadata Extraction Guide
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## Overview
 

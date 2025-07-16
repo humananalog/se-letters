@@ -1,7 +1,7 @@
 """External service integrations for the SE Letters project."""
 
 from .document_processor import DocumentProcessor
-from .excel_service import ExcelService
+# ExcelService removed - using SOTA DuckDB database
 from .xai_service import XAIService
 from .embedding_service import EmbeddingService
 

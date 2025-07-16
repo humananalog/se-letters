@@ -1,0 +1,62 @@
+{
+  "letter_products": [
+    {
+      "product_identifier": "P3U10",
+      "range_label": "Easergy P3",
+      "subrange_label": "P3U",
+      "product_line": "DPIBS",
+      "product_description": "Protection relay model P3U10",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [
+          "1A",
+          "5/1A"
+        ],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "Discontinued",
+      "end_of_service_date": "Q4 2023",
+      "replacement_suggestions": "PowerLogic P3U20"
+    },
+    {
+      "product_identifier": "P3L30 Distance Protection",
+      "range_label": "Easergy P3",
+      "subrange_label": "P3L",
+      "product_line": "DPIBS",
+      "product_description": "Distance protection functionality in P3L30 relay",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [
+          "1A",
+          "5/1A"
+        ],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "Discontinued",
+      "end_of_service_date": "Q4 2023",
+      "replacement_suggestions": "Easergy MiCOM P439 for stand-alone distance protection; Easergy MiCOM P54x for combined distance and line differential"
+    },
+    {
+      "product_identifier": "P3x3x Dedicated 1A Input",
+      "range_label": "Easergy P3",
+      "subrange_label": "P3x3x",
+      "product_line": "DPIBS",
+      "product_description": "Dedicated 1A input for P3x3x relay (slot 8)",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [
+          "1A",
+          "5/1A"
+        ],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "Discontinued",
+      "end_of_service_date": "Q4 2023",
+      "replacement_suggestions": "Combined 5/1A input for P3x3x relay (Order options E, N, 1, 5)"
+    }
+  ],
+  "timestamp": 1752573731.435835
+}

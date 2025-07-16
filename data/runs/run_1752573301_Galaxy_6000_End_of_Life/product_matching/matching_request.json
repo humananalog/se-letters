@@ -1,0 +1,21 @@
+{
+  "letter_products": [
+    {
+      "product_identifier": "Galaxy 6000",
+      "range_label": "Galaxy",
+      "subrange_label": "6000",
+      "product_line": "SPIBS",
+      "product_description": "Uninterruptible Power Supply (UPS) system for secure power applications",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "Manufacturing stopped in 2015",
+      "end_of_service_date": "2027",
+      "replacement_suggestions": "Options include buying a new UPS, upgrading existing modular UPS for extended life, or maintaining basic maintenance until failure"
+    }
+  ],
+  "timestamp": 1752573301.0407581
+}

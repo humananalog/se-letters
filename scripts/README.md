@@ -1,4 +1,14 @@
-# 🚀 SE Letters - Production Scripts Directory
+# Readme
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 **Clean, Production-Ready Scripts for Schneider Electric Obsolescence Letter Processing**
 

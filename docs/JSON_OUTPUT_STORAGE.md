@@ -1,7 +1,16 @@
-# JSON Output Storage System
+# Json Output Storage
 
-**Version: 1.0.0**  
-**Last Updated: 2025-01-27**  
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
 **Component: JSON Output Manager**
 
 ## 📋 Overview

@@ -1,0 +1,85 @@
+{
+  "letter_products": [
+    {
+      "product_identifier": "MiCOM P20",
+      "range_label": "MiCOM",
+      "subrange_label": "P20",
+      "product_line": "DPIBS",
+      "product_description": "Protection relay series under MiCOM range for digital power applications.",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "End of Commercialization",
+      "end_of_service_date": "December 31, 2023",
+      "replacement_suggestions": "Not specified"
+    },
+    {
+      "product_identifier": "SEPAM 20",
+      "range_label": "SEPAM",
+      "subrange_label": "20",
+      "product_line": "DPIBS",
+      "product_description": "Protection relay series under SEPAM range for digital power applications.",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "End of Commercialization",
+      "end_of_service_date": "December 31, 2023",
+      "replacement_suggestions": "Not specified"
+    },
+    {
+      "product_identifier": "SEPAM 40",
+      "range_label": "SEPAM",
+      "subrange_label": "40",
+      "product_line": "DPIBS",
+      "product_description": "Protection relay series under SEPAM range for digital power applications.",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "End of Commercialization",
+      "end_of_service_date": "December 31, 2023",
+      "replacement_suggestions": "Not specified"
+    },
+    {
+      "product_identifier": "MiCOM P521",
+      "range_label": "MiCOM",
+      "subrange_label": "P521",
+      "product_line": "DPIBS",
+      "product_description": "Line differential protection relay under MiCOM range for digital power applications.",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "End of Commercialization",
+      "end_of_service_date": "December 31, 2023",
+      "replacement_suggestions": "PowerLogic P5L"
+    },
+    {
+      "product_identifier": "PowerLogic P5L",
+      "range_label": "PowerLogic",
+      "subrange_label": "P5L",
+      "product_line": "DPIBS",
+      "product_description": "Replacement model for MiCOM P521 under PowerLogic range for digital power applications.",
+      "technical_specifications": {
+        "voltage_levels": [],
+        "current_ratings": [],
+        "power_ratings": [],
+        "frequencies": []
+      },
+      "obsolescence_status": "Active",
+      "end_of_service_date": "Not applicable",
+      "replacement_suggestions": "Not applicable"
+    }
+  ],
+  "timestamp": 1752567518.005007
+}

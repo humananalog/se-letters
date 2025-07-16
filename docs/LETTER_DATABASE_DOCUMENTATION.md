@@ -1,9 +1,18 @@
 # Letter Database Documentation
 
 **Version: 2.2.0**  
-**Last Updated: 2025-07-14**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
 **Database Engine: DuckDB**  
-**Schema Version: 2.2.0**
+**Schema Version: 2.2.0
 
 ## 📋 Table of Contents
 

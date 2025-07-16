@@ -1,4 +1,14 @@
-# Document Zoom & Pan Enhancement
+# Zoom Enhancement Summary
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## 🎯 Enhancement Summary
 

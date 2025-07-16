@@ -1,4 +1,14 @@
-# HTML Report Enhancements - Document Preview Panel
+# Html Report Enhancements
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## 🎯 Enhancement Summary
 
@@ -6,8 +16,8 @@ The HTML report has been significantly enhanced with a **left panel document pre
 
 ## 📊 Report Size Increase
 
-- **Previous Version:** 26.0 KB
-- **Enhanced Version:** 43.7 KB
+- **Previous Version: 2.2.0
+- **Enhanced Version: 2.2.0
 - **Size Increase:** +68% (additional 17.7 KB)
 - **New Features Added:** Document preview panel with interactive elements
 

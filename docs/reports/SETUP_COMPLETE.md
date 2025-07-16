@@ -1,4 +1,14 @@
-# 🎉 SE Letters Setup Complete!
+# Setup Complete
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 Your SE Letters IBcatalogue integration is now fully configured and ready to use.
 

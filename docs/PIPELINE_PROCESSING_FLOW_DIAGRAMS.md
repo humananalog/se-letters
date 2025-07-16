@@ -1,5 +1,15 @@
 # Pipeline Processing Flow Diagrams
 
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
+
 ## Overview
 
 This document provides comprehensive Mermaid diagrams that describe all processing steps in the SE Letters pipeline architecture. The diagrams cover all three production pipeline versions and their respective processing flows.

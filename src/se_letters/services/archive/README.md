@@ -1,4 +1,14 @@
-# Archived Services
+# Readme
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 This directory contains services that have been archived from the production environment to maintain a clean and focused codebase.
 

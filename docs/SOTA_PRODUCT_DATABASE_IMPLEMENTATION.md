@@ -1,4 +1,14 @@
-# SOTA Product Database Implementation
+# Sota Product Database Implementation
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 **Version**: 1.0.0  
 **Date**: 2025-07-14  

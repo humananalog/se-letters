@@ -1,4 +1,14 @@
-# SE Letters Pipeline - Comprehensive Product Export Guide
+# Comprehensive Product Export Guide
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## Overview
 

@@ -1,0 +1,36 @@
+{
+  "database_stats": {
+    "total_products": 342229,
+    "total_ranges": 4067,
+    "total_subranges": 5906,
+    "total_brands": 500,
+    "obsolete_products": 183772,
+    "active_products": 158457,
+    "pl_services_distribution": {
+      "PPIBS": 157713,
+      "IDPAS": 77768,
+      "IDIBS": 34981,
+      "PSIBS": 27440,
+      "SPIBS": 20830,
+      "DPIBS": 20184,
+      "DBIBS": 3313
+    },
+    "creation_time": "2025-07-14T17:39:00.707437",
+    "file_size_mb": 81.76171875,
+    "performance_metrics": {
+      "excel_load_time": 30.374381065368652,
+      "schema_creation_time": 1.681596279144287,
+      "index_creation_time": 0.6566739082336426
+    }
+  },
+  "performance_benchmarks": {
+    "range_lookup_ms": 0.1990795135498047,
+    "complex_search_ms": 1.5149116516113281,
+    "aggregation_query_ms": 0.8630752563476562,
+    "full_text_search_ms": 5.688905715942383,
+    "large_result_set_ms": 2.165079116821289
+  },
+  "creation_timestamp": "2025-07-14T17:39:00.730975",
+  "database_path": "data/IBcatalogue.duckdb",
+  "excel_source": "data/input/letters/IBcatalogue.xlsx"
+}

@@ -1,5 +1,15 @@
 # Document Visual Preview Enhancement
 
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
+
 ## 🎯 Enhancement Summary
 
 Successfully implemented **actual visual document preview** with original formatting preservation! The HTML report now displays the PIX-DC letter as high-quality page images instead of raw text, providing authentic document appearance for debugging and quality assessment.

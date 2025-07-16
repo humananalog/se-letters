@@ -13,26 +13,30 @@ api:
 data:
   input:
     letters_directory: "data/input/letters/PSIBS_MODERNIZATION/07_ PWP communication letters & SLA"
-    excel_file: "data/input/letters/IBcatalogue.xlsx"
     supported_formats:
       - ".pdf"
       - ".docx"
       - ".doc"
   
+  # Database Configuration - DuckDB Only
+  database:
+    # Product database (IBcatalogue) - 342,229 products
+    product_database: "data/IBcatalogue.duckdb"
+    # Letter database for processing results
+    letter_database: "data/letters.duckdb"
+  
   output:
     json_directory: "data/output/json"
-    excel_output: "data/output/matched_results.xlsx"
     logs_directory: "logs"
   
   temp:
     temp_directory: "data/temp"
     cleanup_on_exit: true
     
-  # Additional configurations for IBcatalogue.xlsx
-  excel_sheet: "OIC_out"
+  # Test configuration
   test_letter_file: "data/input/letters/PSIBS_MODERNIZATION/07_ PWP communication letters & SLA/20170608_PIX-DC - Phase out_communication_letter-Rev00.doc"
   
-  # Column mappings for IBcatalogue.xlsx
+  # DuckDB table structure - column mappings for IBcatalogue database
   columns:
     product_id: "PRODUCT_IDENTIFIER"
     range_name: "RANGE_LABEL"

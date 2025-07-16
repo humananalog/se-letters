@@ -1,0 +1,432 @@
+{
+  "assessment_date": "2025-07-16T09:00:47.111052",
+  "project_root": ".",
+  "production_files": {
+    "Dependencies": [
+      "requirements.txt"
+    ],
+    "Project configuration": [
+      "pyproject.toml"
+    ],
+    "Project documentation": [
+      "README.md",
+      "webapp/README.md",
+      "scripts/README.md",
+      "scripts/archive/README.md",
+      "scripts/archive/2025_07_15_cleanup/experimental/sandbox/README.md",
+      "scripts/archive/2025_07_15_cleanup/experimental/sandbox/intelligent_product_matching/README.md"
+    ],
+    "Configuration files": [
+      "config/config.yaml",
+      "config/prompts.yaml",
+      "config/env.example"
+    ],
+    "Core source code": [
+      "webapp/src/types/index.ts",
+      "webapp/src/app/favicon.ico",
+      "webapp/src/app/layout.tsx",
+      "webapp/src/app/page.tsx",
+      "webapp/src/app/globals.css",
+      "webapp/src/app/letters/page.tsx",
+      "webapp/src/app/documents-metadata/page.tsx",
+      "webapp/src/app/test-documents/page.tsx",
+      "webapp/src/app/api/pipeline/metrics/route.ts",
+      "webapp/src/app/api/pipeline/status/route.ts",
+      "webapp/src/app/api/pipeline/test-process/route.ts",
+      "webapp/src/app/api/pipeline/upload-document/route.ts",
+      "webapp/src/app/api/pipeline/execute/route.ts",
+      "webapp/src/app/api/pipeline/generate-preview/route.ts",
+      "webapp/src/app/api/pipeline/test-mode/route.ts",
+      "webapp/src/app/api/letters/route.ts",
+      "webapp/src/app/api/documents/route.ts",
+      "webapp/src/app/api/letter-database/route.ts",
+      "webapp/src/app/api/letter-database/[id]/route.ts",
+      "webapp/src/app/documents/page.tsx",
+      "webapp/src/app/letter-database/page.tsx",
+      "webapp/src/components/DebugModal.tsx",
+      "webapp/src/components/ui/DocumentDetailModal.tsx",
+      "webapp/src/components/ui/IndustrialButton.tsx",
+      "webapp/src/components/ui/FileUpload.tsx",
+      "webapp/src/components/ui/IndustrialCard.tsx",
+      "webapp/src/components/ui/IndustrialSidebar.tsx",
+      "webapp/src/components/layout/MainLayout.tsx",
+      "webapp/src/components/layout/IndustrialSidebar.tsx",
+      "webapp/src/hooks/useApi.ts",
+      "webapp/src/lib/utils.ts",
+      "webapp/src/lib/navigation.tsx",
+      "src/se_letters/__init__.py",
+      "src/se_letters/cli.py",
+      "src/se_letters/py.typed",
+      "src/se_letters/core/interfaces.py",
+      "src/se_letters/core/config.py",
+      "src/se_letters/core/__init__.py",
+      "src/se_letters/core/factory.py",
+      "src/se_letters/core/container.py",
+      "src/se_letters/core/stages.py",
+      "src/se_letters/core/event_bus.py",
+      "src/se_letters/core/pipeline.py",
+      "src/se_letters/core/orchestrator.py",
+      "src/se_letters/core/exceptions.py",
+      "src/se_letters/core/plugin_manager.py",
+      "src/se_letters/core/adapters.py",
+      "src/se_letters/utils/__init__.py",
+      "src/se_letters/utils/logger.py",
+      "src/se_letters/utils/json_output_manager.py",
+      "src/se_letters/utils/file_utils.py",
+      "src/se_letters/models/product_matching.py",
+      "src/se_letters/models/__init__.py",
+      "src/se_letters/models/document.py",
+      "src/se_letters/models/letter.py",
+      "src/se_letters/models/product.py",
+      "src/se_letters/services/document_processor.py",
+      "src/se_letters/services/__init__.py",
+      "src/se_letters/services/embedding_service.py",
+      "src/se_letters/services/letter_database_service.py",
+      "src/se_letters/services/intelligent_product_matching_service.py",
+      "src/se_letters/services/sota_product_database_service.py",
+      "src/se_letters/services/xai_service.py",
+      "src/se_letters/services/production_pipeline_service.py",
+      "src/se_letters/services/preview_service.py",
+      "src/se_letters/services/archive/README.md",
+      "src/se_letters/services/archive/experimental/semantic_extraction_engine.py",
+      "src/se_letters/services/archive/experimental/advanced_preview_service.py",
+      "src/se_letters/services/archive/experimental/robust_document_processor.py",
+      "src/se_letters/services/archive/experimental/raw_file_grok_service.py",
+      "src/se_letters/services/archive/experimental/document_metadata_service.py",
+      "src/se_letters/services/archive/experimental/enhanced_duckdb_service.py",
+      "src/se_letters/services/archive/experimental/enhanced_vector_search_engine.py",
+      "src/se_letters/services/archive/experimental/sota_grok_service.py",
+      "src/se_letters/services/archive/experimental/enhanced_image_processor.py",
+      "src/se_letters/services/archive/experimental/product_modernization_engine.py",
+      "src/se_letters/services/archive/experimental/enhanced_semantic_extraction_engine.py",
+      "src/se_letters/services/archive/experimental/enhanced_document_processor.py",
+      "src/se_letters.egg-info/PKG-INFO",
+      "src/se_letters.egg-info/SOURCES.txt",
+      "src/se_letters.egg-info/entry_points.txt",
+      "src/se_letters.egg-info/requires.txt",
+      "src/se_letters.egg-info/top_level.txt",
+      "src/se_letters.egg-info/dependency_links.txt"
+    ],
+    "Test files": [
+      "tests/conftest.py",
+      "tests/test_letter_database_service.py",
+      "tests/__init__.py",
+      "tests/test_letter_database_api.py",
+      "tests/unit/test_pix2b_real_pipeline.py",
+      "tests/unit/test_enhanced_sota_service.py",
+      "tests/unit/test_grok_api_simple.py",
+      "tests/unit/test_production_pipeline_service.py",
+      "tests/unit/test_mode_processor.py",
+      "tests/unit/test_ol0009_enhanced_extraction.py",
+      "tests/unit/test_product_discovery_fix.py",
+      "tests/integration/test_pix2b_production.py",
+      "tests/integration/test_complete_pipeline_integration.py",
+      "tests/integration/test_database_storage.py",
+      "tests/integration/test_production_pipeline_simple.py",
+      "logs/integration_tests/simple_pipeline_test_20250715_083710.log",
+      "logs/integration_tests/simple_pipeline_test_20250715_090032.log",
+      "logs/integration_tests/pix2b_integration_test_20250715_082519.log",
+      "logs/integration_tests/pix2b_integration_test_20250715_082652.log",
+      "logs/integration_tests/simple_pipeline_test_20250715_083611.log",
+      "logs/integration_tests/simple_pipeline_test_20250715_083950.log",
+      "logs/integration_tests/pix2b_integration_test_20250715_082427.log",
+      "logs/integration_tests/pix2b_integration_test_20250715_082631.log",
+      "logs/integration_tests/simple_pipeline_test_20250715_085910.log",
+      "logs/integration_tests/pix2b_integration_test_20250715_082823.log",
+      "logs/integration_tests/simple_pipeline_test_20250715_083336.log",
+      "logs/integration_tests/simple_pipeline_summary_20250715_090218.json",
+      "logs/integration_tests/pix2b_integration_test_20250715_082909.log",
+      "logs/integration_tests/simple_pipeline_test_20250715_083045.log",
+      "scripts/archive/old_tests/test_enhanced_vector_search.py",
+      "scripts/archive/old_tests/test_robust_document_processor.py",
+      "scripts/archive/old_tests/test_semantic_extraction.py",
+      "scripts/archive/old_tests/test_services_simple.py",
+      "scripts/archive/old_tests/test_phase1_integration.py"
+    ],
+    "Documentation": [
+      "docs/PRODUCTION_PIPELINE_ARCHITECTURE.md",
+      "docs/LETTER_DATABASE_MANAGEMENT.md",
+      "docs/PIPELINE_PROCESSING_FLOW_DIAGRAMS.md",
+      "docs/NEXTJS_IMPLEMENTATION_STATUS.md",
+      "docs/PERFORMANCE_OPTIMIZATION_SUMMARY.md",
+      "docs/PIPELINE_IMPROVEMENT_PLAN.md",
+      "docs/VERSION_CONTROL_IMPLEMENTATION_SUMMARY.md",
+      "docs/Obsolescence Letter Matching Pipeline Project.md",
+      "docs/PRODUCT_MATCHING_INTEGRATION_PLAN.md",
+      "docs/NEXTJS_INTEGRATION_PLAN.md",
+      "docs/document_metadata_viewer.html",
+      "docs/JSON_OUTPUT_STORAGE.md",
+      "docs/PHASE1_IMPLEMENTATION_COMPLETE.md",
+      "docs/IBcatalogue_Analysis.md",
+      "docs/PRODUCT_MAPPING_ENGINE_DOCUMENTATION.md",
+      "docs/LETTER_DATABASE_DOCUMENTATION.md",
+      "docs/SOTA_PRODUCT_DATABASE_IMPLEMENTATION.md",
+      "docs/PIPELINE_VERSION_CONTROL.md",
+      "docs/PIPELINE_IMPROVEMENT_IMPLEMENTATION.md",
+      "docs/TEST_REORGANIZATION_SUMMARY.md",
+      "docs/PIX2B_REAL_PIPELINE_TEST_SUMMARY.md",
+      "docs/VERSION_HEADER_TEMPLATE.md",
+      "docs/database/IBCATALOGUE_DUCKDB_DOCUMENTATION.md",
+      "docs/database/ibcatalogue_metadata.json",
+      "docs/schema/grok_enhanced_unified_schema.json",
+      "docs/schema/grok_simplified_unified_schema.json",
+      "docs/schema/Sepam_Relay_Coding_Rules_Guide.markdown",
+      "docs/schema/MiCOM_CORTEC_Nomenclature_Guide.markdown",
+      "docs/guides/modification_guidelines.markdown",
+      "docs/reports/PROJECT_SUMMARY.md",
+      "docs/reports/COMPLETE_IBCATALOGUE_INTEGRATION_SUMMARY.md",
+      "docs/reports/DOCUMENT_VISUAL_PREVIEW_ENHANCEMENT.md",
+      "docs/reports/DUCKDB_COMPREHENSIVE_ANALYSIS.md",
+      "docs/reports/HTML_REPORT_ENHANCEMENTS.md",
+      "docs/reports/Pipeline_Analysis_Summary.md",
+      "docs/reports/ENHANCED_SOTA_GROK_TEST_RESULTS.md",
+      "docs/reports/SETUP_COMPLETE.md",
+      "docs/reports/DETAILED_PIPELINE_ANALYSIS_SUMMARY.md",
+      "docs/reports/COMPREHENSIVE_METADATA_EXTRACTION_GUIDE.md",
+      "docs/reports/ENHANCED_DOCUMENT_PROCESSOR_SUMMARY.md",
+      "docs/reports/PIPELINE_FAILURE_RCA_AND_FIX.md",
+      "docs/reports/ENHANCED_VECTOR_SEARCH_GAP_ANALYSIS.md",
+      "docs/reports/duckdb_analysis_data.json",
+      "docs/reports/PHASE3_ENHANCED_VECTOR_SEARCH_IMPLEMENTATION.md",
+      "docs/reports/pipeline_assessment_report.md",
+      "docs/reports/COMPREHENSIVE_PRODUCT_EXPORT_GUIDE.md",
+      "docs/reports/COMPREHENSIVE_PIPELINE_REPORT.md",
+      "docs/reports/PRODUCTION_READY_ENHANCED_PROCESSOR.md",
+      "docs/reports/ENHANCED_SOTA_GROK_SERVICE_UPGRADE.md",
+      "docs/reports/INTEGRATION_ANALYSIS.md",
+      "docs/reports/TEST_REPORT.md",
+      "docs/reports/ENHANCED_SOTA_GROK_PRODUCTION_TEST_RESULTS.md",
+      "docs/reports/DOCUMENT_METADATA_SYSTEM_SUMMARY.md",
+      "docs/reports/ZOOM_ENHANCEMENT_SUMMARY.md",
+      "scripts/archive/2025_07_15_cleanup/experimental/sandbox/docs/SOTA_RANGE_MAPPING_SOLUTION.md",
+      "scripts/archive/2025_07_15_cleanup/experimental/sandbox/docs/pix_discovery_summary.md",
+      "scripts/archive/2025_07_15_cleanup/experimental/sandbox/docs/PRODUCT_MAPPING_SOLUTION_PLAN.md"
+    ],
+    "Production scripts": [
+      "scripts/production_pipeline_runner.py"
+    ]
+  },
+  "version_analysis": {
+    "files_with_versions": 25,
+    "version_distribution": {
+      "2.2.0**": 4,
+      "1.0.0**": 3,
+      "2.0.0**": 1,
+      "2.0.0": 2,
+      "\"2.0.0\"": 4,
+      "\"unified_v2.0\"": 1,
+      "\"1.0.0\"": 3,
+      "'3.8'": 1,
+      "Interactive": 2,
+      "[X.Y.Z]": 2,
+      "[x]": 1,
+      "PyMuPDF": 1,
+      "**Tesseract": 1,
+      "**Result**:": 1,
+      "`docx2txt`": 1,
+      "3.2.0**": 1,
+      "history)": 1,
+      "X.Y.Z": 1,
+      "[": 2,
+      "Test": 1,
+      "2.1.0": 2,
+      "**Dependency": 1,
+      "Update": 1,
+      "1.1.0": 1,
+      "**": 3,
+      "**Fallback**:": 1,
+      "**Python": 1,
+      "Complete": 1,
+      "100%": 1,
+      "1.0*": 1,
+      "**Solution**:": 2,
+      "**All": 1,
+      "**Proper": 1,
+      "3.0.0**": 1
+    },
+    "version_alignment": {
+      "unique_versions": 34,
+      "version_groups": {
+        "2.2.0**": [
+          "README.md",
+          "docs/LETTER_DATABASE_MANAGEMENT.md",
+          "docs/LETTER_DATABASE_DOCUMENTATION.md",
+          "docs/LETTER_DATABASE_DOCUMENTATION.md"
+        ],
+        "1.0.0**": [
+          "scripts/archive/2025_07_15_cleanup/experimental/sandbox/README.md",
+          "docs/PRODUCT_MATCHING_INTEGRATION_PLAN.md",
+          "docs/JSON_OUTPUT_STORAGE.md"
+        ],
+        "2.0.0**": [
+          "scripts/archive/2025_07_15_cleanup/experimental/sandbox/intelligent_product_matching/README.md"
+        ],
+        "2.0.0": [
+          "config/prompts.yaml",
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "\"2.0.0\"": [
+          "config/prompts.yaml",
+          "config/prompts.yaml",
+          "config/prompts.yaml",
+          "config/prompts.yaml"
+        ],
+        "\"unified_v2.0\"": [
+          "config/prompts.yaml"
+        ],
+        "\"1.0.0\"": [
+          "config/prompts.yaml",
+          "config/prompts.yaml",
+          "config/prompts.yaml"
+        ],
+        "'3.8'": [
+          "docs/PRODUCTION_PIPELINE_ARCHITECTURE.md"
+        ],
+        "Interactive": [
+          "docs/PIPELINE_IMPROVEMENT_PLAN.md",
+          "docs/PIPELINE_IMPROVEMENT_IMPLEMENTATION.md"
+        ],
+        "[X.Y.Z]": [
+          "docs/VERSION_CONTROL_IMPLEMENTATION_SUMMARY.md",
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "[x]": [
+          "docs/VERSION_CONTROL_IMPLEMENTATION_SUMMARY.md"
+        ],
+        "PyMuPDF": [
+          "docs/Obsolescence Letter Matching Pipeline Project.md"
+        ],
+        "**Tesseract": [
+          "docs/PHASE1_IMPLEMENTATION_COMPLETE.md"
+        ],
+        "**Result**:": [
+          "docs/PHASE1_IMPLEMENTATION_COMPLETE.md"
+        ],
+        "`docx2txt`": [
+          "docs/PHASE1_IMPLEMENTATION_COMPLETE.md"
+        ],
+        "3.2.0**": [
+          "docs/PRODUCT_MAPPING_ENGINE_DOCUMENTATION.md"
+        ],
+        "history)": [
+          "docs/LETTER_DATABASE_DOCUMENTATION.md"
+        ],
+        "X.Y.Z": [
+          "docs/PIPELINE_VERSION_CONTROL.md"
+        ],
+        "[": [
+          "docs/PIPELINE_VERSION_CONTROL.md",
+          "docs/PIPELINE_VERSION_CONTROL.md"
+        ],
+        "Test": [
+          "docs/PIPELINE_IMPROVEMENT_IMPLEMENTATION.md"
+        ],
+        "2.1.0": [
+          "docs/VERSION_HEADER_TEMPLATE.md",
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "**Dependency": [
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "Update": [
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "1.1.0": [
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "**": [
+          "docs/reports/HTML_REPORT_ENHANCEMENTS.md",
+          "docs/reports/HTML_REPORT_ENHANCEMENTS.md",
+          "docs/reports/DETAILED_PIPELINE_ANALYSIS_SUMMARY.md"
+        ],
+        "**Fallback**:": [
+          "docs/reports/Pipeline_Analysis_Summary.md"
+        ],
+        "**Python": [
+          "docs/reports/Pipeline_Analysis_Summary.md"
+        ],
+        "Complete": [
+          "docs/reports/DETAILED_PIPELINE_ANALYSIS_SUMMARY.md"
+        ],
+        "100%": [
+          "docs/reports/COMPREHENSIVE_PIPELINE_REPORT.md"
+        ],
+        "1.0*": [
+          "docs/reports/COMPREHENSIVE_PIPELINE_REPORT.md"
+        ],
+        "**Solution**:": [
+          "docs/reports/INTEGRATION_ANALYSIS.md",
+          "docs/reports/TEST_REPORT.md"
+        ],
+        "**All": [
+          "docs/reports/DOCUMENT_METADATA_SYSTEM_SUMMARY.md"
+        ],
+        "**Proper": [
+          "docs/reports/DOCUMENT_METADATA_SYSTEM_SUMMARY.md"
+        ],
+        "3.0.0**": [
+          "scripts/archive/2025_07_15_cleanup/experimental/sandbox/docs/PRODUCT_MAPPING_SOLUTION_PLAN.md"
+        ]
+      },
+      "alignment_score": 0.16,
+      "misaligned_files": [],
+      "most_common_version": "2.2.0**"
+    }
+  },
+  "author_analysis": {
+    "files_with_authors": 5,
+    "author_distribution": {
+      "\"SE": 1,
+      "SE": 4,
+      "**Visual": 1
+    },
+    "author_consistency": {
+      "unique_authors": 3,
+      "author_groups": {
+        "\"SE": [
+          "config/prompts.yaml"
+        ],
+        "SE": [
+          "docs/VERSION_CONTROL_IMPLEMENTATION_SUMMARY.md",
+          "docs/PIPELINE_VERSION_CONTROL.md",
+          "docs/VERSION_HEADER_TEMPLATE.md",
+          "docs/VERSION_HEADER_TEMPLATE.md"
+        ],
+        "**Visual": [
+          "docs/reports/DOCUMENT_VISUAL_PREVIEW_ENHANCEMENT.md"
+        ]
+      },
+      "consistency_score": 0.8,
+      "inconsistent_files": [],
+      "most_common_author": "SE"
+    }
+  },
+  "documentation_analysis": {
+    "core_components": {
+      "src/se_letters/core/": {
+        "status": "missing_documentation",
+        "doc_file": null
+      },
+      "src/se_letters/services/": {
+        "status": "missing_documentation",
+        "doc_file": null
+      },
+      "src/se_letters/models/": {
+        "status": "missing_documentation",
+        "doc_file": null
+      }
+    },
+    "api_endpoints": {},
+    "pipeline_stages": {},
+    "configuration": {},
+    "missing_documentation": [
+      "src/se_letters/core/",
+      "src/se_letters/services/",
+      "src/se_letters/models/"
+    ]
+  },
+  "recommendations": [
+    "\u26a0\ufe0f Version alignment is low (16.0%). Standardize to version 2.2.0**",
+    "\ud83d\udcdd 3 components missing documentation"
+  ]
+}

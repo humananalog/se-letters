@@ -1,16 +1,16 @@
 # SE Letters - Grok Prompts Configuration
-# Version: 2.0.0
+# version = "2.2.0"
 # Last Updated: 2025-01-14
 # Purpose: Centralized prompt management for SOTA Grok service
 
-version: "2.0.0"
+version = "2.2.0"
 last_updated: "2025-01-14"
-author: "SE Letters Pipeline Team"
+author = "Alexandre Huther" Huther" Letters Pipeline Team"
 description: "Centralized prompt management for comprehensive metadata extraction from Schneider Electric obsolescence letters"
 
 # Schema Configuration
 schema:
-  version: "unified_v2.0"
+  version = "2.2.0"
   source: "docs/schema/grok_simplified_unified_schema.json"
   categories:
     - document_information
@@ -27,7 +27,7 @@ prompts:
   # Primary metadata extraction prompt for SOTA Grok service
   unified_metadata_extraction:
     name: "Unified Metadata Extraction"
-    version: "2.0.0"
+    version = "2.2.0"
     model: "grok-3-mini"
     description: "Comprehensive metadata extraction using unified schema"
     system_prompt: |
@@ -155,7 +155,7 @@ prompts:
   # Fallback extraction prompt for simpler documents
   simplified_extraction:
     name: "Simplified Extraction"
-    version: "1.0.0"
+    version = "2.2.0"
     model: "grok-3-mini"
     description: "Simplified extraction for basic documents"
     system_prompt: |
@@ -173,7 +173,7 @@ prompts:
   # Debug and validation prompts
   validation_prompt:
     name: "Validation Prompt"
-    version: "1.0.0"
+    version = "2.2.0"
     model: "grok-3-mini"
     description: "Validate extracted metadata for consistency"
     system_prompt: |
@@ -196,7 +196,7 @@ prompts:
   # Intelligent Product Matching Prompt - Enhanced filtering layer for multiple matches
   intelligent_product_matching:
     name: "Intelligent Product Matching"
-    version: "2.0.0"
+    version = "2.2.0"
     model: "grok-3-mini"
     description: "Intelligently match ALL discovered products with letter product information using AI reasoning"
     system_prompt: |
@@ -352,7 +352,7 @@ processing:
   
 # Version Control
 changelog:
-  - version: "2.0.0"
+  - version = "2.2.0"
     date: "2025-01-14"
     changes:
       - "Aligned with unified schema v2.0"
@@ -361,7 +361,7 @@ changelog:
       - "Added error handling templates"
       - "Improved prompt structure for better accuracy"
       
-  - version: "1.0.0"
+  - version = "2.2.0"
     date: "2025-01-13"
     changes:
       - "Initial prompt configuration"

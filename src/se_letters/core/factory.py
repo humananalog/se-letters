@@ -19,7 +19,7 @@ from .adapters import (
 from .config import Config
 from ..services.document_processor import DocumentProcessor
 from ..services.xai_service import XAIService
-from ..services.excel_service import ExcelService
+from ..services.sota_product_database_service import SOTAProductDatabaseService
 from ..services.embedding_service import EmbeddingService
 from ..utils.logger import get_logger
 
@@ -63,8 +63,8 @@ class PipelineFactory:
         )
         
         self.container.register_singleton(
-            ExcelService,
-            lambda: ExcelService(self.config)
+            SOTAProductDatabaseService,
+            lambda: SOTAProductDatabaseService()
         )
         
         self.container.register_singleton(
@@ -122,7 +122,7 @@ class PipelineFactory:
         )
         
         product_matcher = ProductMatcherAdapter(
-            self.container.get_service(ExcelService),
+            self.container.get_service(SOTAProductDatabaseService),
             self.container.get_service(EmbeddingService)
         )
         
@@ -194,7 +194,7 @@ class PipelineFactory:
         
         elif stage_type == "product_matching":
             matcher = ProductMatcherAdapter(
-                self.container.get_service(ExcelService),
+                self.container.get_service(SOTAProductDatabaseService),
                 self.container.get_service(EmbeddingService)
             )
             return ProductMatchingStage(matcher)

@@ -10,7 +10,8 @@ from .interfaces import (
 from ..models.document import Document
 from ..services.document_processor import DocumentProcessor
 from ..services.xai_service import XAIService
-from ..services.excel_service import ExcelService
+# from ..services.excel_service import ExcelService  # Removed - using SOTA DuckDB
+from ..services.sota_product_database_service import SOTAProductDatabaseService
 from ..services.embedding_service import EmbeddingService
 from ..utils.logger import get_logger
 
@@ -140,18 +141,18 @@ class MetadataExtractorAdapter(IMetadataExtractor):
 
 
 class ProductMatcherAdapter(IProductMatcher):
-    """Adapter for the existing ExcelService and EmbeddingService."""
+    """Adapter for the existing SOTAProductDatabaseService and EmbeddingService."""
     
     def __init__(
-        self, excel_service: ExcelService, embedding_service: EmbeddingService
+        self, sota_service: SOTAProductDatabaseService, embedding_service: EmbeddingService
     ):
         """Initialize the adapter.
         
         Args:
-            excel_service: Existing ExcelService instance
+            sota_service: Existing SOTAProductDatabaseService instance
             embedding_service: Existing EmbeddingService instance
         """
-        self.excel_service = excel_service
+        self.sota_service = sota_service
         self.embedding_service = embedding_service
         self._index_built = False
     

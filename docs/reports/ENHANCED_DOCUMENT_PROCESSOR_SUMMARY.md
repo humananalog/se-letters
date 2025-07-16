@@ -1,4 +1,14 @@
-# Enhanced Document Processor with Database Insights - Summary Report
+# Enhanced Document Processor Summary
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 *Generated: 2025-07-11*
 
 ## Executive Summary

@@ -1,4 +1,14 @@
-# PIX2B Real Pipeline Test Implementation Summary
+# Pix2B Real Pipeline Test Summary
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## 🎯 Objective
 Create a comprehensive test unit focusing on `/Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf` that validates the SOTA pipeline's ability to detect PSIBS classification as switchgear **without any prior knowledge or hardcoded values**.

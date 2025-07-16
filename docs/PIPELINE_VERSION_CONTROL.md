@@ -1,4 +1,14 @@
-# Pipeline Version Control Documentation
+# Pipeline Version Control
+
+**Version: 2.2.0**  
+**Author: Alexandre Huther**  
+**Date: 2025-07-16**
+
+
+**Version: 2.2.0
+**Author: Alexandre Huther
+**Date: 2025-07-16**
+
 
 ## Overview
 
@@ -136,7 +146,7 @@ All production scripts must include the following header format:
 """
 Script Name and Description
 
-Version: X.Y.Z
+Version: 2.2.0
 Release Date: YYYY-MM-DD
 Status: Production Ready/Development/Beta
 Architecture: Pipeline Type
@@ -159,7 +169,7 @@ Changelog:
 - vX.Y.Z (YYYY-MM-DD): Description
 - vX.Y.Z (YYYY-MM-DD): Description
 
-Author: SE Letters Development Team
+Author: Alexandre Huther
 Repository: https://github.com/humananalog/se-letters
 Documentation: docs/RELATED_DOCUMENTATION.md
 """

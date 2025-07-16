@@ -11,7 +11,8 @@ from ..models.letter import Letter
 from ..services.document_processor import DocumentProcessor
 from ..services.embedding_service import EmbeddingService
 from ..services.xai_service import XAIService
-from ..services.excel_service import ExcelService
+# from ..services.excel_service import ExcelService  # Removed - using SOTA DuckDB
+from ..services.sota_product_database_service import SOTAProductDatabaseService
 from ..utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -30,7 +31,7 @@ class Pipeline:
         self.document_processor = DocumentProcessor(config)
         self.embedding_service = EmbeddingService(config)
         self.xai_service = XAIService(config)
-        self.excel_service = ExcelService(config)
+        self.sota_service = SOTAProductDatabaseService()
         
         # Initialize directories
         self._ensure_directories()
