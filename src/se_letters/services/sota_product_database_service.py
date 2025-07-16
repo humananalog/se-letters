@@ -170,32 +170,86 @@ class SOTAProductDatabaseService:
         WHERE 1=1
         """
         
-        # Add basic filtering to reduce search space
+        # Add PRECISE filtering to reduce search space
         where_conditions = []
         
-        # If we have a range label, filter to reduce search space
+        # CRITICAL FIX 1: Obsolescence Status Filtering - Only get OBSOLETE products
+        obsolescence_conditions = [
+            # Exact status codes from database analysis
+            "COMMERCIAL_STATUS = '19-end of commercialization block'",
+            "COMMERCIAL_STATUS = '18-End of commercialisation'", 
+            "COMMERCIAL_STATUS = '14-End of commerc. announced'",
+            "COMMERCIAL_STATUS = '16-Post commercialisation'",
+            # Fallback patterns for other obsolescence indicators
+            "COMMERCIAL_STATUS ILIKE '%obsolescence%'",
+            "COMMERCIAL_STATUS ILIKE '%discontinued%'",
+            "COMMERCIAL_STATUS ILIKE '%end of service%'"
+        ]
+        where_conditions.append(f"({' OR '.join(obsolescence_conditions)})")
+        
+        # CRITICAL FIX 2: Precise Range Label Filtering
         if filters.get('range_label'):
             range_label = filters['range_label'].strip()
-            # Use broader initial filter to include potential matches
-            where_conditions.append(
-                f"(RANGE_LABEL ILIKE '%{range_label}%' OR "
-                f"SUBRANGE_LABEL ILIKE '%{range_label}%' OR "
-                f"PRODUCT_DESCRIPTION ILIKE '%{range_label}%')"
-            )
+            
+            # Use EXACT range matching first, then precise contains
+            range_conditions = []
+            
+            # Exact range match (highest priority)
+            range_conditions.append(f"RANGE_LABEL = '{range_label}'")
+            
+            # Precise contains match (only if range is part of the actual range name)
+            range_conditions.append(f"RANGE_LABEL ILIKE '{range_label} %'")  # Range followed by space
+            range_conditions.append(f"RANGE_LABEL ILIKE '% {range_label}'")  # Space followed by range
+            range_conditions.append(f"RANGE_LABEL ILIKE '% {range_label} %'")  # Space on both sides
+            
+            # For specific known patterns
+            if range_label.upper() == 'GALAXY':
+                range_conditions.append("RANGE_LABEL ILIKE 'MGE Galaxy%'")
+                range_conditions.append("RANGE_LABEL ILIKE 'APC Galaxy%'")
+            elif range_label.upper() == 'MICOM':
+                range_conditions.append("RANGE_LABEL ILIKE 'MiCOM%'")
+                range_conditions.append("RANGE_LABEL ILIKE 'MICOM%'")
+            elif range_label.upper() == 'SEPAM':
+                range_conditions.append("RANGE_LABEL ILIKE 'SEPAM%'")
+            elif range_label.upper() == 'PIX':
+                range_conditions.append("RANGE_LABEL ILIKE 'PIX%'")
+            
+            where_conditions.append(f"({' OR '.join(range_conditions)})")
         
-        # If we have product line, add as additional filter
+        # CRITICAL FIX 3: Exact Product Line Filtering
         if filters.get('product_line'):
             pl_main = filters['product_line'].split('(')[0].strip()
-            where_conditions.append(f"PL_SERVICES ILIKE '%{pl_main}%'")
+            # Use EXACT matching for product lines
+            where_conditions.append(f"PL_SERVICES = '{pl_main}'")
         
-        # Add device type filter if available
+        # CRITICAL FIX 4: Precise Subrange Filtering (only if subrange is provided AND not empty)
+        if filters.get('subrange_label') and filters.get('subrange_label').strip():
+            subrange_label = filters['subrange_label'].strip()
+            
+            # Check if the range already includes the subrange (like 'MGE Galaxy 6000')
+            range_includes_subrange = False
+            if filters.get('range_label'):
+                range_label = filters['range_label'].strip()
+                if subrange_label in range_label:
+                    range_includes_subrange = True
+            
+            if not range_includes_subrange:
+                subrange_conditions = [
+                    f"SUBRANGE_LABEL = '{subrange_label}'",
+                    f"SUBRANGE_LABEL ILIKE '{subrange_label} %'",
+                    f"SUBRANGE_LABEL ILIKE '% {subrange_label}'",
+                    f"SUBRANGE_LABEL ILIKE '% {subrange_label} %'"
+                ]
+                where_conditions.append(f"({' OR '.join(subrange_conditions)})")
+        
+        # Add device type filter if available (keep as is)
         device_type = self._extract_device_type(filters.get('product_description', ''))
         if device_type:
             where_conditions.append(f"DEVICETYPE_LABEL ILIKE '%{device_type}%'")
         
         # Add WHERE conditions
         if where_conditions:
-            base_query += " AND (" + " OR ".join(where_conditions) + ")"
+            base_query += " AND (" + " AND ".join(where_conditions) + ")"
         
         # Add ordering by score and limit
         base_query += " ORDER BY match_score DESC LIMIT ?"
