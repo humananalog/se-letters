@@ -110,6 +110,9 @@ class SOTAProductDatabaseService:
         if hasattr(letter_product_info, 'range_label'):
             filters['range_label'] = letter_product_info.range_label
         
+        if hasattr(letter_product_info, 'subrange_label'):
+            filters['subrange_label'] = letter_product_info.subrange_label
+        
         if hasattr(letter_product_info, 'product_line'):
             filters['product_line'] = letter_product_info.product_line
         
