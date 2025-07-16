@@ -1,0 +1,10 @@
+database:
+  postgresql:
+    host: localhost
+    port: 5432
+    database: se_letters_dev
+    user: alexandre
+    password: ""
+    pool_size: 20
+    connection_timeout: 30
+    idle_timeout: 300
