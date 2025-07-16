@@ -716,7 +716,7 @@ class ProductionPipelineService:
             document_content = document.text
             
             # Get comprehensive extraction prompt
-            grok_prompt = self._get_grok_prompt(validation_result)
+            grok_prompt = self._get_grok_prompt(validation_result, document_content, file_path.name)
             
             logger.info("🔄 Requesting comprehensive extraction from Grok")
             grok_response = self.xai_service.generate_completion(
@@ -1172,3 +1172,105 @@ class ProductionPipelineService:
                 return matches[0]
         
         return datetime.now().strftime("%Y-%m-%d") 
+
+    def _get_grok_prompt(self, validation_result: ContentValidationResult, document_content: str = None, document_name: str = None) -> str:
+        """Get comprehensive Grok extraction prompt from prompts.yaml configuration"""
+        try:
+            # Load prompts configuration
+            import yaml
+            with open('config/prompts.yaml', 'r') as f:
+                prompts_config = yaml.safe_load(f)
+            
+            # Get the unified metadata extraction prompt
+            unified_prompt = prompts_config['prompts']['unified_metadata_extraction']
+            system_prompt = unified_prompt['system_prompt']
+            user_prompt_template = unified_prompt['user_prompt_template']
+            
+            # Format the user prompt with document information
+            user_prompt = user_prompt_template.format(
+                document_name=document_name or "Unknown Document",
+                document_content=document_content or ""
+            )
+            
+            # Combine system and user prompts
+            full_prompt = f"{system_prompt}\n\n{user_prompt}"
+            
+            logger.info("📋 Loaded Grok prompt from prompts.yaml configuration")
+            return full_prompt
+            
+        except Exception as e:
+            logger.warning(f"⚠️ Failed to load prompt from prompts.yaml: {e}")
+            # Fallback to hardcoded prompt
+            return self._get_fallback_grok_prompt(validation_result, document_content, document_name)
+    
+    def _get_fallback_grok_prompt(self, validation_result: ContentValidationResult, document_content: str = None, document_name: str = None) -> str:
+        """Fallback hardcoded prompt if prompts.yaml fails"""
+        return """
+        Extract comprehensive product information from this Schneider Electric document.
+        
+        Based on validation results:
+        - Product ranges detected: {product_ranges}
+        - Technical specs: {technical_specs}
+        
+        **CRITICAL PRODUCT LINE CLASSIFICATION RULES:**
+        
+        **DPIBS (Digital Power)**: Protection relays, monitoring devices, power quality analyzers
+        - Keywords: MiCOM, SEPAM, PowerLogic, protection relay, monitoring, power quality, digital protection
+        - Examples: MiCOM P20, SEPAM 20, SEPAM 40, MiCOM P521, PowerLogic P5L
+        
+        **PSIBS (Power Systems)**: Power distribution, transformers, medium voltage equipment
+        - Keywords: power distribution, transformer, medium voltage, switchgear, SM6, VM6
+        
+        **PPIBS (Power Products)**: Circuit breakers, contactors, low voltage products
+        - Keywords: circuit breaker, contactor, Masterpact, Powerpact, Easypact, ACB
+        
+        **SPIBS (Secure Power)**: UPS systems, backup power, critical infrastructure
+        - Keywords: UPS, Galaxy, battery, backup power, uninterruptible power supply
+        
+        **IDIBS (Industrial Automation)**: PLCs, industrial controls, automation
+        - Keywords: PLC, Modicon, industrial control, automation, SCADA
+        
+        Extract and return JSON with:
+        {{
+            "document_information": {{
+                "document_type": "string",
+                "document_title": "string",
+                "document_date": "string",
+                "language": "string"
+            }},
+            "products": [
+                {{
+                    "product_identifier": "string",
+                    "range_label": "string",
+                    "subrange_label": "string",
+                    "product_line": "string (MUST be DPIBS for protection relays like MiCOM, SEPAM, PowerLogic)",
+                    "product_description": "string",
+                    "obsolescence_status": "string",
+                    "end_of_service_date": "string",
+                    "replacement_suggestions": "string"
+                }}
+            ],
+            "technical_specifications": {{
+                "voltage_levels": ["list"],
+                "current_ratings": ["list"],
+                "power_ratings": ["list"],
+                "frequencies": ["list"]
+            }},
+            "business_information": {{
+                "customer_impact": "string",
+                "migration_timeline": "string",
+                "support_contacts": "string"
+            }},
+            "extraction_metadata": {{
+                "confidence_score": float,
+                "processing_method": "grok_production",
+                "extraction_timestamp": "ISO timestamp"
+            }}
+        }}
+        
+        Document: {{document_name}}
+        Content: {{document_content}}
+        """.format(
+            product_ranges=validation_result.product_ranges,
+            technical_specs=validation_result.technical_specs
+        ) 
