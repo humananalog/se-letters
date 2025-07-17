@@ -220,6 +220,81 @@ def map_data_type(duckdb_type: str) -> str:
     }
     return type_mapping.get(duckdb_type.upper(), "TEXT")
 
+#!/usr/bin/env python3
+"""
+Schema Migration Script - IBcatalogue to PostgreSQL
+Creates the PostgreSQL schema for the IBcatalogue products table
+"""
+
+import psycopg2
+
+def create_ibcatalogue_schema():
+    """Create PostgreSQL schema for IBcatalogue products table"""
+    pg_conn = psycopg2.connect(
+        host="localhost",
+        database="se_letters_dev",
+        user="alexandre"
+    )
+    cursor = pg_conn.cursor()
+    try:
+        # Create products table
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS products (
+                product_identifier VARCHAR PRIMARY KEY,
+                product_type VARCHAR,
+                product_description VARCHAR,
+                brand_code VARCHAR,
+                brand_label VARCHAR,
+                range_code VARCHAR,
+                range_label VARCHAR,
+                subrange_code VARCHAR,
+                subrange_label VARCHAR,
+                devicetype_code VARCHAR,
+                devicetype_label VARCHAR,
+                is_schneider_brand BOOLEAN,
+                serviceable BOOLEAN,
+                traceable BOOLEAN,
+                commercial_status VARCHAR,
+                end_of_production_date TIMESTAMP,
+                end_of_commercialisation TIMESTAMP,
+                service_obsolescence_date TIMESTAMP,
+                end_of_service_date TIMESTAMP,
+                average_life_duration_years INTEGER,
+                service_business_value VARCHAR,
+                warranty_duration_months INTEGER,
+                include_installation_services BOOLEAN,
+                relevant_for_ip_creation BOOLEAN,
+                pl_services VARCHAR,
+                connectable BOOLEAN,
+                gdp VARCHAR,
+                bu_pm0_node VARCHAR,
+                bu_label VARCHAR,
+                range_label_norm VARCHAR,
+                brand_label_norm VARCHAR,
+                product_description_norm VARCHAR,
+                created_at TIMESTAMP,
+                database_version VARCHAR
+            )
+        """)
+        # Create indexes
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_products_range_label ON products(range_label)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_products_brand_label ON products(brand_label)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_products_pl_services ON products(pl_services)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_products_commercial_status ON products(commercial_status)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_products_product_description ON products(product_description)")
+        pg_conn.commit()
+        print("✅ IBcatalogue products table and indexes created successfully")
+    except Exception as e:
+        pg_conn.rollback()
+        print(f"❌ Schema creation failed: {e}")
+        raise
+    finally:
+        cursor.close()
+        pg_conn.close()
+
+if __name__ == "__main__":
+    create_ibcatalogue_schema()
+
 if __name__ == "__main__":
     logger.info("🚀 Starting PostgreSQL schema migration...")
     

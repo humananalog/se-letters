@@ -18,12 +18,12 @@ data:
       - ".docx"
       - ".doc"
   
-  # Database Configuration - DuckDB Only
+  # Database Configuration - PostgreSQL Migration
   database:
-    # Product database (IBcatalogue) - 342,229 products
-    product_database: "data/IBcatalogue.duckdb"
+    # Product database (IBcatalogue) - 342,229 products migrated to PostgreSQL
+    product_database: "postgresql://alexandre@localhost:5432/se_letters_dev"
     # Letter database for processing results
-    letter_database: "data/letters.duckdb"
+    letter_database: "postgresql://alexandre@localhost:5432/se_letters_dev"
   
   output:
     json_directory: "data/output/json"

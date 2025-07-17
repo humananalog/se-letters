@@ -1,0 +1,72 @@
+2025-07-17 07:57:07.762 | INFO     | se_letters.utils.json_output_manager:_init_directories:99 - ✅ Directory structure initialized: data/output/json_outputs
+2025-07-17 07:57:07.762 | INFO     | se_letters.utils.json_output_manager:__init__:88 - 📁 JSON Output Manager initialized: data/output/json_outputs
+2025-07-17 07:57:07.770 | INFO     | se_letters.services.intelligent_product_matching_service:__init__:42 - 🧠 Intelligent Product Matching Service initialized (Production Mode)
+2025-07-17 07:57:07.770 | INFO     | se_letters.services.sota_product_database_service:__init__:45 - 📊 SOTA Product Database Service initialized (PostgreSQL)
+2025-07-17 07:57:07.770 | INFO     | se_letters.services.sota_product_database_service:__init__:46 - 🗄️ Database: postgresql://alexandre@localhost:5432/se_letters_dev
+2025-07-17 07:57:07.873 | INFO     | se_letters.services.production_pipeline_service:_init_database:265 - 🗄️ Production database initialized successfully
+2025-07-17 07:57:07.902 | INFO     | __main__:__init__:40 | 🚀 Production Pipeline Runner initialized
+2025-07-17 07:57:07.902 | INFO     | __main__:__init__:41 | 📊 Database: data/letters.duckdb
+2025-07-17 07:57:07.902 | INFO     | __main__:main:373 | 📄 Processing single file: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 07:57:07.902 | INFO     | __main__:process_single_document:78 | 📄 Processing document: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 07:57:07.902 | INFO     | __main__:process_single_document:79 | 🔄 Force reprocess: True
+2025-07-17 07:57:07.902 | INFO     | se_letters.services.production_pipeline_service:process_document:280 | 🚀 Starting production pipeline for: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 07:57:07.902 | INFO     | se_letters.services.production_pipeline_service:process_document:281 | 📁 File size: 170524 bytes
+2025-07-17 07:57:07.902 | INFO     | se_letters.services.production_pipeline_service:process_document:282 | 🔄 Force reprocess: True
+2025-07-17 07:57:07.902 | INFO     | se_letters.services.production_pipeline_service:process_document:286 | 🔍 Step 1: Checking document existence
+2025-07-17 07:57:07.921 | INFO     | se_letters.services.production_pipeline_service:_check_document_exists:428 | 📋 Document found in database: ID=33
+2025-07-17 07:57:07.921 | INFO     | se_letters.services.production_pipeline_service:_check_document_exists:429 | 📅 Previous processing: 2025-07-15 14:48:43.698000
+2025-07-17 07:57:07.921 | INFO     | se_letters.services.production_pipeline_service:_check_document_exists:430 | 📊 Status: processed
+2025-07-17 07:57:07.921 | INFO     | se_letters.services.production_pipeline_service:_check_document_exists:431 | 📂 Existing path: /Users/alexandre/workshop/devApp/SE_letters/data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 07:57:07.923 | INFO     | se_letters.services.production_pipeline_service:process_document:298 | 🔄 Force reprocessing existing document: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 07:57:07.936 | INFO     | se_letters.services.production_pipeline_service:_delete_existing_document:474 | 🗑️ Deleted child records for document: ID=33
+2025-07-17 07:57:07.942 | INFO     | se_letters.services.production_pipeline_service:process_document:305 | ✅ Step 2: Validating content compliance
+2025-07-17 07:57:07.942 | INFO     | se_letters.services.production_pipeline_service:_validate_content_compliance:499 | 🔍 Extracting document content for validation
+2025-07-17 07:57:07.954 | INFO     | se_letters.services.production_pipeline_service:_validate_content_compliance:507 | 📄 Document content extracted: 3567 characters
+2025-07-17 07:57:08.260 | WARNING  | se_letters.services.production_pipeline_service:_check_network_connectivity:609 | ⚠️ Network connectivity check failed: HTTP Error 421: Misdirected Request
+2025-07-17 07:57:08.261 | WARNING  | se_letters.services.production_pipeline_service:_validate_content_compliance:511 | ⚠️ Network connectivity issues detected - skipping XAI validation
+2025-07-17 07:57:08.261 | INFO     | se_letters.services.production_pipeline_service:process_document:319 | 🤖 Step 3: Processing with Grok (no fallback)
+2025-07-17 07:57:08.261 | INFO     | se_letters.services.production_pipeline_service:_process_with_grok:689 | 🤖 Processing document with Grok (no fallback)
+2025-07-17 07:57:08.280 | INFO     | se_letters.services.production_pipeline_service:_process_with_grok:697 | 🔄 Requesting comprehensive extraction from Grok
+2025-07-17 07:57:17.068 | INFO     | se_letters.services.production_pipeline_service:_process_with_grok:712 | ✅ Grok processing completed successfully
+2025-07-17 07:57:17.068 | INFO     | se_letters.services.production_pipeline_service:_process_with_grok:713 | 📊 Extracted 2 products
+2025-07-17 07:57:17.068 | INFO     | se_letters.services.production_pipeline_service:process_document:332 | ✅ Grok extraction completed successfully
+2025-07-17 07:57:17.069 | INFO     | se_letters.services.production_pipeline_service:process_document:333 | 📊 Extracted 2 products
+2025-07-17 07:57:17.069 | INFO     | se_letters.services.production_pipeline_service:process_document:336 | 🔍 Step 4: Intelligent Product Matching
+2025-07-17 07:57:17.069 | INFO     | se_letters.services.production_pipeline_service:_process_product_matching:761 | 🔍 Processing product matching
+2025-07-17 07:57:17.069 | INFO     | se_letters.services.intelligent_product_matching_service:create_letter_product_info_from_grok_metadata:355 | 📋 Created 2 LetterProductInfo objects from Grok metadata
+2025-07-17 07:57:17.069 | INFO     | se_letters.services.sota_product_database_service:discover_product_candidates:57 | 🔍 Discovering product candidates for: PROD_1
+2025-07-17 07:57:17.119 | ERROR    | se_letters.services.sota_product_database_service:_execute_discovery_query:361 | ❌ Database query failed: list index out of range
+2025-07-17 07:57:17.119 | INFO     | se_letters.services.sota_product_database_service:discover_product_candidates:80 | ✅ Product discovery completed in 49.86ms
+2025-07-17 07:57:17.119 | INFO     | se_letters.services.sota_product_database_service:discover_product_candidates:83 | 📊 Found 0 product candidates
+2025-07-17 07:57:17.119 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:129 | 🔍 Starting intelligent product matching for: PROD_1
+2025-07-17 07:57:17.119 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:131 | 📊 Processing 0 product candidates
+2025-07-17 07:57:17.119 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:139 | 🤖 Calling Grok API for intelligent matching
+2025-07-17 07:57:18.026 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:164 | ✅ Product matching completed in 906.59ms
+2025-07-17 07:57:18.026 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:166 | 📊 Found 0 matching products
+2025-07-17 07:57:18.026 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:167 | 🎯 Range-based matching: True
+2025-07-17 07:57:18.026 | INFO     | se_letters.services.sota_product_database_service:discover_product_candidates:57 | 🔍 Discovering product candidates for: PROD_2
+2025-07-17 07:57:18.032 | ERROR    | se_letters.services.sota_product_database_service:_execute_discovery_query:361 | ❌ Database query failed: list index out of range
+2025-07-17 07:57:18.032 | INFO     | se_letters.services.sota_product_database_service:discover_product_candidates:80 | ✅ Product discovery completed in 6.40ms
+2025-07-17 07:57:18.033 | INFO     | se_letters.services.sota_product_database_service:discover_product_candidates:83 | 📊 Found 0 product candidates
+2025-07-17 07:57:18.033 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:129 | 🔍 Starting intelligent product matching for: PROD_2
+2025-07-17 07:57:18.033 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:131 | 📊 Processing 0 product candidates
+2025-07-17 07:57:18.033 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:139 | 🤖 Calling Grok API for intelligent matching
+2025-07-17 07:57:18.913 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:164 | ✅ Product matching completed in 880.12ms
+2025-07-17 07:57:18.913 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:166 | 📊 Found 0 matching products
+2025-07-17 07:57:18.914 | INFO     | se_letters.services.intelligent_product_matching_service:match_products:167 | 🎯 Range-based matching: True
+2025-07-17 07:57:18.914 | INFO     | se_letters.services.production_pipeline_service:_process_product_matching:782 | ✅ Product matching completed: 0 matches
+2025-07-17 07:57:18.914 | INFO     | se_letters.services.production_pipeline_service:process_document:340 | 💾 Step 5: Ingesting into database
+2025-07-17 07:57:18.914 | INFO     | se_letters.services.production_pipeline_service:_ingest_into_database:803 | 💾 Ingesting results into database
+2025-07-17 07:57:18.943 | INFO     | se_letters.services.production_pipeline_service:_ingest_into_database:876 | ✅ Database ingestion completed: Document ID 33
+2025-07-17 07:57:18.966 | INFO     | se_letters.services.production_pipeline_service:process_document:360 | 💾 Step 6: Saving JSON outputs
+2025-07-17 07:57:18.966 | WARNING  | se_letters.services.production_pipeline_service:process_document:372 | ⚠️ Failed to save JSON outputs: 'ProductionPipelineService' object has no attribute '_save_json_outputs'
+2025-07-17 07:57:18.966 | INFO     | se_letters.services.production_pipeline_service:process_document:374 | ✅ Production pipeline completed successfully in 11063.95ms
+2025-07-17 07:57:18.966 | INFO     | se_letters.services.production_pipeline_service:process_document:375 | 📊 Document ID: 33
+2025-07-17 07:57:18.966 | INFO     | se_letters.services.production_pipeline_service:process_document:376 | 🎯 Confidence: 0.80
+2025-07-17 07:57:18.966 | INFO     | se_letters.services.production_pipeline_service:process_document:377 | 📦 Products found: 0
+2025-07-17 07:57:18.966 | SUCCESS  | __main__:_log_processing_result:194 | ✅ Successfully processed: PIX2B_Phase_out_Letter.pdf
+2025-07-17 07:57:18.966 | INFO     | __main__:_log_processing_result:195 | 📊 Document ID: 33
+2025-07-17 07:57:18.966 | INFO     | __main__:_log_processing_result:196 | 🎯 Confidence: 0.80
+2025-07-17 07:57:18.966 | INFO     | __main__:_log_processing_result:197 | ⏱️ Processing time: 11063.95ms
+2025-07-17 07:57:18.966 | INFO     | __main__:_log_processing_result:200 | 📦 Product ranges: []
+{"success": true, "error": null, "file_name": "PIX2B_Phase_out_Letter.pdf", "file_path": "data/test/documents/PIX2B_Phase_out_Letter.pdf", "processing_time_ms": 11063.951015472412, "extracted_ranges": [], "valid_ranges": [], "invalid_ranges": [], "obsolete_products": [], "replacement_products": [], "obsolete_count": 0, "replacement_count": 0, "extraction_method": "production_pipeline", "extraction_confidence": 0.8, "search_strategy": "xai_grok_processing", "search_space_reduction": 0, "json_outputs_saved": true, "json_outputs_location": "data/output/json_outputs/PIX2B_Phase_out_Letter_33/latest/", "grok_metadata": {"products": [{"product_identifier": "PROD_1", "range_label": "PIX 2B", "product_description": "PIX 2B offer, launched in 2014", "confidence_score": 0.8666666666666667}, {"product_identifier": "PROD_2", "range_label": "PIX Double Bus Bar", "product_description": "PIX Double Bus Bar", "confidence_score": 0.8666666666666667}], "extraction_metadata": {"confidence": 0.8666666666666667, "analysis_quality": "high", "text_length": 3567, "extraction_method": "xai_grok3_enhanced", "limitations": ["Limited to explicitly stated information, no inference made for missing data"], "processing_time": 8.787903070449829, "api_model": "grok-3-latest", "document_name": "PIX2B_Phase_out_Letter.pdf", "schema_version": "v2.0"}, "processing_timestamp": 8.787903070449829, "confidence_score": 0.8666666666666667}}

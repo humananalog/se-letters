@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-SOTA Product Database Service - Production Version
+SOTA Product Database Service - PostgreSQL Version
 High-performance service for querying the IBcatalogue database
 and discovering product candidates for intelligent matching
 
-Version: 2.2.0
+Version: 2.3.0
 Author: Alexandre Huther
-Status: Production Ready
+Status: Production Ready - PostgreSQL Migration
 """
 
-import duckdb
+import psycopg2
+import psycopg2.extras
 import time
 from pathlib import Path
 from typing import Dict, List, Any
@@ -24,29 +25,26 @@ from se_letters.models.product_matching import (
 
 
 class SOTAProductDatabaseService:
-    """Production service for SOTA product database operations"""
+    """Production service for SOTA product database operations with PostgreSQL"""
     
-    def __init__(self, db_path: str = None):
+    def __init__(self, connection_string: str = None):
         """Initialize SOTA product database service"""
         self.config = get_config()
         
-        # Use config path if not provided
-        if db_path is None:
+        # Use config connection string if not provided
+        if connection_string is None:
             try:
-                self.db_path = self.config.data.database.product_database
+                # Try to get PostgreSQL connection from environment
+                import os
+                self.connection_string = os.getenv('DATABASE_URL', "postgresql://ahuther:bender1980@localhost:5432/se_letters_dev")
             except (AttributeError, KeyError):
-                # Fallback to default path
-                self.db_path = "data/IBcatalogue.duckdb"
+                # Fallback to default connection
+                self.connection_string = "postgresql://ahuther:bender1980@localhost:5432/se_letters_dev"
         else:
-            self.db_path = db_path
+            self.connection_string = connection_string
         
-        # Verify database exists
-        if not Path(self.db_path).exists():
-            logger.error(f"❌ Database not found: {self.db_path}")
-            raise FileNotFoundError(f"Database not found: {self.db_path}")
-        
-        logger.info("📊 SOTA Product Database Service initialized")
-        logger.info(f"🗄️ Database: {self.db_path}")
+        logger.info("📊 SOTA Product Database Service initialized (PostgreSQL)")
+        logger.info(f"🗄️ Database: {self.connection_string}")
     
     def discover_product_candidates(
         self, 
@@ -132,42 +130,42 @@ class SOTAProductDatabaseService:
         # Build the base query with scoring
         base_query = """
         SELECT 
-            PRODUCT_IDENTIFIER,
-            PRODUCT_TYPE,
-            PRODUCT_DESCRIPTION,
-            BRAND_CODE,
-            BRAND_LABEL,
-            RANGE_CODE,
-            RANGE_LABEL,
-            SUBRANGE_CODE,
-            SUBRANGE_LABEL,
-            DEVICETYPE_LABEL,
-            PL_SERVICES,
+            product_identifier,
+            product_type,
+            product_description,
+            brand_code,
+            brand_label,
+            range_code,
+            range_label,
+            subrange_code,
+            subrange_label,
+            devicetype_label,
+            pl_services,
             -- Multi-factor scoring system
             (
                 -- Exact matches (highest priority)
-                CASE WHEN RANGE_LABEL = ? THEN 3.0 ELSE 0.0 END +
-                CASE WHEN SUBRANGE_LABEL = ? THEN 3.0 ELSE 0.0 END +
-                CASE WHEN PRODUCT_IDENTIFIER = ? THEN 4.0 ELSE 0.0 END +
+                CASE WHEN range_label = %s THEN 3.0 ELSE 0.0 END +
+                CASE WHEN subrange_label = %s THEN 3.0 ELSE 0.0 END +
+                CASE WHEN product_identifier = %s THEN 4.0 ELSE 0.0 END +
                 
                 -- Fuzzy similarity matches (medium priority)
-                CASE WHEN ? != '' AND RANGE_LABEL ILIKE '%' || ? || '%' THEN 2.0 ELSE 0.0 END +
-                CASE WHEN ? != '' AND SUBRANGE_LABEL ILIKE '%' || ? || '%' THEN 2.0 ELSE 0.0 END +
-                CASE WHEN ? != '' AND PRODUCT_IDENTIFIER ILIKE '%' || ? || '%' THEN 2.5 ELSE 0.0 END +
+                CASE WHEN %s != '' AND range_label ILIKE '%%' || %s || '%%' THEN 2.0 ELSE 0.0 END +
+                CASE WHEN %s != '' AND subrange_label ILIKE '%%' || %s || '%%' THEN 2.0 ELSE 0.0 END +
+                CASE WHEN %s != '' AND product_identifier ILIKE '%%' || %s || '%%' THEN 2.5 ELSE 0.0 END +
                 
                 -- Product line alignment
-                CASE WHEN PL_SERVICES = ? THEN 1.5 ELSE 0.0 END +
-                CASE WHEN ? != '' AND PL_SERVICES ILIKE '%' || ? || '%' THEN 1.0 ELSE 0.0 END +
+                CASE WHEN pl_services = %s THEN 1.5 ELSE 0.0 END +
+                CASE WHEN %s != '' AND pl_services ILIKE '%%' || %s || '%%' THEN 1.0 ELSE 0.0 END +
                 
                 -- Brand alignment
-                CASE WHEN BRAND_LABEL = ? THEN 1.0 ELSE 0.0 END +
-                CASE WHEN ? != '' AND BRAND_LABEL ILIKE '%' || ? || '%' THEN 0.5 ELSE 0.0 END +
+                CASE WHEN brand_label = %s THEN 1.0 ELSE 0.0 END +
+                CASE WHEN %s != '' AND brand_label ILIKE '%%' || %s || '%%' THEN 0.5 ELSE 0.0 END +
                 
                 -- Device type alignment (if specified)
-                CASE WHEN ? != '' AND DEVICETYPE_LABEL ILIKE '%' || ? || '%' THEN 0.5 ELSE 0.0 END +
+                CASE WHEN %s != '' AND devicetype_label ILIKE '%%' || %s || '%%' THEN 0.5 ELSE 0.0 END +
                 
                 -- Description relevance
-                CASE WHEN ? != '' AND PRODUCT_DESCRIPTION ILIKE '%' || ? || '%' THEN 0.5 ELSE 0.0 END
+                CASE WHEN %s != '' AND product_description ILIKE '%%' || %s || '%%' THEN 0.5 ELSE 0.0 END
             ) AS match_score
         FROM products
         WHERE 1=1
@@ -255,7 +253,7 @@ class SOTAProductDatabaseService:
             base_query += " AND (" + " AND ".join(where_conditions) + ")"
         
         # Add ordering by score and limit
-        base_query += " ORDER BY match_score DESC LIMIT ?"
+        base_query += " ORDER BY match_score DESC LIMIT %s"
         
         return base_query
     
@@ -294,11 +292,11 @@ class SOTAProductDatabaseService:
     ) -> List[ProductCandidate]:
         """Execute product discovery query with scoring"""
         try:
-            with duckdb.connect(self.db_path) as conn:
+            with psycopg2.connect(self.connection_string) as conn:
                 # Build dynamic query based on filters
                 query = self._build_discovery_query(filters, max_candidates)
                 
-                # Prepare parameters for the query (DuckDB uses ? placeholders)
+                # Prepare parameters for the query (PostgreSQL uses %s placeholders)
                 params = [
                     filters.get('range_label', ''),  # Exact range match
                     filters.get('subrange_label', ''),  # Exact subrange match
@@ -326,7 +324,9 @@ class SOTAProductDatabaseService:
                 logger.debug(f"📊 Parameters: {params[:5]}...")  # Log first 5 params
                 
                 # Execute query with parameters
-                results = conn.execute(query, params).fetchall()
+                with conn.cursor() as cursor:
+                    cursor.execute(query, params)
+                    results = cursor.fetchall()
                 
                 # Convert to ProductCandidate objects with scores
                 candidates = []
@@ -383,35 +383,37 @@ class SOTAProductDatabaseService:
     def get_database_stats(self) -> Dict[str, Any]:
         """Get database statistics"""
         try:
-            with duckdb.connect(self.db_path) as conn:
-                # Get total product count
-                total_count = conn.execute(
-                    "SELECT COUNT(*) FROM products"
-                ).fetchone()[0]
-                
-                # Get product line distribution
-                pl_distribution = conn.execute("""
-                    SELECT PL_SERVICES, COUNT(*) as count
-                    FROM products
-                    GROUP BY PL_SERVICES
-                    ORDER BY count DESC
-                    LIMIT 10
-                """).fetchall()
-                
-                # Get brand distribution
-                brand_distribution = conn.execute("""
-                    SELECT BRAND_LABEL, COUNT(*) as count
-                    FROM products
-                    GROUP BY BRAND_LABEL
-                    ORDER BY count DESC
-                    LIMIT 10
-                """).fetchall()
-                
-                return {
-                    'total_products': total_count,
-                    'product_line_distribution': pl_distribution,
-                    'brand_distribution': brand_distribution
-                }
+            with psycopg2.connect(self.connection_string) as conn:
+                with conn.cursor() as cursor:
+                    # Get total product count
+                    cursor.execute("SELECT COUNT(*) FROM products")
+                    total_count = cursor.fetchone()[0]
+                    
+                    # Get product line distribution
+                    cursor.execute("""
+                        SELECT pl_services, COUNT(*) as count
+                        FROM products
+                        GROUP BY pl_services
+                        ORDER BY count DESC
+                        LIMIT 10
+                    """)
+                    pl_distribution = cursor.fetchall()
+                    
+                    # Get brand distribution
+                    cursor.execute("""
+                        SELECT brand_label, COUNT(*) as count
+                        FROM products
+                        GROUP BY brand_label
+                        ORDER BY count DESC
+                        LIMIT 10
+                    """)
+                    brand_distribution = cursor.fetchall()
+                    
+                    return {
+                        'total_products': total_count,
+                        'product_line_distribution': pl_distribution,
+                        'brand_distribution': brand_distribution
+                    }
                 
         except Exception as e:
             logger.error(f"❌ Error getting database stats: {e}")
@@ -424,9 +426,11 @@ class SOTAProductDatabaseService:
     def test_connection(self) -> bool:
         """Test database connection"""
         try:
-            with duckdb.connect(self.db_path) as conn:
-                result = conn.execute("SELECT 1").fetchone()
-                return result[0] == 1
+            with psycopg2.connect(self.connection_string) as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute("SELECT 1")
+                    result = cursor.fetchone()
+                    return result[0] == 1
         except Exception as e:
             logger.error(f"❌ Database connection test failed: {e}")
             return False 

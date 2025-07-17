@@ -130,6 +130,8 @@ Find ALL products that match the obsolescence letter product. Look for:
                        f"{letter_product_info.product_identifier}")
             logger.info(f"📊 Processing {len(product_candidates)} "
                        f"product candidates")
+            logger.info(f"[DEBUG] Matching {len(product_candidates)} candidates for product: {letter_product_info.product_identifier}")
+            logger.info(f"[DEBUG] Candidate IDs: {[c.product_identifier for c in product_candidates]}")
             
             # Create matching prompt
             prompt = self._create_matching_prompt(letter_product_info, 
@@ -166,6 +168,7 @@ Find ALL products that match the obsolescence letter product. Look for:
             logger.info(f"📊 Found {result.total_matches} matching products")
             logger.info(f"🎯 Range-based matching: "
                        f"{result.range_based_matching}")
+            logger.info(f"[DEBUG] Match confidence scores: {[m.confidence for m in result.matching_products]}")
             
             return result
             

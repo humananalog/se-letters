@@ -4,6 +4,7 @@ import json
 import time
 from typing import Dict, Any, List
 from pathlib import Path
+from datetime import datetime
 
 # Import official xAI SDK
 from xai_sdk import Client
@@ -13,6 +14,7 @@ from ..core.config import Config
 from ..core.exceptions import APIError, ValidationError
 from ..models.letter import Letter, LetterMetadata
 from ..utils.logger import get_logger
+from ..models.document import Document
 
 logger = get_logger(__name__)
 
@@ -328,17 +330,20 @@ class XAIService:
 
             # Create Letter object
             letter = Letter(
-                letter_id=document_name,
-                ranges=ranges,
+                document=Document(file_path=Path(document_name), text=text, metadata={}, processing_time=processing_time, created_at=datetime.now()),
                 metadata=LetterMetadata(
+                    letter_id=document_name,
+                    ranges=ranges,
                     confidence_score=comprehensive_metadata.get(
                         "extraction_metadata", {}
                     ).get("confidence", 0.0),
-                    processing_time=processing_time,
-                    api_model=self.model,
-                    extraction_method="xai_grok3_enhanced",
-                    **comprehensive_metadata.get("extraction_metadata", {}),
+                    processing_notes=[
+                        f"api_model: {self.model}",
+                        f"extraction_method: xai_grok3_enhanced"
+                    ]
                 ),
+                similar_ranges=[],
+                created_at=datetime.now()
             )
 
             # Debug console output
@@ -363,15 +368,19 @@ class XAIService:
 
             # Return empty letter with error metadata
             return Letter(
-                letter_id=document_name,
-                ranges=[],
+                document=Document(file_path=Path(document_name), text=text, metadata={}, processing_time=processing_time, created_at=datetime.now()),
                 metadata=LetterMetadata(
+                    letter_id=document_name,
+                    ranges=[],
                     confidence_score=0.0,
-                    processing_time=processing_time,
-                    api_model=self.model,
-                    extraction_method="xai_grok3_enhanced",
-                    error=str(e),
+                    processing_notes=[
+                        f"api_model: {self.model}",
+                        f"extraction_method: xai_grok3_enhanced",
+                        f"error: {str(e)}"
+                    ]
                 ),
+                similar_ranges=[],
+                created_at=datetime.now()
             )
 
     def _build_enhanced_extraction_prompt(self, text: str, document_name: str) -> str:

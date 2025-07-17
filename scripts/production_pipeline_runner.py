@@ -18,8 +18,8 @@ from loguru import logger
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from se_letters.services.production_pipeline_service import (
-    ProductionPipelineService,
+from se_letters.services.postgresql_production_pipeline_service import (
+    PostgreSQLProductionPipelineService as ProductionPipelineService,
     ProcessingStatus,
     ProcessingResult
 )
@@ -28,7 +28,7 @@ from se_letters.services.production_pipeline_service import (
 class ProductionPipelineRunner:
     """Production pipeline runner with comprehensive logging and error handling"""
     
-    def __init__(self, db_path: str = "data/letters.duckdb"):
+    def __init__(self, db_path: str = "postgresql://alexandre@localhost:5432/se_letters_dev"):
         """Initialize pipeline runner"""
         self.db_path = db_path
         self.pipeline_service = ProductionPipelineService(db_path)
@@ -320,8 +320,8 @@ def main():
     
     parser.add_argument(
         "--db-path",
-        default="data/letters.duckdb",
-        help="Database path (default: data/letters.duckdb)"
+        default="postgresql://alexandre@localhost:5432/se_letters_dev",
+        help="Database connection string (default: PostgreSQL)"
     )
     
     parser.add_argument(

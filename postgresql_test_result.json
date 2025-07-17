@@ -1,0 +1,26 @@
+2025-07-17 08:06:12.597 | INFO     | se_letters.utils.json_output_manager:_init_directories:99 - ✅ Directory structure initialized: data/output/json_outputs
+2025-07-17 08:06:12.597 | INFO     | se_letters.utils.json_output_manager:__init__:88 - 📁 JSON Output Manager initialized: data/output/json_outputs
+2025-07-17 08:06:12.605 | INFO     | se_letters.services.intelligent_product_matching_service:__init__:42 - 🧠 Intelligent Product Matching Service initialized (Production Mode)
+2025-07-17 08:06:12.605 | INFO     | se_letters.services.sota_product_database_service:__init__:45 - 📊 SOTA Product Database Service initialized (PostgreSQL)
+2025-07-17 08:06:12.605 | INFO     | se_letters.services.sota_product_database_service:__init__:46 - 🗄️ Database: postgresql://alexandre@localhost:5432/se_letters_dev
+2025-07-17 08:06:12.649 | INFO     | se_letters.services.postgresql_production_pipeline_service:_init_database:235 - 🗄️ PostgreSQL production database initialized successfully
+2025-07-17 08:06:12.656 | INFO     | se_letters.services.postgresql_production_pipeline_service:__init__:101 | 🏭 PostgreSQL Production Pipeline Service initialized
+2025-07-17 08:06:12.657 | INFO     | se_letters.services.postgresql_production_pipeline_service:__init__:102 | 📊 Database: postgresql://alexandre@localhost:5432/se_letters_dev
+2025-07-17 08:06:12.657 | INFO     | se_letters.services.postgresql_production_pipeline_service:__init__:103 | 🔧 Configuration loaded: grok-3-latest
+2025-07-17 08:06:12.667 | INFO     | __main__:__init__:40 | 🚀 Production Pipeline Runner initialized
+2025-07-17 08:06:12.667 | INFO     | __main__:__init__:41 | 📊 Database: postgresql://alexandre@localhost:5432/se_letters_dev
+2025-07-17 08:06:12.667 | INFO     | __main__:main:373 | 📄 Processing single file: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 08:06:12.667 | INFO     | __main__:process_single_document:78 | 📄 Processing document: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 08:06:12.667 | INFO     | __main__:process_single_document:79 | 🔄 Force reprocess: True
+2025-07-17 08:06:12.667 | INFO     | se_letters.services.postgresql_production_pipeline_service:process_document:250 | 🚀 Starting PostgreSQL production pipeline for: data/test/documents/PIX2B_Phase_out_Letter.pdf
+2025-07-17 08:06:12.667 | INFO     | se_letters.services.postgresql_production_pipeline_service:process_document:251 | 📁 File size: 170524 bytes
+2025-07-17 08:06:12.667 | INFO     | se_letters.services.postgresql_production_pipeline_service:process_document:252 | 🔄 Force reprocess: True
+2025-07-17 08:06:12.667 | INFO     | se_letters.services.postgresql_production_pipeline_service:process_document:256 | 🔍 Step 1: Checking document existence
+2025-07-17 08:06:12.677 | INFO     | se_letters.services.postgresql_production_pipeline_service:process_document:275 | ✅ Step 2: Validating content compliance
+2025-07-17 08:06:12.677 | INFO     | se_letters.services.postgresql_production_pipeline_service:_validate_content_compliance:441 | 🔍 Extracting document content for validation
+2025-07-17 08:06:12.677 | ERROR    | se_letters.services.postgresql_production_pipeline_service:_validate_content_compliance:521 | ❌ Content validation failed: 'DocumentProcessor' object has no attribute 'extract_text'
+2025-07-17 08:06:12.677 | WARNING  | se_letters.services.postgresql_production_pipeline_service:process_document:279 | ⚠️ Content validation failed: ["Validation error: 'DocumentProcessor' object has no attribute 'extract_text'"]
+2025-07-17 08:06:12.677 | ERROR    | __main__:_log_processing_result:207 | ❌ Failed to process: PIX2B_Phase_out_Letter.pdf
+2025-07-17 08:06:12.677 | ERROR    | __main__:_log_processing_result:208 | 💥 Error: Content validation failed: ["Validation error: 'DocumentProcessor' object has no attribute 'extract_text'"]
+2025-07-17 08:06:12.677 | ERROR    | __main__:_log_processing_result:209 | ⏱️ Failed after: 9.71ms
+{"success": false, "error": "Content validation failed: [\"Validation error: 'DocumentProcessor' object has no attribute 'extract_text'\"]", "file_name": "PIX2B_Phase_out_Letter.pdf", "file_path": "data/test/documents/PIX2B_Phase_out_Letter.pdf", "processing_time_ms": 9.713172912597656, "extracted_ranges": [], "valid_ranges": [], "invalid_ranges": [], "obsolete_products": [], "replacement_products": [], "obsolete_count": 0, "replacement_count": 0, "extraction_method": "production_pipeline", "extraction_confidence": 0.0, "search_strategy": "xai_grok_processing", "search_space_reduction": 0, "json_outputs_saved": true, "json_outputs_location": "data/output/json_outputs/PIX2B_Phase_out_Letter_None/latest/"}
