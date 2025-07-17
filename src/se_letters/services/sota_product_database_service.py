@@ -385,35 +385,35 @@ class SOTAProductDatabaseService:
         try:
             with psycopg2.connect(self.connection_string) as conn:
                 with conn.cursor() as cursor:
-                    # Get total product count
+                # Get total product count
                     cursor.execute("SELECT COUNT(*) FROM products")
                     total_count = cursor.fetchone()[0]
-                    
-                    # Get product line distribution
+                
+                # Get product line distribution
                     cursor.execute("""
                         SELECT pl_services, COUNT(*) as count
-                        FROM products
+                    FROM products
                         GROUP BY pl_services
-                        ORDER BY count DESC
-                        LIMIT 10
+                    ORDER BY count DESC
+                    LIMIT 10
                     """)
                     pl_distribution = cursor.fetchall()
-                    
-                    # Get brand distribution
+                
+                # Get brand distribution
                     cursor.execute("""
                         SELECT brand_label, COUNT(*) as count
-                        FROM products
+                    FROM products
                         GROUP BY brand_label
-                        ORDER BY count DESC
-                        LIMIT 10
+                    ORDER BY count DESC
+                    LIMIT 10
                     """)
                     brand_distribution = cursor.fetchall()
-                    
-                    return {
-                        'total_products': total_count,
-                        'product_line_distribution': pl_distribution,
-                        'brand_distribution': brand_distribution
-                    }
+                
+                return {
+                    'total_products': total_count,
+                    'product_line_distribution': pl_distribution,
+                    'brand_distribution': brand_distribution
+                }
                 
         except Exception as e:
             logger.error(f"❌ Error getting database stats: {e}")
@@ -430,7 +430,7 @@ class SOTAProductDatabaseService:
                 with conn.cursor() as cursor:
                     cursor.execute("SELECT 1")
                     result = cursor.fetchone()
-                    return result[0] == 1
+                return result[0] == 1
         except Exception as e:
             logger.error(f"❌ Database connection test failed: {e}")
             return False 

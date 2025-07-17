@@ -24,7 +24,7 @@ from ..core.config import get_config
 from ..services.document_processor import DocumentProcessor
 from ..services.xai_service import XAIService
 from ..services.enhanced_product_mapping_service_v3 import EnhancedProductMappingServiceV3
-from ..services.json_output_manager import JSONOutputManager, OutputMetadata
+from ..utils.json_output_manager import JSONOutputManager, OutputMetadata
 
 
 class ProcessingStatus(Enum):
@@ -91,7 +91,7 @@ class PostgreSQLProductionPipelineServiceV2_3:
         self.config = get_config()
         
         # Database connection
-        self.connection_string = connection_string or self.config.database.postgresql.connection_string
+        self.connection_string = connection_string or self.config.data.database.letter_database
         
         # Services
         self.document_processor = DocumentProcessor(self.config)
@@ -106,7 +106,7 @@ class PostgreSQLProductionPipelineServiceV2_3:
         
         logger.info("🚀 PostgreSQL Production Pipeline Service v2.3 initialized")
         logger.info("📋 CORRECTED WORKFLOW: Direct Grok → Intelligent Matching → Final Grok Validation → Database")
-        logger.info("🎯 Using EnhancedProductMappingServiceV3 with DPIBS Master Rule!")
+        logger.info("🎯 Using EnhancedProductMappingServiceV3 v3.4.0 (State-of-the-Art)!")
     
     def _setup_logging(self) -> None:
         """Setup logging configuration"""
