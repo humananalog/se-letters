@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Comprehensive LLM API Tracking System**: Full token usage tracking from xAI SDK with PostgreSQL storage
+- **Raw Content Management**: Intelligent duplicate detection based on content + prompt version signatures
+- **Enhanced Analytics Dashboard**: Token usage, cost estimation, and performance monitoring
+- **Production Stage 1 Pipeline**: Optimized document processing with comprehensive tracking
+- **Version Control Integration**: Git commit tracking and prompt version management
 - State-of-the-art multi-dimensional search with pg_trgm and pgvector
 - Enhanced fuzzy text search with ILIKE pattern matching
 - Hybrid search approach with weighted scoring
