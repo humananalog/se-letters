@@ -23,7 +23,7 @@ from loguru import logger
 from ..core.config import get_config
 from ..services.document_processor import DocumentProcessor
 from ..services.xai_service import XAIService
-from ..services.enhanced_product_mapping_service import EnhancedProductMappingService
+from ..services.enhanced_product_mapping_service_v3 import EnhancedProductMappingServiceV3
 from ..services.json_output_manager import JSONOutputManager, OutputMetadata
 
 
@@ -96,7 +96,8 @@ class PostgreSQLProductionPipelineServiceV2_3:
         # Services
         self.document_processor = DocumentProcessor(self.config)
         self.xai_service = XAIService(self.config)
-        self.enhanced_mapping_service = EnhancedProductMappingService()
+        # Use the EXCELLENT EnhancedProductMappingServiceV3!
+        self.enhanced_mapping_service = EnhancedProductMappingServiceV3(self.connection_string)
         self.json_output_manager = JSONOutputManager()
         
         # Setup
@@ -105,6 +106,7 @@ class PostgreSQLProductionPipelineServiceV2_3:
         
         logger.info("🚀 PostgreSQL Production Pipeline Service v2.3 initialized")
         logger.info("📋 CORRECTED WORKFLOW: Direct Grok → Intelligent Matching → Final Grok Validation → Database")
+        logger.info("🎯 Using EnhancedProductMappingServiceV3 with DPIBS Master Rule!")
     
     def _setup_logging(self) -> None:
         """Setup logging configuration"""
@@ -466,9 +468,11 @@ class PostgreSQLProductionPipelineServiceV2_3:
         Intelligent Product Matching (Range → Individual Products)
         
         This step converts product ranges to individual IBcatalogue products
+        using the EXCELLENT EnhancedProductMappingServiceV3!
         """
         try:
             logger.info("🔍 Processing intelligent product matching (Range → Individual Products)")
+            logger.info("🎯 Using EnhancedProductMappingServiceV3 with DPIBS Master Rule!")
             
             # Extract product ranges from Grok result
             product_ranges = []
@@ -497,14 +501,14 @@ class PostgreSQLProductionPipelineServiceV2_3:
                     'matching_errors': ['No product ranges to match']
                 }
             
-            # Use enhanced mapping service to discover product candidates
+            # Use the EXCELLENT EnhancedProductMappingServiceV3 to discover product candidates
             all_matched_products = []
             total_confidence = 0.0
             
             for product_range in product_ranges:
                 logger.info(f"🔍 Processing range: {product_range['range_label']}")
                 
-                # Use enhanced mapping service to discover candidates
+                # Use EnhancedProductMappingServiceV3 for intelligent mapping
                 mapping_result = self.enhanced_mapping_service.process_product_mapping(
                     product_identifier=product_range['range_label'],
                     range_label=product_range['range_label'],
@@ -517,7 +521,7 @@ class PostgreSQLProductionPipelineServiceV2_3:
                     logger.warning(f"⚠️ No candidates found for range {product_range['range_label']}")
                     continue
                 
-                # Convert ProductMatch objects to dictionaries
+                # Convert ProductMatch objects to dictionaries for intelligent matching
                 candidates_dict = []
                 for candidate in mapping_result.modernization_candidates:
                     candidates_dict.append({
