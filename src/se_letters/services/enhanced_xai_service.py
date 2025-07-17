@@ -335,7 +335,7 @@ class EnhancedXAIService:
                 return {
                     "from_cache": True,
                     "cache_content_id": existing_content['id'],
-                    **existing_content['grok_metadata'] if existing_content['grok_metadata'] else {}
+                    **(existing_content['grok_metadata'] if existing_content['grok_metadata'] else {})
                 }
 
             # Get prompts from configuration

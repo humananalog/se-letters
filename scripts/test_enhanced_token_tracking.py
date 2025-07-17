@@ -131,8 +131,10 @@ def test_document_processing_with_tracking(file_path: Path):
             decisions = analytics.get('processing_decisions', [])
             for decision in decisions:
                 print(f"   📋 {decision['processing_decision']}: {decision['decision_count']} times")
-                print(f"      - Avg products: {decision.get('avg_products', 0):.2f}")
-                print(f"      - Avg duration: {decision.get('avg_duration_ms', 0):.2f}ms")
+                avg_products = decision.get('avg_products', 0) or 0
+                avg_duration = decision.get('avg_duration_ms', 0) or 0
+                print(f"      - Avg products: {avg_products:.2f}")
+                print(f"      - Avg duration: {avg_duration:.2f}ms")
         else:
             print(f"❌ Analytics error: {analytics['error']}")
         
