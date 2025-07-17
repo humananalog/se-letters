@@ -1,0 +1,18 @@
+id,letter_id,document_name,product_identifier,range_label,subrange_label,product_line,product_description,obsolescence_status,confidence_score,validation_status,created_at
+19,29,PIX2B_Phase_out_Letter.pdf,,PIX2B,,PSIBS,,,0.0,validated,2025-07-17 19:06:36.201185
+16,26,Galaxy_6000_End_of_Life.doc,,Galaxy 6000,,SPIBS,Galaxy 6000 range of UPSs,,0.0,validated,2025-07-17 17:01:47.574345
+14,25,SEPAM2040_PWP_Notice.pdf,,MiCOM P20,,PSIBS,,,0.0,validated,2025-07-17 17:01:21.622223
+15,25,SEPAM2040_PWP_Notice.pdf,,SEPAM 20,,PSIBS,,,0.0,validated,2025-07-17 17:01:21.622223
+13,24,PIX2B_Phase_out_Letter.pdf,,PIX Double Bus Bar,,PSIBS,,,0.0,validated,2025-07-17 17:01:02.776880
+12,24,PIX2B_Phase_out_Letter.pdf,,PIX 2B,,PSIBS,"PIX 2B offer, launched in 2014",,0.0,validated,2025-07-17 17:01:02.776880
+11,23,Galaxy_6000_End_of_Life.doc,,Galaxy 6000,,SPIBS,Galaxy 6000 range of UPSs,,0.0,validated,2025-07-17 16:58:03.488757
+10,22,SEPAM2040_PWP_Notice.pdf,,SEPAM 20,,PSIBS,,,0.0,validated,2025-07-17 16:57:35.895606
+9,22,SEPAM2040_PWP_Notice.pdf,,MiCOM P20,,PSIBS,,,0.0,validated,2025-07-17 16:57:35.895606
+7,21,PIX2B_Phase_out_Letter.pdf,,PIX 2B,,PSIBS,"PIX 2B offer, launched in 2014",,0.0,validated,2025-07-17 16:57:18.495291
+8,21,PIX2B_Phase_out_Letter.pdf,,PIX Double Bus Bar,,PSIBS,,,0.0,validated,2025-07-17 16:57:18.495291
+5,20,PIX2B_Phase_out_Letter.pdf,,PIX 2B,,PSIBS,"PIX 2B offer, launched in 2014",,0.0,validated,2025-07-17 14:51:54.623565
+6,20,PIX2B_Phase_out_Letter.pdf,,PIX Double Bus Bar,,PSIBS,,,0.0,validated,2025-07-17 14:51:54.623565
+4,19,PIX2B_Phase_out_Letter.pdf,,PIX Double Bus Bar,,PSIBS,,,0.0,validated,2025-07-17 14:49:12.144184
+3,19,PIX2B_Phase_out_Letter.pdf,,PIX 2B,,PSIBS,"PIX 2B offer, launched in 2014",,0.0,validated,2025-07-17 14:49:12.144184
+2,18,PIX2B_Phase_out_Letter.pdf,,PIX Double Bus Bar,,PSIBS,,,0.0,validated,2025-07-17 14:48:27.371565
+1,18,PIX2B_Phase_out_Letter.pdf,,PIX 2B,,PSIBS,"PIX 2B offer, launched in 2014",,0.0,validated,2025-07-17 14:48:27.371565
