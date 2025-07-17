@@ -163,6 +163,9 @@ models/
 *.pkl
 *.joblib
 
+# Temporary build directories
+pgvector/
+
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
