@@ -12,11 +12,16 @@ import sys
 import json
 import argparse
 import time
+import os
 from pathlib import Path
 from typing import Dict, Any
 
 # Add the src directory to the Python path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root / "src"))
+
+# Set the working directory to the project root
+os.chdir(project_root)
 
 from se_letters.services.postgresql_production_pipeline_service_stage1 import (
     PostgreSQLProductionPipelineServiceStage1
@@ -116,8 +121,12 @@ def main():
     
     args = parser.parse_args()
     
-    # Validate document path
+    # Validate document path - convert to absolute path if needed
     document_path = Path(args.document_path)
+    if not document_path.is_absolute():
+        # If it's a relative path, make it absolute relative to the project root
+        document_path = project_root / document_path
+    
     if not document_path.exists():
         print(json.dumps({
             "success": False,
